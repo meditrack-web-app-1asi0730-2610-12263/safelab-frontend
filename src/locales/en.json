@@ -1,0 +1,206 @@
+{
+  "app": {
+    "name": "SafeLab",
+    "tagline": "Real-time laboratory monitoring",
+    "role": "Administrator",
+    "searchPlaceholder": "Search modules or views...",
+    "search": "Search"
+  },
+  "roles": {
+    "safeLabAdministrator": "SafeLab Administrator",
+    "laboratoryStaff": "Laboratory Staff",
+    "pharmaceuticalCompany": "Pharmaceutical Company"
+  },
+  "actions": {
+    "toggleSidebar": "Toggle sidebar",
+    "language": "Language",
+    "profile": "Open profile",
+    "logout": "Log out",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "viewDetails": "View details",
+    "newRecord": "New record",
+    "notifications": "Open notifications"
+  },
+  "status": {
+    "inDevelopment": "In development",
+    "comingSoon": "This module is ready for implementation in its corresponding feature branch.",
+    "templateNote": "The base route, DDD folders and localization keys are already configured."
+  },
+  "navigation": {
+    "menu": "Menu",
+    "allModules": "Core modules",
+    "main": "Main navigation",
+    "rolePreview": "Role preview"
+  },
+  "contextLabels": {
+    "iam": "Identity & Access",
+    "profiles": "User Profiles",
+    "billing": "Plans & Billing",
+    "dashboard": "Dashboard & Overview",
+    "assets": "Assets & Inventory",
+    "sensors": "Sensor Monitoring",
+    "compliance": "Environmental Compliance",
+    "alerts": "Alerts & Notifications",
+    "remote": "Remote Control",
+    "reports": "Reports & Analytics",
+    "incidents": "Incident Management",
+    "audit": "Audit & Traceability",
+    "administration": "Administration"
+  },
+  "menu": {
+    "alerts": {
+      "ActiveAlerts": "Active Alerts",
+      "AlertDetail": "Alert Detail",
+      "AlertHistory": "Alert History",
+      "CriticalAlerts": "Critical Alerts",
+      "NotificationSettings": "Notification Settings",
+      "NotificationHistory": "Notification History",
+      "RecipientManagement": "Recipient Management",
+      "EscalationPolicy": "Escalation Policy"
+    },
+    "assets": {
+      "AssetList": "Asset List",
+      "AssetDetail": "Asset Detail",
+      "EquipmentStatus": "Equipment Status",
+      "InventoryList": "Inventory List",
+      "CriticalSupplies": "Critical Supplies",
+      "StockMovementHistory": "Stock Movement History",
+      "StorageUnit": "Storage Unit",
+      "MaintenanceOverview": "Maintenance Overview"
+    },
+    "audit": {
+      "AuditLog": "Audit Log",
+      "ActivityHistory": "Activity History",
+      "TraceabilityTimeline": "Traceability Timeline",
+      "EquipmentHistory": "Equipment History",
+      "ComplianceTraceability": "Compliance Traceability",
+      "AuditEvidence": "Audit Evidence",
+      "OperationalTraceability": "Operational Traceability",
+      "ChangeHistory": "Change History",
+      "RemoteCommandHistory": "Remote Command History"
+    },
+    "dashboard": {
+      "LaboratoryDashboard": "Laboratory Dashboard",
+      "ComplianceOverview": "Compliance Overview",
+      "PlatformOverview": "Platform Overview",
+      "KPISummary": "KPI Summary",
+      "AlertOverview": "Alert Overview",
+      "AssetOverview": "Asset Overview",
+      "SensorOverview": "Sensor Overview",
+      "IncidentOverview": "Incident Overview",
+      "DashboardFilters": "Dashboard Filters",
+      "DashboardWidgets": "Dashboard Widgets"
+    },
+    "compliance": {
+      "ComplianceStatus": "Compliance Status",
+      "StorageCompliance": "Storage Compliance",
+      "ComplianceRules": "Compliance Rules",
+      "EnvironmentalValidationResults": "Environmental Validation Results",
+      "ViolationHistory": "Violation History",
+      "ViolationDetail": "Violation Detail",
+      "ComplianceEvidence": "Compliance Evidence"
+    },
+    "iam": {
+      "Login": "Login",
+      "Register": "Register",
+      "UserManagement": "User Management",
+      "RoleManagement": "Role Management",
+      "PermissionManagement": "Permission Management",
+      "SessionStatus": "Session Status"
+    },
+    "incidents": {
+      "IncidentList": "Incident List",
+      "IncidentDetail": "Incident Detail",
+      "IncidentTracking": "Incident Tracking",
+      "Assignment": "Assignment",
+      "CorrectiveActions": "Corrective Actions",
+      "ResolutionReview": "Resolution Review",
+      "IncidentEvidence": "Incident Evidence",
+      "CriticalIncidents": "Critical Incidents"
+    },
+    "remote": {
+      "RemoteControlPanel": "Remote Control Panel",
+      "CommandHistory": "Command History",
+      "CommandStatus": "Command Status",
+      "ActuatorStatus": "Actuator Status",
+      "DeviceControlPolicy": "Device Control Policy",
+      "ExecutionResult": "Execution Result",
+      "SafetyValidation": "Safety Validation"
+    },
+    "reports": {
+      "ReportsList": "Reports List",
+      "ReportDetail": "Report Detail",
+      "ReportGenerator": "Report Generator",
+      "AnalyticsDashboard": "Analytics Dashboard",
+      "TrendAnalysis": "Trend Analysis",
+      "ExportHistory": "Export History",
+      "ComplianceReports": "Compliance Reports",
+      "OperationalReports": "Operational Reports"
+    },
+    "sensors": {
+      "SensorList": "Sensor List",
+      "SensorDetail": "Sensor Detail",
+      "LiveReadings": "Live Readings",
+      "SensorStatus": "Sensor Status",
+      "ThresholdSettings": "Threshold Settings",
+      "TelemetryHistory": "Telemetry History",
+      "CalibrationHistory": "Calibration History",
+      "MonitoringDashboard": "Monitoring Dashboard"
+    },
+    "billing": {
+      "Plans": "Plans",
+      "SubscriptionStatus": "Subscription Status",
+      "BillingDashboard": "Billing Dashboard",
+      "InvoiceHistory": "Invoice History",
+      "PaymentHistory": "Payment History",
+      "PlanManagement": "Plan Management",
+      "CustomerSubscriptions": "Customer Subscriptions"
+    },
+    "profiles": {
+      "MyProfile": "My Profile",
+      "CompanyProfile": "Company Profile",
+      "ProfileManagement": "Profile Management",
+      "Preferences": "Preferences",
+      "NotificationSettings": "Notification Settings",
+      "ContactInformation": "Contact Information"
+    },
+    "administration": "Administration"
+  },
+  "home": {
+    "title": "Control Panel",
+    "subtitle": "Operational overview for SafeLab laboratory monitoring, compliance, alerts and traceability.",
+    "description": "Main capabilities prepared for the SafeLab frontend application. Each module has its route, DDD folder structure and placeholder view for branch-based development.",
+    "frontendLabel": "SafeLab Frontend",
+    "metricsLabel": "Operational metrics",
+    "metricActiveSensors": "Active sensors",
+    "metricCompliance": "Compliance score",
+    "metricOpenAlerts": "Open alerts",
+    "metricRoutesReady": "Visible modules",
+    "trendStable": "Stable telemetry",
+    "trendPositive": "Healthy environment",
+    "trendAttention": "Requires attention",
+    "trendModules": "Ready for roles",
+    "operationalSummary": "Operational summary",
+    "monitoringCoverage": "Monitoring coverage",
+    "compliantStorage": "Compliant storage",
+    "pendingReview": "Pending review",
+    "priorityAlerts": "Priority alerts",
+    "recentNotifications": "Recent notifications",
+    "alertColdRoom": "Cold room temperature deviation",
+    "alertColdRoomCopy": "Temperature exceeded the configured threshold.",
+    "alertCalibration": "Sensor calibration pending",
+    "alertCalibrationCopy": "Two sensors require calibration review.",
+    "alertReport": "Compliance report ready",
+    "alertReportCopy": "Monthly evidence export is available.",
+    "moduleSummary": "Module summary",
+    "highlightSensors": "Live monitoring",
+    "highlightSensorsCopy": "Review sensor status, readings and threshold behavior.",
+    "highlightCompliance": "Compliance control",
+    "highlightComplianceCopy": "Validate environmental conditions and violation evidence.",
+    "highlightIncidents": "Incident response",
+    "highlightIncidentsCopy": "Track incidents, assignments and corrective actions.",
+    "highlightReports": "Reports and analytics",
+    "highlightReportsCopy": "Analyze trends, KPIs and operational reports."
+  }
+}
