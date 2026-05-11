@@ -1,0 +1,106 @@
+{
+  "currentUser": {
+    "id": 1,
+    "fullName": "Dr. Maria Lopez",
+    "role": "SafeLab Administrator",
+    "language": "en"
+  },
+  "boundedContexts": [
+    {
+      "id": 1,
+      "slug": "identity-access",
+      "name": "Identity & Access",
+      "status": "in-development"
+    },
+    {
+      "id": 2,
+      "slug": "user-profiles",
+      "name": "User Profiles",
+      "status": "in-development"
+    },
+    {
+      "id": 3,
+      "slug": "subscription-billing",
+      "name": "Plans & Billing",
+      "status": "in-development"
+    },
+    {
+      "id": 4,
+      "slug": "dashboard-overview",
+      "name": "Dashboard & Overview",
+      "status": "in-development"
+    },
+    {
+      "id": 5,
+      "slug": "asset-inventory",
+      "name": "Asset & Inventory",
+      "status": "in-development"
+    },
+    {
+      "id": 6,
+      "slug": "sensor-monitoring",
+      "name": "Sensor Monitoring",
+      "status": "in-development"
+    },
+    {
+      "id": 7,
+      "slug": "environmental-compliance",
+      "name": "Environmental Compliance",
+      "status": "in-development"
+    },
+    {
+      "id": 8,
+      "slug": "alerts-notifications",
+      "name": "Alerts & Notifications",
+      "status": "in-development"
+    },
+    {
+      "id": 9,
+      "slug": "remote-control",
+      "name": "Remote Control",
+      "status": "in-development"
+    },
+    {
+      "id": 10,
+      "slug": "reports-analytics",
+      "name": "Reports & Analytics",
+      "status": "in-development"
+    },
+    {
+      "id": 11,
+      "slug": "incident-management",
+      "name": "Incident Management",
+      "status": "in-development"
+    },
+    {
+      "id": 12,
+      "slug": "audit-traceability",
+      "name": "Audit & Traceability",
+      "status": "in-development"
+    }
+  ],
+  "alerts": [
+    {
+      "id": 1,
+      "severity": "critical",
+      "title": "Temperature threshold exceeded",
+      "status": "active"
+    }
+  ],
+  "sensors": [
+    {
+      "id": 1,
+      "name": "Cold Chamber A-01",
+      "temperature": 4.2,
+      "status": "online"
+    }
+  ],
+  "assets": [
+    {
+      "id": 1,
+      "name": "Vaccine Batch VX-42",
+      "storageUnit": "Cold Chamber A-01",
+      "status": "compliant"
+    }
+  ]
+}
