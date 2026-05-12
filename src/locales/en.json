@@ -202,5 +202,124 @@
     "highlightIncidentsCopy": "Track incidents, assignments and corrective actions.",
     "highlightReports": "Reports and analytics",
     "highlightReportsCopy": "Analyze trends, KPIs and operational reports."
+  },
+
+  "alertsNotifications": {
+    "module": {
+      "eyebrow": "Monitoring & Operations",
+      "title": "Alerts & Notifications",
+      "description": "Review active alerts, acknowledge incidents and track notification delivery."
+    },
+    "summary": {
+      "criticalAlerts": "Critical alerts",
+      "unacknowledged": "Unacknowledged",
+      "totalAlerts": "Total alerts"
+    },
+    "filters": {
+      "search": "Search",
+      "searchPlaceholder": "Search by device, location or type",
+      "severity": "Severity",
+      "status": "Status",
+      "allSeverities": "All severities",
+      "allStatuses": "All statuses",
+      "clearFilters": "Clear filters"
+    },
+    "severity": {
+      "info": "Info",
+      "warning": "Warning",
+      "critical": "Critical"
+    },
+    "status": {
+      "active": "Active",
+      "acknowledged": "Acknowledged",
+      "resolved": "Resolved",
+      "escalated": "Escalated",
+      "pending": "Pending",
+      "sent": "Sent",
+      "delivered": "Delivered",
+      "failed": "Failed"
+    },
+    "table": {
+      "type": "Type",
+      "device": "Device",
+      "location": "Location",
+      "severity": "Severity",
+      "status": "Status",
+      "createdAt": "Created at",
+      "actions": "Actions",
+      "message": "Message",
+      "channel": "Channel",
+      "sentAt": "Sent at",
+      "deliveredAt": "Delivered at",
+      "retries": "Retries",
+      "minimumSeverity": "Minimum severity",
+      "recipients": "Recipients",
+      "active": "Active"
+    },
+    "actions": {
+      "viewDetails": "View Details",
+      "acknowledge": "Acknowledge",
+      "resolve": "Resolve",
+      "escalate": "Escalate",
+      "retry": "Retry",
+      "saveRule": "Save rule",
+      "back": "Back"
+    },
+    "detail": {
+      "eyebrow": "Alert Detail",
+      "title": "Alert Detail",
+      "code": "Code",
+      "type": "Type",
+      "device": "Device",
+      "location": "Location",
+      "createdAt": "Created at",
+      "assignedTo": "Assigned to",
+      "unassigned": "Unassigned"
+    },
+    "notifications": {
+      "eyebrow": "Alerts & Notifications",
+      "title": "Notification History",
+      "description": "Track delivery status by channel, recipient and retry attempts."
+    },
+    "deliveryRules": {
+      "eyebrow": "Configuration",
+      "title": "Delivery Rules",
+      "description": "Configure who receives alerts depending on severity and delivery channel.",
+      "newRule": "New rule",
+      "configuredRules": "Configured rules",
+      "minimumSeverity": "Minimum severity",
+      "channel": "Channel",
+      "selectSeverity": "Select severity",
+      "selectChannel": "Select channel",
+      "recipients": "Recipients",
+      "activeRule": "Active rule",
+      "yes": "Yes",
+      "no": "No"
+    },
+    "channels": {
+      "email": "Email",
+      "sms": "SMS",
+      "push": "Push",
+      "whatsapp": "WhatsApp"
+    },
+    "errors": {
+      "loadAlerts": "Could not load alerts.",
+      "loadAlertDetail": "Could not load alert detail.",
+      "loadNotifications": "Could not load notifications.",
+      "loadRecipients": "Could not load recipients.",
+      "loadDeliveryRules": "Could not load delivery rules.",
+      "loadEscalationPolicies": "Could not load escalation policies."
+    },
+    "loading": {
+      "alerts": "Loading alerts...",
+      "alertDetail": "Loading alert detail...",
+      "notifications": "Loading notifications...",
+      "deliveryRules": "Loading delivery rules..."
+    },
+    "empty": {
+      "alerts": "No alerts found.",
+      "notifications": "No notifications found.",
+      "deliveryRules": "No delivery rules configured."
+    }
   }
 }
