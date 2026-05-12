@@ -1,20 +1,27 @@
 <script setup>
-import { computed } from 'vue'
-
-const props = defineProps({
+defineProps({
   severity: {
     type: String,
-    required: true,
-    validator: value => ['info', 'warning', 'critical'].includes(value)
+    required: true
   }
 })
 
-const severityClass = computed(() => `severity-${props.severity}`)
+const severityClassMap = {
+  info: 'severity-info',
+  warning: 'severity-warning',
+  critical: 'severity-critical'
+}
+
+const severityLabelMap = {
+  info: 'Info',
+  warning: 'Warning',
+  critical: 'Critical'
+}
 </script>
 
 <template>
-  <span class="severity-tag" :class="severityClass">
-    {{ severity }}
+  <span class="severity-tag" :class="severityClassMap[severity]">
+    {{ severityLabelMap[severity] || severity }}
   </span>
 </template>
 

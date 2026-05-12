@@ -4,22 +4,26 @@ defineProps({
     type: String,
     required: true
   }
-});
+})
 
 const statusClassMap = {
-  Unacknowledged: 'status-pending',
-  Acknowledged: 'status-info',
-  Resolved: 'status-success',
-  Escalated: 'status-critical'
-};
+  active: 'status-pending',
+  acknowledged: 'status-info',
+  resolved: 'status-success',
+  escalated: 'status-critical'
+}
+
+const statusLabelMap = {
+  active: 'Active',
+  acknowledged: 'Acknowledged',
+  resolved: 'Resolved',
+  escalated: 'Escalated'
+}
 </script>
 
 <template>
-  <span
-      class="status-tag"
-      :class="statusClassMap[status]"
-  >
-    {{ status }}
+  <span class="status-tag" :class="statusClassMap[status]">
+    {{ statusLabelMap[status] || status }}
   </span>
 </template>
 
