@@ -1,17 +1,41 @@
 import ComingSoonView from '@/shared/presentation/views/ComingSoonView.vue'
+const IncidentsPage = () => import('./views/incidents-page.component.vue');
+const IncidentDetailPage = () => import('./views/incident-detail-page.component.vue');
+const IncidentReportPage = () => import('./views/incident-report-page.component.vue');
 
 export const routes = [
   {
-    path: 'incident-management',
+    path: '/incident-management',
     name: 'incident-management',
-    component: ComingSoonView,
-    meta: { title: 'Incident Management', contextKey: 'incidents' }
+    component: IncidentsPage,
+    meta: {
+      title: 'Incident Management',
+      contextKey: 'incidentManagement'
+    }
   },
   {
     path: 'incident-management/incident-list',
     name: 'incident-management-incident-list',
     component: ComingSoonView,
     meta: { title: 'Incident List', contextKey: 'incidents', viewKey: 'incidents.IncidentList' }
+  },
+  {
+    path: '/incident-management/:id',
+    name: 'incident-management-detail',
+    component: IncidentDetailPage,
+    meta: {
+      title: 'Incident Detail',
+      contextKey: 'incidentManagement'
+    }
+  },
+  {
+    path: '/incident-management/:id/report',
+    name: 'incident-management-report',
+    component: IncidentReportPage,
+    meta: {
+      title: 'Incident Report',
+      contextKey: 'incidentManagement'
+    }
   },
   {
     path: 'incident-management/incident-detail',
