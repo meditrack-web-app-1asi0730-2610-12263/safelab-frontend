@@ -1,27 +1,39 @@
-import axios from 'axios';
+import axios from 'axios'
 
 const http = axios.create({
     baseURL: import.meta.env.VITE_API_BASE_URL
-});
+})
 
 export class AlertsApiService {
     getAll(params = {}) {
-        return http.get('/alerts', { params });
+        return http.get('/alerts', { params })
     }
 
     getById(id) {
-        return http.get(`/alerts/${id}`);
+        return http.get(`/alerts/${id}`)
+    }
+
+    update(id, payload) {
+        return http.patch(`/alerts/${id}`, payload)
     }
 
     acknowledge(id) {
-        return http.patch(`/alerts/${id}/acknowledge`);
+        return this.update(id, {
+            status: 'acknowledged',
+            acknowledgedAt: new Date().toISOString()
+        })
     }
 
     resolve(id) {
-        return http.patch(`/alerts/${id}/resolve`);
+        return this.update(id, {
+            status: 'resolved',
+            resolvedAt: new Date().toISOString()
+        })
     }
 
     escalate(id) {
-        return http.patch(`/alerts/${id}/escalate`);
+        return this.update(id, {
+            status: 'escalated'
+        })
     }
 }
