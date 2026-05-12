@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { RecipientService } from '../service/recipient.service';
+import { RecipientService } from '../services/recipient.service';
 
 const recipientService = new RecipientService();
 
