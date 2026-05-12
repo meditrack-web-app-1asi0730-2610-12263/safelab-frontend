@@ -15,8 +15,8 @@ onMounted(async () => {
   await Promise.all([
     deliveryRuleStore.fetchDeliveryRules(),
     recipientStore.fetchRecipients()
-  ]);
-});
+  ])
+})
 </script>
 
 <template>
