@@ -82,8 +82,122 @@
   "alerts": [
     {
       "id": 1,
+      "code": "ALR-001",
+      "type": "Temperature Deviation",
       "severity": "critical",
       "title": "Temperature threshold exceeded",
+      "description": "Cold Chamber A-01 exceeded the configured temperature threshold.",
+      "status": "active",
+      "deviceId": 1,
+      "deviceName": "Cold Chamber A-01",
+      "location": "Laboratory Room 101",
+      "assignedTo": "Dr. Maria Lopez",
+      "createdAt": "2026-05-12T09:30:00",
+      "acknowledgedAt": null,
+      "resolvedAt": null
+    },
+    {
+      "id": 2,
+      "code": "ALR-002",
+      "type": "Humidity Deviation",
+      "severity": "warning",
+      "title": "Humidity approaching limit",
+      "description": "Humidity level is close to the configured warning threshold.",
+      "status": "acknowledged",
+      "deviceId": 1,
+      "deviceName": "Cold Chamber A-01",
+      "location": "Laboratory Room 101",
+      "assignedTo": "Lab Technician",
+      "createdAt": "2026-05-12T08:15:00",
+      "acknowledgedAt": "2026-05-12T08:25:00",
+      "resolvedAt": null
+    },
+    {
+      "id": 3,
+      "code": "ALR-003",
+      "type": "Connectivity Issue",
+      "severity": "info",
+      "title": "Sensor connection restored",
+      "description": "The sensor connection was temporarily interrupted and then restored.",
+      "status": "resolved",
+      "deviceId": 1,
+      "deviceName": "Cold Chamber A-01",
+      "location": "Laboratory Room 101",
+      "assignedTo": "System",
+      "createdAt": "2026-05-11T16:45:00",
+      "acknowledgedAt": "2026-05-11T16:50:00",
+      "resolvedAt": "2026-05-11T17:00:00"
+    }
+  ],
+  "notifications": [
+    {
+      "id": 1,
+      "alertId": 1,
+      "recipientId": 1,
+      "channel": "email",
+      "message": "Critical temperature alert in Cold Chamber A-01.",
+      "status": "sent",
+      "sentAt": "2026-05-12T09:31:00",
+      "deliveredAt": "2026-05-12T09:31:10",
+      "retryCount": 0
+    },
+    {
+      "id": 2,
+      "alertId": 1,
+      "recipientId": 2,
+      "channel": "sms",
+      "message": "Immediate action required for Cold Chamber A-01.",
+      "status": "failed",
+      "sentAt": "2026-05-12T09:31:00",
+      "deliveredAt": null,
+      "retryCount": 1
+    }
+  ],
+  "recipients": [
+    {
+      "id": 1,
+      "userId": 1,
+      "fullName": "Dr. Maria Lopez",
+      "email": "maria.lopez@safelab.com",
+      "phone": "+51999999999",
+      "role": "SafeLab Administrator",
+      "shift": "Morning",
+      "isAvailable": true
+    },
+    {
+      "id": 2,
+      "userId": 2,
+      "fullName": "Carlos Ramirez",
+      "email": "carlos.ramirez@safelab.com",
+      "phone": "+51988888888",
+      "role": "Lab Technician",
+      "shift": "Morning",
+      "isAvailable": true
+    }
+  ],
+  "deliveryRules": [
+    {
+      "id": 1,
+      "minimumSeverity": "critical",
+      "channel": "email",
+      "recipientIds": [1, 2],
+      "active": true
+    },
+    {
+      "id": 2,
+      "minimumSeverity": "warning",
+      "channel": "sms",
+      "recipientIds": [2],
+      "active": true
+    }
+  ],
+  "escalationPolicies": [
+    {
+      "id": 1,
+      "name": "Critical alert escalation",
+      "severity": "critical",
+      "delayMinutes": 15,
+      "nextRecipientIds": [1],
       "status": "active"
     }
   ],
