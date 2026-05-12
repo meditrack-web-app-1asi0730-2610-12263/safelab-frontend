@@ -1,5 +1,6 @@
 <script setup>
 import { computed, onMounted } from 'vue'
+import { RouterLink } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { useAlertStore } from '../../application/stores/alert.store'
 import AlertTable from '../components/alert-table.component.vue'
@@ -77,6 +78,23 @@ onMounted(() => {
         <p class="page-description">
           {{ t('alertsNotifications.module.description') }}
         </p>
+        <nav class="quick-actions" aria-label="Alertas y notificaciones">
+          <RouterLink
+              :to="{ name: 'alerts-notifications-notification-history' }"
+              class="quick-action-link"
+          >
+            <i class="pi pi-history" aria-hidden="true"></i>
+            <span>{{ t('alertsNotifications.actions.notificationHistory') }}</span>
+          </RouterLink>
+
+          <RouterLink
+              :to="{ name: 'alerts-notifications-notification-settings' }"
+              class="quick-action-link"
+          >
+            <i class="pi pi-cog" aria-hidden="true"></i>
+            <span>{{ t('alertsNotifications.actions.notificationSettings') }}</span>
+          </RouterLink>
+        </nav>
       </div>
     </header>
 
@@ -224,7 +242,51 @@ h1 {
   font-size: 1rem;
   margin: 0.5rem 0 0;
 }
+.quick-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
 
+.quick-action-link {
+  align-items: center;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 0.5rem;
+  color: #334155;
+  display: inline-flex;
+  font-size: 0.875rem;
+  font-weight: 700;
+  gap: 0.5rem;
+  min-height: 40px;
+  padding: 0.625rem 1rem;
+  text-decoration: none;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  transition:
+      background-color 150ms ease-in-out,
+      border-color 150ms ease-in-out,
+      color 150ms ease-in-out,
+      box-shadow 150ms ease-in-out,
+      transform 150ms ease-in-out;
+}
+
+.quick-action-link:hover {
+  background: #eef2ff;
+  border-color: #4f46e5;
+  color: #4338ca;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transform: translateY(-1px);
+}
+
+.quick-action-link:focus {
+  outline: 2px solid #4f46e5;
+  outline-offset: 2px;
+}
+
+.quick-action-link i {
+  font-size: 1rem;
+}
 .summary-grid {
   display: grid;
   gap: 1rem;
@@ -354,8 +416,8 @@ select:focus,
   .secondary-button {
     width: fit-content;
   }
-}
 
+}
 @media (max-width: 767px) {
   .alerts-page {
     padding: 1rem;
@@ -371,6 +433,15 @@ select:focus,
   }
 
   .secondary-button {
+    width: 100%;
+  }
+
+  .quick-actions {
+    flex-direction: column;
+  }
+
+  .quick-action-link {
+    justify-content: center;
     width: 100%;
   }
 }

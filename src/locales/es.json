@@ -256,6 +256,8 @@
       "active": "Activa"
     },
     "actions": {
+      "notificationHistory": "Historial de notificaciones",
+      "notificationSettings": "Configuración de notificaciones",
       "viewDetails": "Ver detalles",
       "acknowledge": "Reconocer",
       "resolve": "Resolver",

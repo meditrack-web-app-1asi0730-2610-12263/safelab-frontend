@@ -257,6 +257,8 @@
       "active": "Active"
     },
     "actions": {
+      "notificationHistory": "Notification History",
+      "notificationSettings": "Notification Settings",
       "viewDetails": "View Details",
       "acknowledge": "Acknowledge",
       "resolve": "Resolve",
