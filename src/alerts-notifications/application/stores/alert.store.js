@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { AlertService } from '../service/alert.service'
+import { AlertService } from '../services/alert.service'
 
 const alertService = new AlertService()
 
