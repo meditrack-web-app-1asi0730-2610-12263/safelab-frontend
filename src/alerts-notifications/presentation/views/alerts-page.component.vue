@@ -1,9 +1,10 @@
 <script setup>
-import { computed, onMounted } from 'vue';
-import { useAlertStore } from '../../application/stores/alert.store';
-import AlertTable from '../components/alert-table.component.vue';
+import { computed, onMounted } from 'vue'
+import { RouterLink } from 'vue-router'
+import { useAlertStore } from '../../application/stores/alert.store'
+import AlertTable from '../components/alert-table.component.vue'
 
-const alertStore = useAlertStore();
+const alertStore = useAlertStore()
 
 const severityOptions = [
   { label: 'Info', value: 'info' },
@@ -45,6 +46,22 @@ onMounted(() => {
           Review active alerts, acknowledge incidents and track notification delivery.
         </p>
       </div>
+
+      <nav class="quick-actions" aria-label="Alerts and notifications quick actions">
+        <RouterLink
+            class="quick-action-link primary-link"
+            :to="{ name: 'alerts-notifications-notification-settings' }"
+        >
+          Notification Settings
+        </RouterLink>
+
+        <RouterLink
+            class="quick-action-link secondary-link"
+            :to="{ name: 'alerts-notifications-notification-history' }"
+        >
+          Notification History
+        </RouterLink>
+      </nav>
     </header>
 
     <section class="summary-grid" aria-label="Alert summary">
@@ -133,7 +150,65 @@ onMounted(() => {
 }
 
 .page-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.5rem;
   margin-bottom: 1.5rem;
+}
+
+.quick-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.quick-action-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 150ms ease-in-out, border-color 150ms ease-in-out;
+}
+
+.primary-link {
+  background: #4f46e5;
+  color: #ffffff;
+  border: 1px solid #4f46e5;
+}
+
+.primary-link:hover {
+  background: #4338ca;
+  border-color: #4338ca;
+}
+
+.secondary-link {
+  background: #ffffff;
+  color: #334155;
+  border: 1px solid #cbd5e1;
+}
+
+.secondary-link:hover {
+  background: #f8fafc;
+}
+
+@media (max-width: 767px) {
+  .page-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .quick-actions {
+    width: 100%;
+  }
+
+  .quick-action-link {
+    width: 100%;
+  }
 }
 
 .eyebrow {
