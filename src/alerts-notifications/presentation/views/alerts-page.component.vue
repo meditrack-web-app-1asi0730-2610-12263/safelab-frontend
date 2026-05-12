@@ -119,7 +119,7 @@ onMounted(() => {
     </p>
 
     <AlertTable
-        :alerts="alertStore.alerts"
+        :alerts="alertStore.filteredAlerts"
         :loading="alertStore.loading"
     />
   </main>
