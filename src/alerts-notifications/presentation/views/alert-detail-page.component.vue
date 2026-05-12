@@ -1,10 +1,12 @@
 <script setup>
 import { onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+import { useI18n } from 'vue-i18n'
 import { useAlertStore } from '../../application/stores/alert.store'
 import AlertSeverityTag from '../components/alert-severity-tag.component.vue'
 import AlertStatusTag from '../components/alert-status-tag.component.vue'
 
+const { t } = useI18n()
 const route = useRoute()
 const router = useRouter()
 const alertStore = useAlertStore()
@@ -29,21 +31,23 @@ onMounted(() => {
 <template>
   <main class="alert-detail-page" aria-labelledby="alert-detail-title">
     <button type="button" class="back-button" @click="router.back()">
-      Back
+      {{ t('alertsNotifications.actions.back') }}
     </button>
 
     <p v-if="alertStore.loading" class="loading-message">
-      Loading alert detail...
+      {{ t('alertsNotifications.loading.alertDetail') }}
     </p>
 
     <p v-else-if="alertStore.error" class="error-message" role="alert">
-      {{ alertStore.error }}
+      {{ t('alertsNotifications.errors.loadAlertDetail') }}
     </p>
 
     <article v-else-if="alertStore.selectedAlert" class="detail-card">
       <header class="detail-header">
         <div class="detail-heading">
-          <p class="eyebrow">Alert Detail</p>
+          <p class="eyebrow">
+            {{ t('alertsNotifications.detail.eyebrow') }}
+          </p>
 
           <h1 id="alert-detail-title">
             {{ alertStore.selectedAlert.title }}
@@ -60,35 +64,68 @@ onMounted(() => {
         </div>
       </header>
 
-      <section class="metadata-grid" aria-label="Alert metadata">
+      <section
+          class="metadata-grid"
+          :aria-label="t('alertsNotifications.detail.title')"
+      >
         <div class="metadata-item">
-          <span class="metadata-label">Code</span>
-          <strong>{{ alertStore.selectedAlert.code || 'Not assigned' }}</strong>
+          <span class="metadata-label">
+            {{ t('alertsNotifications.detail.code') }}
+          </span>
+
+          <strong>
+            {{ alertStore.selectedAlert.code || t('alertsNotifications.detail.unassigned') }}
+          </strong>
         </div>
 
         <div class="metadata-item">
-          <span class="metadata-label">Type</span>
-          <strong>{{ alertStore.selectedAlert.type }}</strong>
+          <span class="metadata-label">
+            {{ t('alertsNotifications.detail.type') }}
+          </span>
+
+          <strong>
+            {{ alertStore.selectedAlert.type }}
+          </strong>
         </div>
 
         <div class="metadata-item">
-          <span class="metadata-label">Device</span>
-          <strong>{{ alertStore.selectedAlert.deviceName }}</strong>
+          <span class="metadata-label">
+            {{ t('alertsNotifications.detail.device') }}
+          </span>
+
+          <strong>
+            {{ alertStore.selectedAlert.deviceName }}
+          </strong>
         </div>
 
         <div class="metadata-item">
-          <span class="metadata-label">Location</span>
-          <strong>{{ alertStore.selectedAlert.location }}</strong>
+          <span class="metadata-label">
+            {{ t('alertsNotifications.detail.location') }}
+          </span>
+
+          <strong>
+            {{ alertStore.selectedAlert.location }}
+          </strong>
         </div>
 
         <div class="metadata-item">
-          <span class="metadata-label">Created at</span>
-          <strong>{{ alertStore.selectedAlert.createdAt }}</strong>
+          <span class="metadata-label">
+            {{ t('alertsNotifications.detail.createdAt') }}
+          </span>
+
+          <strong>
+            {{ alertStore.selectedAlert.createdAt }}
+          </strong>
         </div>
 
         <div class="metadata-item">
-          <span class="metadata-label">Assigned to</span>
-          <strong>{{ alertStore.selectedAlert.assignedTo || 'Unassigned' }}</strong>
+          <span class="metadata-label">
+            {{ t('alertsNotifications.detail.assignedTo') }}
+          </span>
+
+          <strong>
+            {{ alertStore.selectedAlert.assignedTo || t('alertsNotifications.detail.unassigned') }}
+          </strong>
         </div>
       </section>
 
@@ -99,7 +136,7 @@ onMounted(() => {
             :disabled="alertStore.selectedAlert.status !== 'active'"
             @click="acknowledge"
         >
-          Acknowledge
+          {{ t('alertsNotifications.actions.acknowledge') }}
         </button>
 
         <button
@@ -108,7 +145,7 @@ onMounted(() => {
             :disabled="alertStore.selectedAlert.status === 'resolved'"
             @click="resolve"
         >
-          Resolve
+          {{ t('alertsNotifications.actions.resolve') }}
         </button>
 
         <button
@@ -117,7 +154,7 @@ onMounted(() => {
             :disabled="alertStore.selectedAlert.status === 'escalated'"
             @click="escalate"
         >
-          Escalate
+          {{ t('alertsNotifications.actions.escalate') }}
         </button>
       </footer>
     </article>

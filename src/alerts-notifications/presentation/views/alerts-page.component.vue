@@ -78,7 +78,10 @@ onMounted(() => {
         <p class="page-description">
           {{ t('alertsNotifications.module.description') }}
         </p>
-        <nav class="quick-actions" aria-label="Alertas y notificaciones">
+        <nav
+            class="quick-actions"
+            :aria-label="t('alertsNotifications.module.title')"
+        >
           <RouterLink
               :to="{ name: 'alerts-notifications-notification-history' }"
               class="quick-action-link"
@@ -98,7 +101,10 @@ onMounted(() => {
       </div>
     </header>
 
-    <section class="summary-grid" aria-label="Alert summary">
+    <section
+        class="summary-grid"
+        :aria-label="t('alertsNotifications.summary.totalAlerts')"
+    >
       <article class="summary-card critical">
                 <span class="summary-label">
                     {{ t('alertsNotifications.summary.criticalAlerts') }}
@@ -124,7 +130,10 @@ onMounted(() => {
       </article>
     </section>
 
-    <section class="filters-panel" aria-label="Alert filters">
+    <section
+        class="filters-panel"
+        :aria-label="t('alertsNotifications.filters.search')"
+    >
       <label>
         {{ t('alertsNotifications.filters.search') }}
 

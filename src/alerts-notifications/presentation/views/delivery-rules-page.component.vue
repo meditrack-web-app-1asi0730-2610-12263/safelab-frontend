@@ -1,15 +1,17 @@
 <script setup>
-import { onMounted } from 'vue';
-import { useDeliveryRuleStore } from '../../application/stores/delivery-rule.store';
-import { useRecipientStore } from '../../application/stores/recipient.store';
-import DeliveryRuleForm from '../components/delivery-rule-form.component.vue';
+import { onMounted } from 'vue'
+import { useI18n } from 'vue-i18n'
+import { useDeliveryRuleStore } from '../../application/stores/delivery-rule.store'
+import { useRecipientStore } from '../../application/stores/recipient.store'
+import DeliveryRuleForm from '../components/delivery-rule-form.component.vue'
 
-const deliveryRuleStore = useDeliveryRuleStore();
-const recipientStore = useRecipientStore();
+const { t } = useI18n()
+const deliveryRuleStore = useDeliveryRuleStore()
+const recipientStore = useRecipientStore()
 
 const createRule = async (payload) => {
-  await deliveryRuleStore.createDeliveryRule(payload);
-};
+  await deliveryRuleStore.createDeliveryRule(payload)
+}
 
 onMounted(async () => {
   await Promise.all([
@@ -22,16 +24,24 @@ onMounted(async () => {
 <template>
   <main class="delivery-rules-page" aria-labelledby="delivery-rules-title">
     <header>
-      <p class="eyebrow">Configuration</p>
-      <h1 id="delivery-rules-title">Delivery Rules</h1>
+      <p class="eyebrow">
+        {{ t('alertsNotifications.deliveryRules.eyebrow') }}
+      </p>
+
+      <h1 id="delivery-rules-title">
+        {{ t('alertsNotifications.deliveryRules.title') }}
+      </h1>
+
       <p>
-        Configure who receives alerts depending on severity and delivery channel.
+        {{ t('alertsNotifications.deliveryRules.description') }}
       </p>
     </header>
 
     <section class="layout-grid">
       <article class="panel">
-        <h2>New rule</h2>
+        <h2>
+          {{ t('alertsNotifications.deliveryRules.newRule') }}
+        </h2>
 
         <DeliveryRuleForm
             :recipients="recipientStore.recipients"
@@ -40,15 +50,53 @@ onMounted(async () => {
       </article>
 
       <article class="panel">
-        <h2>Configured rules</h2>
+        <h2>
+          {{ t('alertsNotifications.deliveryRules.configuredRules') }}
+        </h2>
 
-        <table class="rules-table">
+        <p
+            v-if="deliveryRuleStore.loading"
+            class="loading-message"
+        >
+          {{ t('alertsNotifications.loading.deliveryRules') }}
+        </p>
+
+        <p
+            v-else-if="deliveryRuleStore.error"
+            class="error-message"
+            role="alert"
+        >
+          {{ t('alertsNotifications.errors.loadDeliveryRules') }}
+        </p>
+
+        <p
+            v-else-if="deliveryRuleStore.deliveryRules.length === 0"
+            class="empty-message"
+        >
+          {{ t('alertsNotifications.empty.deliveryRules') }}
+        </p>
+
+        <table
+            v-else
+            class="rules-table"
+        >
           <thead>
           <tr>
-            <th>Minimum severity</th>
-            <th>Channel</th>
-            <th>Recipients</th>
-            <th>Active</th>
+            <th>
+              {{ t('alertsNotifications.table.minimumSeverity') }}
+            </th>
+
+            <th>
+              {{ t('alertsNotifications.table.channel') }}
+            </th>
+
+            <th>
+              {{ t('alertsNotifications.table.recipients') }}
+            </th>
+
+            <th>
+              {{ t('alertsNotifications.table.active') }}
+            </th>
           </tr>
           </thead>
 
@@ -57,10 +105,21 @@ onMounted(async () => {
               v-for="rule in deliveryRuleStore.deliveryRules"
               :key="rule.id"
           >
-            <td>{{ rule.minimumSeverity }}</td>
-            <td>{{ rule.channel }}</td>
-            <td>{{ rule.recipientIds.length }}</td>
-            <td>{{ rule.active ? 'Yes' : 'No' }}</td>
+            <td>
+              {{ t(`alertsNotifications.severity.${rule.minimumSeverity}`) }}
+            </td>
+
+            <td>
+              {{ t(`alertsNotifications.channels.${rule.channel}`) }}
+            </td>
+
+            <td>
+              {{ rule.recipientIds.length }}
+            </td>
+
+            <td>
+              {{ rule.active ? t('alertsNotifications.deliveryRules.yes') : t('alertsNotifications.deliveryRules.no') }}
+            </td>
           </tr>
           </tbody>
         </table>
@@ -130,6 +189,32 @@ td {
   border-bottom: 1px solid #e2e8f0;
   color: #334155;
   padding: 0.75rem;
+}
+
+.loading-message,
+.empty-message,
+.error-message {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin: 1rem 0 0;
+}
+
+.loading-message {
+  background: #ffffff;
+  color: #475569;
+  border: 1px solid #e2e8f0;
+}
+
+.empty-message {
+  background: #eff6ff;
+  color: #1e40af;
+  border-left: 4px solid #2563eb;
+}
+
+.error-message {
+  background: #fee2e2;
+  color: #991b1b;
+  border-left: 4px solid #dc2626;
 }
 
 @media (max-width: 900px) {
