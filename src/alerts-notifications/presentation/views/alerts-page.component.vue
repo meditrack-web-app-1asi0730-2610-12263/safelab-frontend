@@ -5,14 +5,17 @@ import AlertTable from '../components/alert-table.component.vue';
 
 const alertStore = useAlertStore();
 
-const severityOptions = ['Info', 'Warning', 'Critical'];
-
+const severityOptions = [
+  { label: 'Info', value: 'info' },
+  { label: 'Warning', value: 'warning' },
+  { label: 'Critical', value: 'critical' }
+]
 const statusOptions = [
-  'Unacknowledged',
-  'Acknowledged',
-  'Resolved',
-  'Escalated'
-];
+  { label: 'Active', value: 'active' },
+  { label: 'Acknowledged', value: 'acknowledged' },
+  { label: 'Resolved', value: 'resolved' },
+  { label: 'Escalated', value: 'escalated' }
+]
 
 const criticalCount = computed(() => alertStore.criticalAlerts.length);
 const unacknowledgedCount = computed(() => alertStore.unacknowledgedAlerts.length);
@@ -81,10 +84,10 @@ onMounted(() => {
           <option value="">All severities</option>
           <option
               v-for="severity in severityOptions"
-              :key="severity"
-              :value="severity"
+              :key="severity.value"
+              :value="severity.value"
           >
-            {{ severity }}
+            {{ severity.label }}
           </option>
         </select>
       </label>
@@ -98,10 +101,10 @@ onMounted(() => {
           <option value="">All statuses</option>
           <option
               v-for="status in statusOptions"
-              :key="status"
-              :value="status"
+              :key="status.value"
+              :value="status.value"
           >
-            {{ status }}
+            {{ status.label }}
           </option>
         </select>
       </label>
