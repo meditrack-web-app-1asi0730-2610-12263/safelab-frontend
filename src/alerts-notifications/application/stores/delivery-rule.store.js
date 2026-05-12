@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { DeliveryRuleService } from '../service/delivery-rule.service'
+import { DeliveryRuleService } from '../services/delivery-rule.service'
 
 const deliveryRuleService = new DeliveryRuleService()
 
