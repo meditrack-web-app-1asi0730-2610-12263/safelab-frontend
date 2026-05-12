@@ -18,10 +18,10 @@ const router = useRouter();
 
 const goToDetail = (alert) => {
   router.push({
-    name: 'alert-detail',
+    name: 'alerts-notifications-alert-detail',
     params: { id: alert.id }
-  });
-};
+  })
+}
 </script>
 
 <template>
