@@ -1,4 +1,4 @@
-import { AlertStatus } from '../model/alert-status.enum';
+import { AlertStatus } from '../models/alert-status.enum';
 
 export class Alert {
     constructor({
