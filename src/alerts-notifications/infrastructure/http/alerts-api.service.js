@@ -5,8 +5,8 @@ const http = axios.create({
 })
 
 export class AlertsApiService {
-    getAll(params = {}) {
-        return http.get('/alerts', { params })
+    getAll() {
+        return http.get('/alerts')
     }
 
     getById(id) {
