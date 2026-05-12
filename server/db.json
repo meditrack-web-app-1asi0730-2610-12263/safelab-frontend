@@ -102,5 +102,46 @@
       "storageUnit": "Cold Chamber A-01",
       "status": "compliant"
     }
+  ],
+  "incidents": [
+    {
+      "id": 1,
+      "title": "Temperature deviation in Freezer A-01",
+      "description": "Temperature exceeded the allowed cold chain threshold for 12 minutes.",
+      "severity": "critical",
+      "status": "open",
+      "sourceAlertId": 1,
+      "assignedTo": "Lab Technician",
+      "affectedArea": "Cold Storage Room A",
+      "correctiveAction": "",
+      "createdAt": "2026-05-12T09:30:00.000Z",
+      "updatedAt": "2026-05-12T09:30:00.000Z"
+    },
+    {
+      "id": 2,
+      "title": "Humidity warning in Storage B",
+      "description": "Humidity is approaching the configured compliance limit.",
+      "severity": "warning",
+      "status": "investigating",
+      "sourceAlertId": 2,
+      "assignedTo": "Compliance Officer",
+      "affectedArea": "Storage Room B",
+      "correctiveAction": "Reviewing HVAC calibration.",
+      "createdAt": "2026-05-11T16:45:00.000Z",
+      "updatedAt": "2026-05-12T08:20:00.000Z"
+    },
+    {
+      "id": 3,
+      "title": "Connectivity loss in Sensor T-204",
+      "description": "Sensor stopped sending readings during a scheduled monitoring period.",
+      "severity": "info",
+      "status": "resolved",
+      "sourceAlertId": 3,
+      "assignedTo": "Operations Team",
+      "affectedArea": "Clinical Lab 2",
+      "correctiveAction": "Sensor gateway restarted and signal restored.",
+      "createdAt": "2026-05-10T13:10:00.000Z",
+      "updatedAt": "2026-05-10T14:05:00.000Z"
+    }
   ]
 }
