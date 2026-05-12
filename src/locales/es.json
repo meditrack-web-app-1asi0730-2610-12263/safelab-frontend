@@ -202,5 +202,123 @@
     "highlightIncidentsCopy": "Gestiona incidentes, asignaciones y acciones correctivas.",
     "highlightReports": "Reportes y analítica",
     "highlightReportsCopy": "Analiza tendencias, KPIs y reportes operativos."
+  },
+  "alertsNotifications": {
+    "module": {
+      "eyebrow": "Monitoreo y Operaciones",
+      "title": "Alertas y Notificaciones",
+      "description": "Revisa alertas activas, reconoce incidentes y supervisa la entrega de notificaciones."
+    },
+    "summary": {
+      "criticalAlerts": "Alertas críticas",
+      "unacknowledged": "Sin reconocer",
+      "totalAlerts": "Alertas totales"
+    },
+    "filters": {
+      "search": "Buscar",
+      "searchPlaceholder": "Buscar por dispositivo, ubicación o tipo",
+      "severity": "Severidad",
+      "status": "Estado",
+      "allSeverities": "Todas las severidades",
+      "allStatuses": "Todos los estados",
+      "clearFilters": "Limpiar filtros"
+    },
+    "severity": {
+      "info": "Información",
+      "warning": "Advertencia",
+      "critical": "Crítica"
+    },
+    "status": {
+      "active": "Activa",
+      "acknowledged": "Reconocida",
+      "resolved": "Resuelta",
+      "escalated": "Escalada",
+      "pending": "Pendiente",
+      "sent": "Enviada",
+      "delivered": "Entregada",
+      "failed": "Fallida"
+    },
+    "table": {
+      "type": "Tipo",
+      "device": "Dispositivo",
+      "location": "Ubicación",
+      "severity": "Severidad",
+      "status": "Estado",
+      "createdAt": "Creada el",
+      "actions": "Acciones",
+      "message": "Mensaje",
+      "channel": "Canal",
+      "sentAt": "Enviada el",
+      "deliveredAt": "Entregada el",
+      "retries": "Reintentos",
+      "minimumSeverity": "Severidad mínima",
+      "recipients": "Destinatarios",
+      "active": "Activa"
+    },
+    "actions": {
+      "viewDetails": "Ver detalles",
+      "acknowledge": "Reconocer",
+      "resolve": "Resolver",
+      "escalate": "Escalar",
+      "retry": "Reintentar",
+      "saveRule": "Guardar regla",
+      "back": "Volver"
+    },
+    "detail": {
+      "eyebrow": "Detalle de alerta",
+      "title": "Detalle de alerta",
+      "code": "Código",
+      "type": "Tipo",
+      "device": "Dispositivo",
+      "location": "Ubicación",
+      "createdAt": "Creada el",
+      "assignedTo": "Asignada a",
+      "unassigned": "Sin asignar"
+    },
+    "notifications": {
+      "eyebrow": "Alertas y Notificaciones",
+      "title": "Historial de notificaciones",
+      "description": "Supervisa el estado de entrega por canal, destinatario y número de reintentos."
+    },
+    "deliveryRules": {
+      "eyebrow": "Configuración",
+      "title": "Reglas de entrega",
+      "description": "Configura quién recibe alertas según la severidad y el canal de entrega.",
+      "newRule": "Nueva regla",
+      "configuredRules": "Reglas configuradas",
+      "minimumSeverity": "Severidad mínima",
+      "channel": "Canal",
+      "selectSeverity": "Selecciona una severidad",
+      "selectChannel": "Selecciona un canal",
+      "recipients": "Destinatarios",
+      "activeRule": "Regla activa",
+      "yes": "Sí",
+      "no": "No"
+    },
+    "channels": {
+      "email": "Correo electrónico",
+      "sms": "SMS",
+      "push": "Notificación push",
+      "whatsapp": "WhatsApp"
+    },
+    "errors": {
+      "loadAlerts": "No se pudieron cargar las alertas.",
+      "loadAlertDetail": "No se pudo cargar el detalle de la alerta.",
+      "loadNotifications": "No se pudieron cargar las notificaciones.",
+      "loadRecipients": "No se pudieron cargar los destinatarios.",
+      "loadDeliveryRules": "No se pudieron cargar las reglas de entrega.",
+      "loadEscalationPolicies": "No se pudieron cargar las políticas de escalamiento."
+    },
+    "loading": {
+      "alerts": "Cargando alertas...",
+      "alertDetail": "Cargando detalle de alerta...",
+      "notifications": "Cargando notificaciones...",
+      "deliveryRules": "Cargando reglas de entrega..."
+    },
+    "empty": {
+      "alerts": "No se encontraron alertas.",
+      "notifications": "No se encontraron notificaciones.",
+      "deliveryRules": "No hay reglas de entrega configuradas."
+    }
   }
 }
