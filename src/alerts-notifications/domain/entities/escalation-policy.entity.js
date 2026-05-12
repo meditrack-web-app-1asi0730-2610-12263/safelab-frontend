@@ -1,4 +1,4 @@
-import { PolicyStatus } from '../model/policy-status.enum';
+import { PolicyStatus } from '../models/policy-status.enum';
 
 export class EscalationPolicy {
     constructor({
