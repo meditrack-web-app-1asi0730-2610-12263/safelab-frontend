@@ -146,7 +146,58 @@
       "ThresholdSettings": "Threshold Settings",
       "TelemetryHistory": "Telemetry History",
       "CalibrationHistory": "Calibration History",
-      "MonitoringDashboard": "Monitoring Dashboard"
+      "MonitoringDashboard": "Monitoring Dashboard",
+      "monitoring": {
+        "eyebrow": "Monitoring",
+        "title": "Real-time Monitoring",
+        "subtitle": "Continuous tracking of every sensor in your facilities.",
+        "searchPlaceholder": "Search device...",
+        "searchAriaLabel": "Search sensors",
+        "filters": {
+          "type": "Type",
+          "status": "Status",
+          "all": "All"
+        },
+        "states": {
+          "loading": "Loading sensors...",
+          "error": "Failed to load sensors.",
+          "empty": "No sensors detected."
+        },
+        "metrics": {
+          "currentValue": "Current value",
+          "currentTemperature": "Current temperature",
+          "currentHumidity": "Current humidity",
+          "currentDoorStatus": "Current door status",
+          "currentVibration": "Current vibration",
+          "currentEnergy": "Current energy"
+        },
+        "details": {
+          "readingStatus": "Reading status",
+          "targetRange": "Target range",
+          "lastReading": "Last reading",
+          "notAvailable": "N/A"
+        },
+        "time": {
+          "justNow": "just now",
+          "secondsAgo": "{count}s ago",
+          "minutesAgo": "{count}m ago"
+        },
+        "types": {
+          "Temperature": "Temperature",
+          "Humidity": "Humidity",
+          "DoorStatus": "Door status",
+          "Vibration": "Vibration",
+          "Energy": "Energy"
+        },
+        "readingStatus": {
+          "Normal": "Normal",
+          "OutOfRange": "Out of range",
+          "Invalid": "Invalid"
+        },
+        "aria": {
+          "status": "Status {status}"
+        }
+      }
     },
     "billing": {
       "Plans": "Plans",
