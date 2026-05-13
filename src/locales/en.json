@@ -261,17 +261,27 @@
       "activeSensors": "Active sensors",
       "complianceScore": "Compliance score",
       "openAlerts": "Open alerts",
-      "criticalAlerts": "Critical alerts"
+      "criticalAlerts": "Critical alerts",
+      "storageUnits": "Storage units",
+      "criticalIncidents": "Critical incidents",
+      "reportsReady": "Reports ready"
     },
     "sections": {
       "compliance": "Compliance control",
       "notifications": "Recent activity",
       "widgets": "Role-based widgets",
       "trends": "Monitoring trends",
-      "filters": "Applied filters"
+      "filters": "Applied filters",
+      "kpis": "Dashboard KPIs",
+      "laboratories": "Laboratory status",
+      "risks": "Operational risks"
     },
     "status": {
-      "compliant": "Compliant"
+      "compliant": "Compliant",
+      "normal": "Normal",
+      "warning": "Warning",
+      "critical": "Critical",
+      "stable": "Stable"
     },
     "messages": {
       "fallback": "Mock server data is not available. The dashboard is showing local sample data so the view can still be reviewed."
@@ -289,7 +299,9 @@
       "humidityTitle": "Humidity warning in Storage B",
       "humidityMessage": "Humidity is approaching the configured compliance limit.",
       "reportTitle": "Compliance report ready",
-      "reportMessage": "Monthly environmental evidence can be exported."
+      "reportMessage": "Monthly environmental evidence can be exported.",
+      "sensorTitle": "Sensor connection restored",
+      "sensorMessage": "Sensor T-204 resumed telemetry after a short interruption."
     },
     "widgets": {
       "title": "Dashboard widgets",
@@ -300,12 +312,22 @@
       "sensors": "Sensor coverage",
       "sensorsCopy": "Online sensors currently reporting telemetry.",
       "incidents": "Incident overview",
-      "incidentsCopy": "Open and critical incidents requiring follow-up."
+      "incidentsCopy": "Open and critical incidents requiring follow-up.",
+      "laboratory": "Laboratory overview",
+      "laboratoryCopy": "Health score, monitoring scope and recent activity for the selected laboratory.",
+      "compliance": "Compliance overview",
+      "complianceCopy": "Environmental rule status, evidence readiness and pending violations.",
+      "platform": "Platform overview",
+      "platformCopy": "General platform visibility for administrators and supervisors.",
+      "kpis": "KPI summary",
+      "kpisCopy": "Main operational indicators used for fast decision-making."
     },
     "trends": {
       "title": "Environmental trends",
       "temperature": "Average temperature",
-      "humidity": "Average humidity"
+      "humidity": "Average humidity",
+      "alerts": "Open alerts",
+      "compliance": "Compliance score"
     },
     "filters": {
       "title": "Current dashboard scope",
@@ -314,6 +336,33 @@
       "laboratory": "Laboratory",
       "period": "Period",
       "refreshRate": "Refresh rate"
+    },
+    "trendsText": {
+      "online": "All reporting today",
+      "monitored": "Cold chain monitored",
+      "improved": "Improved this week",
+      "requiresAttention": "Needs review",
+      "urgent": "Immediate follow-up",
+      "exportable": "Ready to export"
+    },
+    "values": {
+      "roleAdmin": "SafeLab Administrator",
+      "centralLaboratory": "Central Laboratory",
+      "last24Hours": "Last 24 hours",
+      "refreshRate": "Every 5 minutes",
+      "nextAudit": "May 20, 2026"
+    },
+    "laboratories": {
+      "title": "Monitored laboratories",
+      "sensors": "sensors",
+      "alerts": "alerts"
+    },
+    "risks": {
+      "title": "Risk snapshot",
+      "temperatureDeviation": "Temperature deviations",
+      "disconnectedSensors": "Disconnected sensors",
+      "pendingEvidence": "Pending evidence",
+      "openIncidents": "Open incidents"
     }
   }
 }

@@ -261,17 +261,27 @@
       "activeSensors": "Sensores activos",
       "complianceScore": "Puntaje de cumplimiento",
       "openAlerts": "Alertas abiertas",
-      "criticalAlerts": "Alertas críticas"
+      "criticalAlerts": "Alertas críticas",
+      "storageUnits": "Unidades de almacenamiento",
+      "criticalIncidents": "Incidentes críticos",
+      "reportsReady": "Reportes listos"
     },
     "sections": {
       "compliance": "Control de cumplimiento",
       "notifications": "Actividad reciente",
       "widgets": "Widgets por rol",
       "trends": "Tendencias de monitoreo",
-      "filters": "Filtros aplicados"
+      "filters": "Filtros aplicados",
+      "kpis": "KPIs del panel",
+      "laboratories": "Estado de laboratorios",
+      "risks": "Riesgos operativos"
     },
     "status": {
-      "compliant": "Conforme"
+      "compliant": "Conforme",
+      "normal": "Normal",
+      "warning": "Advertencia",
+      "critical": "Crítico",
+      "stable": "Estable"
     },
     "messages": {
       "fallback": "Los datos del servidor mock no están disponibles. El panel muestra datos locales de ejemplo para poder revisar la vista."
@@ -289,7 +299,9 @@
       "humidityTitle": "Advertencia de humedad en Almacén B",
       "humidityMessage": "La humedad se acerca al límite de cumplimiento configurado.",
       "reportTitle": "Reporte de cumplimiento listo",
-      "reportMessage": "La evidencia ambiental mensual puede exportarse."
+      "reportMessage": "La evidencia ambiental mensual puede exportarse.",
+      "sensorTitle": "Conexión de sensor restablecida",
+      "sensorMessage": "El sensor T-204 retomó la telemetría después de una breve interrupción."
     },
     "widgets": {
       "title": "Widgets del panel",
@@ -300,12 +312,22 @@
       "sensors": "Cobertura de sensores",
       "sensorsCopy": "Sensores en línea que reportan telemetría actualmente.",
       "incidents": "Resumen de incidentes",
-      "incidentsCopy": "Incidentes abiertos y críticos que requieren seguimiento."
+      "incidentsCopy": "Incidentes abiertos y críticos que requieren seguimiento.",
+      "laboratory": "Resumen del laboratorio",
+      "laboratoryCopy": "Puntaje de salud, alcance de monitoreo y actividad reciente del laboratorio seleccionado.",
+      "compliance": "Resumen de cumplimiento",
+      "complianceCopy": "Estado de reglas ambientales, evidencias listas y violaciones pendientes.",
+      "platform": "Resumen de plataforma",
+      "platformCopy": "Visibilidad general de la plataforma para administradores y supervisores.",
+      "kpis": "Resumen de KPIs",
+      "kpisCopy": "Indicadores operativos principales usados para tomar decisiones rápidas."
     },
     "trends": {
       "title": "Tendencias ambientales",
       "temperature": "Temperatura promedio",
-      "humidity": "Humedad promedio"
+      "humidity": "Humedad promedio",
+      "alerts": "Alertas abiertas",
+      "compliance": "Puntaje de cumplimiento"
     },
     "filters": {
       "title": "Alcance actual del panel",
@@ -314,6 +336,33 @@
       "laboratory": "Laboratorio",
       "period": "Periodo",
       "refreshRate": "Frecuencia de actualización"
+    },
+    "trendsText": {
+      "online": "Todos reportan hoy",
+      "monitored": "Cadena de frío monitoreada",
+      "improved": "Mejoró esta semana",
+      "requiresAttention": "Requiere revisión",
+      "urgent": "Seguimiento inmediato",
+      "exportable": "Listo para exportar"
+    },
+    "values": {
+      "roleAdmin": "Administrador de SafeLab",
+      "centralLaboratory": "Laboratorio central",
+      "last24Hours": "Últimas 24 horas",
+      "refreshRate": "Cada 5 minutos",
+      "nextAudit": "20 de mayo de 2026"
+    },
+    "laboratories": {
+      "title": "Laboratorios monitoreados",
+      "sensors": "sensores",
+      "alerts": "alertas"
+    },
+    "risks": {
+      "title": "Resumen de riesgos",
+      "temperatureDeviation": "Desviaciones de temperatura",
+      "disconnectedSensors": "Sensores desconectados",
+      "pendingEvidence": "Evidencias pendientes",
+      "openIncidents": "Incidentes abiertos"
     }
   }
 }
