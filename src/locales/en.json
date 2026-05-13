@@ -202,5 +202,167 @@
     "highlightIncidentsCopy": "Track incidents, assignments and corrective actions.",
     "highlightReports": "Reports and analytics",
     "highlightReportsCopy": "Analyze trends, KPIs and operational reports."
+  },
+  "dashboardOverview": {
+    "hero": {
+      "monitoring": "Monitoring",
+      "compliance": "Compliance",
+      "platform": "Platform overview",
+      "kpis": "Operational indicators",
+      "operations": "Operations",
+      "inventory": "Assets and inventory",
+      "configuration": "Dashboard configuration",
+      "healthScore": "Health score",
+      "lastUpdated": "Updated recently"
+    },
+    "views": {
+      "laboratoryDashboard": {
+        "title": "Laboratory Dashboard",
+        "description": "Review the current state of monitored storage areas, sensors, alerts and operational compliance."
+      },
+      "complianceOverview": {
+        "title": "Compliance Overview",
+        "description": "Validate environmental compliance, storage evidence and pending rule violations."
+      },
+      "platformOverview": {
+        "title": "Platform Overview",
+        "description": "Monitor the most relevant platform indicators for administrators and supervisors."
+      },
+      "kpiSummary": {
+        "title": "KPI Summary",
+        "description": "Analyze operational KPIs used to support quick decisions and sprint review evidence."
+      },
+      "alertOverview": {
+        "title": "Alert Overview",
+        "description": "Review active alert indicators, critical notifications and escalation priorities."
+      },
+      "assetOverview": {
+        "title": "Asset Overview",
+        "description": "Review inventory coverage, compliant storage and asset-related operational status."
+      },
+      "sensorOverview": {
+        "title": "Sensor Overview",
+        "description": "Review active sensors, live monitoring coverage and telemetry trends."
+      },
+      "incidentOverview": {
+        "title": "Incident Overview",
+        "description": "Track incident indicators, unresolved cases and operational risks."
+      },
+      "dashboardFilters": {
+        "title": "Dashboard Filters",
+        "description": "Review the role, laboratory, time period and refresh criteria applied to dashboard data."
+      },
+      "dashboardWidgets": {
+        "title": "Dashboard Widgets",
+        "description": "Review the widgets available for the role-based dashboard experience."
+      }
+    },
+    "kpis": {
+      "activeSensors": "Active sensors",
+      "complianceScore": "Compliance score",
+      "openAlerts": "Open alerts",
+      "criticalAlerts": "Critical alerts",
+      "storageUnits": "Storage units",
+      "criticalIncidents": "Critical incidents",
+      "reportsReady": "Reports ready"
+    },
+    "sections": {
+      "compliance": "Compliance control",
+      "notifications": "Recent activity",
+      "widgets": "Role-based widgets",
+      "trends": "Monitoring trends",
+      "filters": "Applied filters",
+      "kpis": "Dashboard KPIs",
+      "laboratories": "Laboratory status",
+      "risks": "Operational risks"
+    },
+    "status": {
+      "compliant": "Compliant",
+      "normal": "Normal",
+      "warning": "Warning",
+      "critical": "Critical",
+      "stable": "Stable"
+    },
+    "messages": {
+      "fallback": "Mock server data is not available. The dashboard is showing local sample data so the view can still be reviewed."
+    },
+    "compliance": {
+      "title": "Storage compliance",
+      "compliantStorage": "Compliant storage units",
+      "violatedRules": "Violated rules",
+      "evidenceReady": "Evidence ready"
+    },
+    "notifications": {
+      "title": "Priority notifications",
+      "freezerTitle": "Temperature deviation in Freezer A-01",
+      "freezerMessage": "The cold chain threshold was exceeded and requires review.",
+      "humidityTitle": "Humidity warning in Storage B",
+      "humidityMessage": "Humidity is approaching the configured compliance limit.",
+      "reportTitle": "Compliance report ready",
+      "reportMessage": "Monthly environmental evidence can be exported.",
+      "sensorTitle": "Sensor connection restored",
+      "sensorMessage": "Sensor T-204 resumed telemetry after a short interruption."
+    },
+    "widgets": {
+      "title": "Dashboard widgets",
+      "alerts": "Alerts summary",
+      "alertsCopy": "Critical and active alerts that require attention.",
+      "assets": "Asset coverage",
+      "assetsCopy": "Registered assets and storage coverage status.",
+      "sensors": "Sensor coverage",
+      "sensorsCopy": "Online sensors currently reporting telemetry.",
+      "incidents": "Incident overview",
+      "incidentsCopy": "Open and critical incidents requiring follow-up.",
+      "laboratory": "Laboratory overview",
+      "laboratoryCopy": "Health score, monitoring scope and recent activity for the selected laboratory.",
+      "compliance": "Compliance overview",
+      "complianceCopy": "Environmental rule status, evidence readiness and pending violations.",
+      "platform": "Platform overview",
+      "platformCopy": "General platform visibility for administrators and supervisors.",
+      "kpis": "KPI summary",
+      "kpisCopy": "Main operational indicators used for fast decision-making."
+    },
+    "trends": {
+      "title": "Environmental trends",
+      "temperature": "Average temperature",
+      "humidity": "Average humidity",
+      "alerts": "Open alerts",
+      "compliance": "Compliance score"
+    },
+    "filters": {
+      "title": "Current dashboard scope",
+      "configure": "Configure",
+      "role": "Role",
+      "laboratory": "Laboratory",
+      "period": "Period",
+      "refreshRate": "Refresh rate"
+    },
+    "trendsText": {
+      "online": "All reporting today",
+      "monitored": "Cold chain monitored",
+      "improved": "Improved this week",
+      "requiresAttention": "Needs review",
+      "urgent": "Immediate follow-up",
+      "exportable": "Ready to export"
+    },
+    "values": {
+      "roleAdmin": "SafeLab Administrator",
+      "centralLaboratory": "Central Laboratory",
+      "last24Hours": "Last 24 hours",
+      "refreshRate": "Every 5 minutes",
+      "nextAudit": "May 20, 2026"
+    },
+    "laboratories": {
+      "title": "Monitored laboratories",
+      "sensors": "sensors",
+      "alerts": "alerts"
+    },
+    "risks": {
+      "title": "Risk snapshot",
+      "temperatureDeviation": "Temperature deviations",
+      "disconnectedSensors": "Disconnected sensors",
+      "pendingEvidence": "Pending evidence",
+      "openIncidents": "Open incidents"
+    }
   }
 }
