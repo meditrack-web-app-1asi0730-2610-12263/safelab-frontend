@@ -202,5 +202,118 @@
     "highlightIncidentsCopy": "Gestiona incidentes, asignaciones y acciones correctivas.",
     "highlightReports": "Reportes y analítica",
     "highlightReportsCopy": "Analiza tendencias, KPIs y reportes operativos."
+  },
+  "dashboardOverview": {
+    "hero": {
+      "monitoring": "Monitoreo",
+      "compliance": "Cumplimiento",
+      "platform": "Resumen de plataforma",
+      "kpis": "Indicadores operativos",
+      "operations": "Operaciones",
+      "inventory": "Activos e inventario",
+      "configuration": "Configuración del panel",
+      "healthScore": "Puntaje de salud",
+      "lastUpdated": "Actualizado recientemente"
+    },
+    "views": {
+      "laboratoryDashboard": {
+        "title": "Panel de laboratorio",
+        "description": "Revisa el estado actual de las áreas monitoreadas, sensores, alertas y cumplimiento operativo."
+      },
+      "complianceOverview": {
+        "title": "Resumen de cumplimiento",
+        "description": "Valida el cumplimiento ambiental, las evidencias de almacenamiento y las infracciones pendientes."
+      },
+      "platformOverview": {
+        "title": "Resumen de plataforma",
+        "description": "Monitorea los indicadores más relevantes de la plataforma para administradores y supervisores."
+      },
+      "kpiSummary": {
+        "title": "Resumen de KPIs",
+        "description": "Analiza indicadores operativos usados para apoyar decisiones rápidas y evidencias del sprint review."
+      },
+      "alertOverview": {
+        "title": "Resumen de alertas",
+        "description": "Revisa indicadores de alertas activas, notificaciones críticas y prioridades de escalamiento."
+      },
+      "assetOverview": {
+        "title": "Resumen de activos",
+        "description": "Revisa cobertura de inventario, almacenamiento conforme y estado operativo asociado a activos."
+      },
+      "sensorOverview": {
+        "title": "Resumen de sensores",
+        "description": "Revisa sensores activos, cobertura de monitoreo en vivo y tendencias de telemetría."
+      },
+      "incidentOverview": {
+        "title": "Resumen de incidentes",
+        "description": "Da seguimiento a indicadores de incidentes, casos sin resolver y riesgos operativos."
+      },
+      "dashboardFilters": {
+        "title": "Filtros del panel",
+        "description": "Revisa el rol, laboratorio, periodo y criterio de actualización aplicado a los datos del panel."
+      },
+      "dashboardWidgets": {
+        "title": "Widgets del panel",
+        "description": "Revisa los widgets disponibles para la experiencia de panel basada en roles."
+      }
+    },
+    "kpis": {
+      "activeSensors": "Sensores activos",
+      "complianceScore": "Puntaje de cumplimiento",
+      "openAlerts": "Alertas abiertas",
+      "criticalAlerts": "Alertas críticas"
+    },
+    "sections": {
+      "compliance": "Control de cumplimiento",
+      "notifications": "Actividad reciente",
+      "widgets": "Widgets por rol",
+      "trends": "Tendencias de monitoreo",
+      "filters": "Filtros aplicados"
+    },
+    "status": {
+      "compliant": "Conforme"
+    },
+    "messages": {
+      "fallback": "Los datos del servidor mock no están disponibles. El panel muestra datos locales de ejemplo para poder revisar la vista."
+    },
+    "compliance": {
+      "title": "Cumplimiento de almacenamiento",
+      "compliantStorage": "Unidades de almacenamiento conformes",
+      "violatedRules": "Reglas infringidas",
+      "evidenceReady": "Evidencias listas"
+    },
+    "notifications": {
+      "title": "Notificaciones prioritarias",
+      "freezerTitle": "Desviación de temperatura en Freezer A-01",
+      "freezerMessage": "Se superó el umbral de cadena de frío y requiere revisión.",
+      "humidityTitle": "Advertencia de humedad en Almacén B",
+      "humidityMessage": "La humedad se acerca al límite de cumplimiento configurado.",
+      "reportTitle": "Reporte de cumplimiento listo",
+      "reportMessage": "La evidencia ambiental mensual puede exportarse."
+    },
+    "widgets": {
+      "title": "Widgets del panel",
+      "alerts": "Resumen de alertas",
+      "alertsCopy": "Alertas críticas y activas que requieren atención.",
+      "assets": "Cobertura de activos",
+      "assetsCopy": "Activos registrados y estado de cobertura de almacenamiento.",
+      "sensors": "Cobertura de sensores",
+      "sensorsCopy": "Sensores en línea que reportan telemetría actualmente.",
+      "incidents": "Resumen de incidentes",
+      "incidentsCopy": "Incidentes abiertos y críticos que requieren seguimiento."
+    },
+    "trends": {
+      "title": "Tendencias ambientales",
+      "temperature": "Temperatura promedio",
+      "humidity": "Humedad promedio"
+    },
+    "filters": {
+      "title": "Alcance actual del panel",
+      "configure": "Configurar",
+      "role": "Rol",
+      "laboratory": "Laboratorio",
+      "period": "Periodo",
+      "refreshRate": "Frecuencia de actualización"
+    }
   }
 }
