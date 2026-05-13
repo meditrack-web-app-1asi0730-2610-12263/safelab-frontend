@@ -1,11 +1,11 @@
 export class DashboardWidget {
-  constructor({ id, title, type, value, status = 'neutral', description = '', route = '', items = [] }) {
+  constructor({ id, titleKey, type, value, status = 'neutral', descriptionKey = '', route = '', items = [] }) {
     this.id = id
-    this.title = title
+    this.titleKey = titleKey
     this.type = type
     this.value = value
     this.status = status
-    this.description = description
+    this.descriptionKey = descriptionKey
     this.route = route
     this.items = items
   }
