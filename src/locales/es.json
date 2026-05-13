@@ -99,7 +99,45 @@
       "EnvironmentalValidationResults": "Resultados de validación ambiental",
       "ViolationHistory": "Historial de infracciones",
       "ViolationDetail": "Detalle de infracción",
-      "ComplianceEvidence": "Evidencia de cumplimiento"
+      "ComplianceEvidence": "Evidencia de cumplimiento",
+      "status": {
+        "eyebrow": "Cumplimiento ambiental",
+        "title": "Cumplimiento ambiental",
+        "subtitle": "Monitoreo de regulaciones y normativas.",
+        "kpis": {
+          "compliance": "Cumplimiento general",
+          "violations": "Infracciones activas",
+          "audits": "Auditorías pendientes"
+        },
+        "rulesTitle": "Reglas de cumplimiento activas",
+        "rulesSubtitle": "Condiciones monitoreadas en tiempo real.",
+        "violationsLabel": "Infracciones",
+        "ruleType": "Tipo: {type}",
+        "ruleLabels": {
+          "temperatureRange": "Rango de temperatura",
+          "humidityMax": "Humedad máx.",
+          "energyRange": "Rango de energía",
+          "vibrationRange": "Rango de vibración",
+          "doorStatus": "Estado de puerta",
+          "generic": "Regla"
+        },
+        "types": {
+          "Temperature": "Temperatura",
+          "Humidity": "Humedad",
+          "Energy": "Energía",
+          "Vibration": "Vibración",
+          "DoorStatus": "Estado de puerta"
+        },
+        "badges": {
+          "compliant": "Cumple",
+          "violation": "Infracción"
+        },
+        "states": {
+          "loading": "Cargando datos de cumplimiento...",
+          "error": "No se pudieron cargar los datos de cumplimiento.",
+          "empty": "No se detectaron reglas de cumplimiento."
+        }
+      }
     },
     "iam": {
       "Login": "Iniciar sesión",
