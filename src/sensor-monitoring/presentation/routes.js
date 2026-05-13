@@ -1,10 +1,11 @@
 import ComingSoonView from '@/shared/presentation/views/ComingSoonView.vue'
+import LiveReadingsView from './views/LiveReadingsView.vue'
 
 export const routes = [
   {
     path: 'sensor-monitoring',
     name: 'sensor-monitoring',
-    component: ComingSoonView,
+    redirect: { name: 'sensor-monitoring-live-readings' },
     meta: { title: 'Sensor Monitoring', contextKey: 'sensors' }
   },
   {
@@ -22,7 +23,7 @@ export const routes = [
   {
     path: 'sensor-monitoring/live-readings',
     name: 'sensor-monitoring-live-readings',
-    component: ComingSoonView,
+    component: LiveReadingsView,
     meta: { title: 'Live Readings', contextKey: 'sensors', viewKey: 'sensors.LiveReadings' }
   },
   {
