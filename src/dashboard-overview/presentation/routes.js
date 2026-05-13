@@ -1,70 +1,23 @@
-import ComingSoonView from '@/shared/presentation/views/ComingSoonView.vue'
+import DashboardOverviewView from '@/dashboard-overview/presentation/views/DashboardOverviewView.vue'
+
+const dashboardRoute = (path, name, title, mode, viewKey) => ({
+  path,
+  name,
+  component: DashboardOverviewView,
+  props: { mode },
+  meta: { title, contextKey: 'dashboard', viewKey }
+})
 
 export const routes = [
-  {
-    path: 'dashboard-overview',
-    name: 'dashboard-overview',
-    component: ComingSoonView,
-    meta: { title: 'Dashboard & Overview', contextKey: 'dashboard' }
-  },
-  {
-    path: 'dashboard-overview/laboratory-dashboard',
-    name: 'dashboard-overview-laboratory-dashboard',
-    component: ComingSoonView,
-    meta: { title: 'Laboratory Dashboard', contextKey: 'dashboard', viewKey: 'dashboard.LaboratoryDashboard' }
-  },
-  {
-    path: 'dashboard-overview/compliance-overview',
-    name: 'dashboard-overview-compliance-overview',
-    component: ComingSoonView,
-    meta: { title: 'Compliance Overview', contextKey: 'dashboard', viewKey: 'dashboard.ComplianceOverview' }
-  },
-  {
-    path: 'dashboard-overview/platform-overview',
-    name: 'dashboard-overview-platform-overview',
-    component: ComingSoonView,
-    meta: { title: 'Platform Overview', contextKey: 'dashboard', viewKey: 'dashboard.PlatformOverview' }
-  },
-  {
-    path: 'dashboard-overview/kpi-summary',
-    name: 'dashboard-overview-kpi-summary',
-    component: ComingSoonView,
-    meta: { title: 'KPI Summary', contextKey: 'dashboard', viewKey: 'dashboard.KPISummary' }
-  },
-  {
-    path: 'dashboard-overview/alert-overview',
-    name: 'dashboard-overview-alert-overview',
-    component: ComingSoonView,
-    meta: { title: 'Alert Overview', contextKey: 'dashboard', viewKey: 'dashboard.AlertOverview' }
-  },
-  {
-    path: 'dashboard-overview/asset-overview',
-    name: 'dashboard-overview-asset-overview',
-    component: ComingSoonView,
-    meta: { title: 'Asset Overview', contextKey: 'dashboard', viewKey: 'dashboard.AssetOverview' }
-  },
-  {
-    path: 'dashboard-overview/sensor-overview',
-    name: 'dashboard-overview-sensor-overview',
-    component: ComingSoonView,
-    meta: { title: 'Sensor Overview', contextKey: 'dashboard', viewKey: 'dashboard.SensorOverview' }
-  },
-  {
-    path: 'dashboard-overview/incident-overview',
-    name: 'dashboard-overview-incident-overview',
-    component: ComingSoonView,
-    meta: { title: 'Incident Overview', contextKey: 'dashboard', viewKey: 'dashboard.IncidentOverview' }
-  },
-  {
-    path: 'dashboard-overview/dashboard-filters',
-    name: 'dashboard-overview-dashboard-filters',
-    component: ComingSoonView,
-    meta: { title: 'Dashboard Filters', contextKey: 'dashboard', viewKey: 'dashboard.DashboardFilters' }
-  },
-  {
-    path: 'dashboard-overview/dashboard-widgets',
-    name: 'dashboard-overview-dashboard-widgets',
-    component: ComingSoonView,
-    meta: { title: 'Dashboard Widgets', contextKey: 'dashboard', viewKey: 'dashboard.DashboardWidgets' }
-  },
+  dashboardRoute('dashboard-overview', 'dashboard-overview', 'Dashboard & Overview', 'laboratory-dashboard', 'dashboard.LaboratoryDashboard'),
+  dashboardRoute('dashboard-overview/laboratory-dashboard', 'dashboard-overview-laboratory-dashboard', 'Laboratory Dashboard', 'laboratory-dashboard', 'dashboard.LaboratoryDashboard'),
+  dashboardRoute('dashboard-overview/compliance-overview', 'dashboard-overview-compliance-overview', 'Compliance Overview', 'compliance-overview', 'dashboard.ComplianceOverview'),
+  dashboardRoute('dashboard-overview/platform-overview', 'dashboard-overview-platform-overview', 'Platform Overview', 'platform-overview', 'dashboard.PlatformOverview'),
+  dashboardRoute('dashboard-overview/kpi-summary', 'dashboard-overview-kpi-summary', 'KPI Summary', 'kpi-summary', 'dashboard.KPISummary'),
+  dashboardRoute('dashboard-overview/alert-overview', 'dashboard-overview-alert-overview', 'Alert Overview', 'alert-overview', 'dashboard.AlertOverview'),
+  dashboardRoute('dashboard-overview/asset-overview', 'dashboard-overview-asset-overview', 'Asset Overview', 'asset-overview', 'dashboard.AssetOverview'),
+  dashboardRoute('dashboard-overview/sensor-overview', 'dashboard-overview-sensor-overview', 'Sensor Overview', 'sensor-overview', 'dashboard.SensorOverview'),
+  dashboardRoute('dashboard-overview/incident-overview', 'dashboard-overview-incident-overview', 'Incident Overview', 'incident-overview', 'dashboard.IncidentOverview'),
+  dashboardRoute('dashboard-overview/dashboard-filters', 'dashboard-overview-dashboard-filters', 'Dashboard Filters', 'dashboard-filters', 'dashboard.DashboardFilters'),
+  dashboardRoute('dashboard-overview/dashboard-widgets', 'dashboard-overview-dashboard-widgets', 'Dashboard Widgets', 'dashboard-widgets', 'dashboard.DashboardWidgets')
 ]
