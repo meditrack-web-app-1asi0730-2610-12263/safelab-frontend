@@ -114,5 +114,22 @@ export const routes = [
       contextKey: 'reports',
       viewKey: 'reports.ExportData'
     }
+  },
+  {
+  context: 'reports-analytics',
+  titleKey: 'contextLabels.reports',
+  icon: 'chart-line',
+  path: '/reports-analytics/analytics-overview',
+  roleScope: 'Supervisors / Admin'
+},
+{
+  path: 'reports-analytics/analytics-dashboard',
+  name: 'reports-analytics-dashboard',
+  component: AnalyticsPage,
+  meta: {
+    titleKey: 'menu.reports.AnalyticsDashboard',
+    contextKey: 'reports-analytics',
+    viewKey: 'reports-analytics.AnalyticsDashboard'
   }
+},
 ]
