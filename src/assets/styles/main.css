@@ -245,3 +245,27 @@ p { color: var(--muted); line-height: 1.6; }
   .dashboard-notification-list time { grid-column: 2; }
   .filter-summary-list div { grid-template-columns: 1fr; gap: 4px; }
 }
+
+/* BC04 Dashboard & Overview enhancements */
+.laboratory-list { display: grid; gap: 12px; }
+.laboratory-list article {
+  display: grid; grid-template-columns: minmax(0, 1fr) auto auto; align-items: center; gap: 14px;
+  padding: 14px; border: 1px solid var(--border); border-radius: 18px; background: #fbfcff;
+}
+.laboratory-list strong { display: block; }
+.laboratory-list small { display: block; margin-top: 4px; color: var(--muted); font-weight: 700; }
+.laboratory-list article > span:last-child { font-weight: 950; color: var(--primary-dark); }
+.risk-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.risk-grid article {
+  position: relative; overflow: hidden; min-height: 104px; padding: 16px; border: 1px solid var(--border); border-radius: 18px; background: #fbfcff;
+}
+.risk-grid article::before { content: ''; position: absolute; inset: 0 auto 0 0; width: 4px; background: var(--primary); }
+.risk-grid article.is-success::before { background: var(--success); }
+.risk-grid article.is-warning::before { background: var(--warning); }
+.risk-grid article.is-danger::before { background: var(--danger); }
+.risk-grid span { display: block; color: var(--muted); font-weight: 850; }
+.risk-grid strong { display: block; margin-top: 10px; font-size: 2rem; letter-spacing: -.04em; }
+@media (max-width: 720px) {
+  .laboratory-list article { grid-template-columns: 1fr; align-items: start; }
+  .risk-grid { grid-template-columns: 1fr; }
+}
