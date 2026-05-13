@@ -90,9 +90,133 @@
   "sensors": [
     {
       "id": 1,
-      "name": "Cold Chamber A-01",
-      "temperature": 4.2,
-      "status": "online"
+      "name": "Lab-A-01",
+      "code": "LAB-A-01",
+      "type": "Temperature",
+      "value": 3.8,
+      "status": "Normal",
+      "sensorStatus": "Active",
+      "installedAt": "2026-05-13T10:30:00Z",
+      "thresholds": [
+        {
+          "id": 101,
+          "minValue": 2,
+          "maxValue": 8,
+          "status": "Active"
+        }
+      ],
+      "calibrations": [
+        {
+          "id": 201,
+          "calibratedAt": "2026-04-11T12:00:00Z",
+          "nextCalibrationAt": "2026-06-11T12:00:00Z",
+          "performedBy": "Lab Engineer",
+          "status": "Completed"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Lab-A-02",
+      "code": "LAB-A-02",
+      "type": "Temperature",
+      "value": 8.5,
+      "status": "OutOfRange",
+      "sensorStatus": "Active",
+      "installedAt": "2026-05-13T09:55:00Z",
+      "thresholds": [
+        {
+          "id": 102,
+          "minValue": 2,
+          "maxValue": 8,
+          "status": "Active"
+        }
+      ],
+      "calibrations": []
+    },
+    {
+      "id": 3,
+      "name": "Lab-B-01",
+      "code": "LAB-B-01",
+      "type": "Temperature",
+      "value": 4.2,
+      "status": "Normal",
+      "sensorStatus": "Active",
+      "installedAt": "2026-05-13T09:40:00Z",
+      "thresholds": [
+        {
+          "id": 103,
+          "minValue": 2,
+          "maxValue": 8,
+          "status": "Active"
+        }
+      ],
+      "calibrations": []
+    },
+    {
+      "id": 4,
+      "name": "Pharmacy-01",
+      "code": "PHAR-01",
+      "type": "Temperature",
+      "value": -18.2,
+      "status": "Normal",
+      "sensorStatus": "Maintenance",
+      "installedAt": "2026-05-13T08:10:00Z",
+      "thresholds": [
+        {
+          "id": 104,
+          "minValue": -25,
+          "maxValue": -15,
+          "status": "Active"
+        }
+      ],
+      "calibrations": [
+        {
+          "id": 202,
+          "calibratedAt": null,
+          "nextCalibrationAt": "2026-05-20T12:00:00Z",
+          "performedBy": null,
+          "status": "Pending"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Pharmacy-02",
+      "code": "PHAR-02",
+      "type": "Humidity",
+      "value": 45,
+      "status": "Normal",
+      "sensorStatus": "Active",
+      "installedAt": "2026-05-12T16:05:00Z",
+      "thresholds": [
+        {
+          "id": 105,
+          "minValue": 40,
+          "maxValue": 60,
+          "status": "Active"
+        }
+      ],
+      "calibrations": []
+    },
+    {
+      "id": 6,
+      "name": "Hospital-01",
+      "code": "HOSP-01",
+      "type": "Energy",
+      "value": 2.5,
+      "status": "Invalid",
+      "sensorStatus": "Disconnected",
+      "installedAt": "2026-05-11T12:30:00Z",
+      "thresholds": [
+        {
+          "id": 106,
+          "minValue": 1,
+          "maxValue": 3.5,
+          "status": "Active"
+        }
+      ],
+      "calibrations": []
     }
   ],
   "assets": [
