@@ -12,7 +12,7 @@ const props = defineProps({
   mode: { type: String, default: 'laboratory-dashboard' }
 })
 
-const { t } = useI18n()
+const { t, locale } = useI18n({ useScope: 'global' })
 const dashboardStore = useDashboardOverviewStore()
 
 const viewDictionary = {
@@ -68,8 +68,12 @@ const viewDictionary = {
   }
 }
 
-const currentView = computed(() => viewDictionary[props.mode] ?? viewDictionary['laboratory-dashboard'])
-const mainProgress = computed(() => `${dashboardStore.compliance.score || 0}%`)
+const currentView = computed(() => {
+  locale.value
+  return viewDictionary[props.mode] ?? viewDictionary['laboratory-dashboard']
+})
+
+const healthScore = computed(() => Number(dashboardStore.healthScore || dashboardStore.compliance.score || 0).toFixed(1))
 const storageProgress = computed(() => {
   const total = dashboardStore.compliance.totalStorage || 1
   const compliant = dashboardStore.compliance.compliantStorage || 0
@@ -77,12 +81,34 @@ const storageProgress = computed(() => {
 })
 
 const visibleWidgets = computed(() => {
-  if (props.mode === 'alert-overview') return dashboardStore.widgets.filter(widget => widget.id === 'alerts')
-  if (props.mode === 'asset-overview') return dashboardStore.widgets.filter(widget => widget.id === 'assets')
-  if (props.mode === 'sensor-overview') return dashboardStore.widgets.filter(widget => widget.id === 'sensors')
-  if (props.mode === 'incident-overview') return dashboardStore.widgets.filter(widget => widget.id === 'incidents')
-  return dashboardStore.widgets
+  const widgets = dashboardStore.widgets
+  if (props.mode === 'alert-overview') return widgets.filter(widget => ['alerts', 'incidents'].includes(widget.id))
+  if (props.mode === 'asset-overview') return widgets.filter(widget => ['assets', 'compliance'].includes(widget.id))
+  if (props.mode === 'sensor-overview') return widgets.filter(widget => ['sensors', 'laboratory'].includes(widget.id))
+  if (props.mode === 'incident-overview') return widgets.filter(widget => ['incidents', 'alerts'].includes(widget.id))
+  if (props.mode === 'compliance-overview') return widgets.filter(widget => ['compliance', 'assets', 'reports'].includes(widget.id))
+  if (props.mode === 'kpi-summary') return widgets.filter(widget => ['kpis', 'platform', 'laboratory'].includes(widget.id))
+  return widgets
 })
+
+const translatedFilters = computed(() => {
+  locale.value
+  return dashboardStore.filters.map(filter => ({
+    key: filter.key,
+    label: t(filter.labelKey),
+    value: filter.valueKey ? t(filter.valueKey) : filter.value
+  }))
+})
+
+const statusLabel = status => {
+  const key = {
+    success: 'dashboardOverview.status.normal',
+    warning: 'dashboardOverview.status.warning',
+    danger: 'dashboardOverview.status.critical',
+    neutral: 'dashboardOverview.status.stable'
+  }[status] || 'dashboardOverview.status.stable'
+  return t(key)
+}
 
 onMounted(() => dashboardStore.loadOverview())
 </script>
@@ -97,24 +123,24 @@ onMounted(() => dashboardStore.loadOverview())
       />
       <div class="hero-health-card">
         <span>{{ t('dashboardOverview.hero.healthScore') }}</span>
-        <strong>{{ mainProgress }}</strong>
+        <strong>{{ healthScore }}%</strong>
         <small>{{ t('dashboardOverview.hero.lastUpdated') }}</small>
       </div>
     </div>
 
     <div v-if="dashboardStore.usesFallbackData" class="dashboard-info-banner" role="status">
-      <i class="pi pi-info-circle" />
+      <i class="pi pi-info-circle" aria-hidden="true" />
       <span>{{ t('dashboardOverview.messages.fallback') }}</span>
     </div>
 
-    <div class="dashboard-kpi-grid" aria-label="Dashboard KPIs">
+    <div class="dashboard-kpi-grid" :aria-label="t('dashboardOverview.sections.kpis')">
       <DashboardMetricCard
         v-for="kpi in dashboardStore.kpis"
         :key="kpi.key"
         :label="t(kpi.labelKey)"
         :value="kpi.value"
         :unit="kpi.unit"
-        :trend="kpi.trend"
+        :trend="kpi.trendKey ? t(kpi.trendKey) : kpi.trend"
         :status="kpi.status"
         :icon="kpi.icon"
       />
@@ -161,7 +187,7 @@ onMounted(() => dashboardStore.loadOverview())
         </div>
         <ul class="dashboard-notification-list">
           <li v-for="notification in dashboardStore.notifications" :key="notification.id" :class="`is-${notification.severity}`">
-            <i class="pi pi-bell" />
+            <i class="pi pi-bell" aria-hidden="true" />
             <div>
               <strong>{{ t(notification.titleKey) }}</strong>
               <small>{{ t(notification.messageKey) }}</small>
@@ -171,6 +197,42 @@ onMounted(() => dashboardStore.loadOverview())
         </ul>
       </article>
     </div>
+
+    <section class="dashboard-overview-layout">
+      <article class="content-card">
+        <div class="card-header">
+          <div>
+            <p class="eyebrow">{{ t('dashboardOverview.sections.laboratories') }}</p>
+            <h2>{{ t('dashboardOverview.laboratories.title') }}</h2>
+          </div>
+        </div>
+        <div class="laboratory-list">
+          <article v-for="laboratory in dashboardStore.laboratories" :key="laboratory.id">
+            <div>
+              <strong>{{ laboratory.name }}</strong>
+              <small>{{ laboratory.sensors }} {{ t('dashboardOverview.laboratories.sensors') }} · {{ laboratory.alerts }} {{ t('dashboardOverview.laboratories.alerts') }}</small>
+            </div>
+            <StatusBadge :status="laboratory.status" :label="statusLabel(laboratory.status)" />
+            <span>{{ laboratory.score }}%</span>
+          </article>
+        </div>
+      </article>
+
+      <article class="content-card">
+        <div class="card-header">
+          <div>
+            <p class="eyebrow">{{ t('dashboardOverview.sections.risks') }}</p>
+            <h2>{{ t('dashboardOverview.risks.title') }}</h2>
+          </div>
+        </div>
+        <div class="risk-grid">
+          <article v-for="risk in dashboardStore.operationalRisks" :key="risk.id" :class="`is-${risk.status}`">
+            <span>{{ t(risk.labelKey) }}</span>
+            <strong>{{ risk.value }}</strong>
+          </article>
+        </div>
+      </article>
+    </section>
 
     <section class="content-card dashboard-panel-section">
       <div class="card-header">
@@ -222,9 +284,9 @@ onMounted(() => dashboardStore.loadOverview())
           </RouterLink>
         </div>
         <dl class="filter-summary-list">
-          <div v-for="(value, key) in dashboardStore.filters" :key="key">
-            <dt>{{ t(`dashboardOverview.filters.${key}`) }}</dt>
-            <dd>{{ value }}</dd>
+          <div v-for="filter in translatedFilters" :key="filter.key">
+            <dt>{{ filter.label }}</dt>
+            <dd>{{ filter.value }}</dd>
           </div>
         </dl>
       </article>
