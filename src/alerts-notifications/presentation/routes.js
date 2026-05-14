@@ -38,12 +38,8 @@ export const routes = [
   {
     path: 'alerts-notifications/alert-history',
     name: 'alerts-notifications-alert-history',
-    component: AlertsPage,
-    meta: {
-      titleKey: 'menu.alerts.AlertHistory',
-      contextKey: 'alerts',
-      viewKey: 'alerts.AlertHistory'
-    }
+    component: ComingSoonView,
+    meta: { title: 'Alert History', contextKey: 'alerts', viewKey: 'alerts.AlertHistory' }
   },
   {
     path: 'alerts-notifications/critical-alerts',
