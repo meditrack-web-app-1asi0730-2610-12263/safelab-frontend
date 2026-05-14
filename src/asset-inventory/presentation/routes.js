@@ -1,16 +1,17 @@
 import ComingSoonView from '@/shared/presentation/views/ComingSoonView.vue'
+import AssetListView from './views/AssetListView.vue'
 
 export const routes = [
   {
     path: 'asset-inventory',
     name: 'asset-inventory',
-    component: ComingSoonView,
+    redirect: { name: 'asset-inventory-asset-list' },
     meta: { title: 'Asset & Inventory', contextKey: 'assets' }
   },
   {
     path: 'asset-inventory/asset-list',
     name: 'asset-inventory-asset-list',
-    component: ComingSoonView,
+    component: AssetListView,
     meta: { title: 'Asset List', contextKey: 'assets', viewKey: 'assets.AssetList' }
   },
   {
@@ -54,5 +55,5 @@ export const routes = [
     name: 'asset-inventory-maintenance-overview',
     component: ComingSoonView,
     meta: { title: 'Maintenance Overview', contextKey: 'assets', viewKey: 'assets.MaintenanceOverview' }
-  },
+  }
 ]
