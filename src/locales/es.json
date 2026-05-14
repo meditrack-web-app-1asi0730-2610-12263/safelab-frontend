@@ -146,7 +146,58 @@
       "ThresholdSettings": "Configuración de umbrales",
       "TelemetryHistory": "Historial de telemetría",
       "CalibrationHistory": "Historial de calibración",
-      "MonitoringDashboard": "Panel de monitoreo"
+      "MonitoringDashboard": "Panel de monitoreo",
+      "monitoring": {
+        "eyebrow": "Monitoreo",
+        "title": "Monitoreo en tiempo real",
+        "subtitle": "Seguimiento continuo de cada sensor en tus instalaciones.",
+        "searchPlaceholder": "Buscar dispositivo...",
+        "searchAriaLabel": "Buscar sensores",
+        "filters": {
+          "type": "Tipo",
+          "status": "Estado",
+          "all": "Todos"
+        },
+        "states": {
+          "loading": "Cargando sensores...",
+          "error": "No se pudieron cargar los sensores.",
+          "empty": "No se detectaron sensores."
+        },
+        "metrics": {
+          "currentValue": "Valor actual",
+          "currentTemperature": "Temperatura actual",
+          "currentHumidity": "Humedad actual",
+          "currentDoorStatus": "Estado de puerta actual",
+          "currentVibration": "Vibración actual",
+          "currentEnergy": "Energía actual"
+        },
+        "details": {
+          "readingStatus": "Estado de lectura",
+          "targetRange": "Rango objetivo",
+          "lastReading": "Última lectura",
+          "notAvailable": "N/D"
+        },
+        "time": {
+          "justNow": "justo ahora",
+          "secondsAgo": "hace {count}s",
+          "minutesAgo": "hace {count}m"
+        },
+        "types": {
+          "Temperature": "Temperatura",
+          "Humidity": "Humedad",
+          "DoorStatus": "Estado de puerta",
+          "Vibration": "Vibración",
+          "Energy": "Energía"
+        },
+        "readingStatus": {
+          "Normal": "Normal",
+          "OutOfRange": "Fuera de rango",
+          "Invalid": "Inválido"
+        },
+        "aria": {
+          "status": "Estado {status}"
+        }
+      }
     },
     "billing": {
       "Plans": "Planes",
