@@ -1,6 +1,6 @@
 <script setup>
 import { useI18n } from 'vue-i18n'
-import { boundedContextNavigation } from '@/shared/domain/models/navigation-items'
+import { boundedContextNavigation } from '@/shared/domain/model/navigation-items'
 
 const { t } = useI18n()
 

@@ -2,7 +2,7 @@
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { useI18n } from 'vue-i18n'
-import { boundedContextNavigation } from '@/shared/domain/models/navigation-items'
+import { boundedContextNavigation } from '@/shared/domain/model/navigation-items'
 import { useAppStore } from '@/shared/application/stores/app.store'
 
 const route = useRoute()
