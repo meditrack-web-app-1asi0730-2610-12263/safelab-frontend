@@ -1,0 +1,781 @@
+{
+  "currentUser": {
+    "id": 1,
+    "fullName": "Dr. Maria Lopez",
+    "role": "SafeLab Administrator",
+    "language": "en"
+  },
+  "boundedContexts": [
+    {
+      "id": 1,
+      "slug": "identity-access",
+      "name": "Identity & Access",
+      "status": "in-development"
+    },
+    {
+      "id": 2,
+      "slug": "user-profiles",
+      "name": "User Profiles",
+      "status": "in-development"
+    },
+    {
+      "id": 3,
+      "slug": "subscription-billing",
+      "name": "Plans & Billing",
+      "status": "in-development"
+    },
+    {
+      "id": 4,
+      "slug": "dashboard-overview",
+      "name": "Dashboard & Overview",
+      "status": "in-development"
+    },
+    {
+      "id": 5,
+      "slug": "asset-inventory",
+      "name": "Asset & Inventory",
+      "status": "in-development"
+    },
+    {
+      "id": 6,
+      "slug": "sensor-monitoring",
+      "name": "Sensor Monitoring",
+      "status": "in-development"
+    },
+    {
+      "id": 7,
+      "slug": "environmental-compliance",
+      "name": "Environmental Compliance",
+      "status": "in-development"
+    },
+    {
+      "id": 8,
+      "slug": "alerts-notifications",
+      "name": "Alerts & Notifications",
+      "status": "in-development"
+    },
+    {
+      "id": 9,
+      "slug": "remote-control",
+      "name": "Remote Control",
+      "status": "in-development"
+    },
+    {
+      "id": 10,
+      "slug": "reports-analytics",
+      "name": "Reports & Analytics",
+      "status": "in-development"
+    },
+    {
+      "id": 11,
+      "slug": "incident-management",
+      "name": "Incident Management",
+      "status": "in-development"
+    },
+    {
+      "id": 12,
+      "slug": "audit-traceability",
+      "name": "Audit & Traceability",
+      "status": "in-development"
+    }
+  ],
+  "alerts": [
+    {
+      "id": 1,
+      "severity": "critical",
+      "title": "Temperature threshold exceeded",
+      "status": "active"
+    }
+  ],
+  "sensors": [
+    {
+      "id": 1,
+      "name": "Lab-A-01",
+      "code": "LAB-A-01",
+      "type": "Temperature",
+      "value": 3.8,
+      "status": "Normal",
+      "sensorStatus": "Active",
+      "installedAt": "2026-05-13T10:30:00Z",
+      "thresholds": [
+        {
+          "id": 101,
+          "minValue": 2,
+          "maxValue": 8,
+          "status": "Active"
+        }
+      ],
+      "calibrations": [
+        {
+          "id": 201,
+          "calibratedAt": "2026-04-11T12:00:00Z",
+          "nextCalibrationAt": "2026-06-11T12:00:00Z",
+          "performedBy": "Lab Engineer",
+          "status": "Completed"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Lab-A-02",
+      "code": "LAB-A-02",
+      "type": "Temperature",
+      "value": 8.5,
+      "status": "OutOfRange",
+      "sensorStatus": "Active",
+      "installedAt": "2026-05-13T09:55:00Z",
+      "thresholds": [
+        {
+          "id": 102,
+          "minValue": 2,
+          "maxValue": 8,
+          "status": "Active"
+        }
+      ],
+      "calibrations": []
+    },
+    {
+      "id": 3,
+      "name": "Lab-B-01",
+      "code": "LAB-B-01",
+      "type": "Temperature",
+      "value": 4.2,
+      "status": "Normal",
+      "sensorStatus": "Active",
+      "installedAt": "2026-05-13T09:40:00Z",
+      "thresholds": [
+        {
+          "id": 103,
+          "minValue": 2,
+          "maxValue": 8,
+          "status": "Active"
+        }
+      ],
+      "calibrations": []
+    },
+    {
+      "id": 4,
+      "name": "Pharmacy-01",
+      "code": "PHAR-01",
+      "type": "Temperature",
+      "value": -18.2,
+      "status": "Normal",
+      "sensorStatus": "Maintenance",
+      "installedAt": "2026-05-13T08:10:00Z",
+      "thresholds": [
+        {
+          "id": 104,
+          "minValue": -25,
+          "maxValue": -15,
+          "status": "Active"
+        }
+      ],
+      "calibrations": [
+        {
+          "id": 202,
+          "calibratedAt": null,
+          "nextCalibrationAt": "2026-05-20T12:00:00Z",
+          "performedBy": null,
+          "status": "Pending"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Pharmacy-02",
+      "code": "PHAR-02",
+      "type": "Humidity",
+      "value": 45,
+      "status": "Normal",
+      "sensorStatus": "Active",
+      "installedAt": "2026-05-12T16:05:00Z",
+      "thresholds": [
+        {
+          "id": 105,
+          "minValue": 40,
+          "maxValue": 60,
+          "status": "Active"
+        }
+      ],
+      "calibrations": []
+    },
+    {
+      "id": 6,
+      "name": "Hospital-01",
+      "code": "HOSP-01",
+      "type": "Energy",
+      "value": 2.5,
+      "status": "Invalid",
+      "sensorStatus": "Disconnected",
+      "installedAt": "2026-05-11T12:30:00Z",
+      "thresholds": [
+        {
+          "id": 106,
+          "minValue": 1,
+          "maxValue": 3.5,
+          "status": "Active"
+        }
+      ],
+      "calibrations": []
+    }
+  ],
+  "assets": [
+    {
+      "id": 1,
+      "name": "Vaccine Batch VX-42",
+      "storageUnit": "Cold Chamber A-01",
+      "status": "compliant"
+    }
+  ],
+  "dashboardOverview": {
+    "fallback": false,
+    "lastUpdated": "2026-05-13T05:30:00",
+    "healthScore": 98.7,
+    "kpis": [
+      {
+        "key": "activeSensors",
+        "labelKey": "dashboardOverview.kpis.activeSensors",
+        "value": 24,
+        "unit": "",
+        "trendKey": "dashboardOverview.trendsText.online",
+        "status": "success",
+        "icon": "pi pi-wifi"
+      },
+      {
+        "key": "storageUnits",
+        "labelKey": "dashboardOverview.kpis.storageUnits",
+        "value": 35,
+        "unit": "",
+        "trendKey": "dashboardOverview.trendsText.monitored",
+        "status": "success",
+        "icon": "pi pi-box"
+      },
+      {
+        "key": "complianceScore",
+        "labelKey": "dashboardOverview.kpis.complianceScore",
+        "value": 98.7,
+        "unit": "%",
+        "trendKey": "dashboardOverview.trendsText.improved",
+        "status": "success",
+        "icon": "pi pi-check-circle"
+      },
+      {
+        "key": "openAlerts",
+        "labelKey": "dashboardOverview.kpis.openAlerts",
+        "value": 3,
+        "unit": "",
+        "trendKey": "dashboardOverview.trendsText.requiresAttention",
+        "status": "warning",
+        "icon": "pi pi-bell"
+      },
+      {
+        "key": "criticalIncidents",
+        "labelKey": "dashboardOverview.kpis.criticalIncidents",
+        "value": 1,
+        "unit": "",
+        "trendKey": "dashboardOverview.trendsText.urgent",
+        "status": "danger",
+        "icon": "pi pi-exclamation-triangle"
+      },
+      {
+        "key": "reportsReady",
+        "labelKey": "dashboardOverview.kpis.reportsReady",
+        "value": 8,
+        "unit": "",
+        "trendKey": "dashboardOverview.trendsText.exportable",
+        "status": "neutral",
+        "icon": "pi pi-file-export"
+      }
+    ],
+    "compliance": {
+      "score": 98.7,
+      "compliantStorage": 32,
+      "totalStorage": 35,
+      "violatedRules": 2,
+      "evidenceReady": 18,
+      "nextAuditKey": "dashboardOverview.values.nextAudit"
+    },
+    "widgets": [
+      {
+        "id": "laboratory",
+        "titleKey": "dashboardOverview.widgets.laboratory",
+        "type": "summary",
+        "value": "98.7%",
+        "status": "success",
+        "descriptionKey": "dashboardOverview.widgets.laboratoryCopy",
+        "route": "/dashboard-overview/laboratory-dashboard"
+      },
+      {
+        "id": "compliance",
+        "titleKey": "dashboardOverview.widgets.compliance",
+        "type": "summary",
+        "value": 2,
+        "status": "warning",
+        "descriptionKey": "dashboardOverview.widgets.complianceCopy",
+        "route": "/dashboard-overview/compliance-overview"
+      },
+      {
+        "id": "platform",
+        "titleKey": "dashboardOverview.widgets.platform",
+        "type": "summary",
+        "value": 12,
+        "status": "success",
+        "descriptionKey": "dashboardOverview.widgets.platformCopy",
+        "route": "/dashboard-overview/platform-overview"
+      },
+      {
+        "id": "kpis",
+        "titleKey": "dashboardOverview.widgets.kpis",
+        "type": "summary",
+        "value": 6,
+        "status": "neutral",
+        "descriptionKey": "dashboardOverview.widgets.kpisCopy",
+        "route": "/dashboard-overview/kpi-summary"
+      },
+      {
+        "id": "alerts",
+        "titleKey": "dashboardOverview.widgets.alerts",
+        "type": "summary",
+        "value": 3,
+        "status": "warning",
+        "descriptionKey": "dashboardOverview.widgets.alertsCopy",
+        "route": "/dashboard-overview/alert-overview"
+      },
+      {
+        "id": "assets",
+        "titleKey": "dashboardOverview.widgets.assets",
+        "type": "summary",
+        "value": 156,
+        "status": "success",
+        "descriptionKey": "dashboardOverview.widgets.assetsCopy",
+        "route": "/dashboard-overview/asset-overview"
+      },
+      {
+        "id": "sensors",
+        "titleKey": "dashboardOverview.widgets.sensors",
+        "type": "summary",
+        "value": 24,
+        "status": "success",
+        "descriptionKey": "dashboardOverview.widgets.sensorsCopy",
+        "route": "/dashboard-overview/sensor-overview"
+      },
+      {
+        "id": "incidents",
+        "titleKey": "dashboardOverview.widgets.incidents",
+        "type": "summary",
+        "value": 3,
+        "status": "danger",
+        "descriptionKey": "dashboardOverview.widgets.incidentsCopy",
+        "route": "/dashboard-overview/incident-overview"
+      }
+    ],
+    "notifications": [
+      {
+        "id": 1,
+        "severity": "danger",
+        "titleKey": "dashboardOverview.notifications.freezerTitle",
+        "messageKey": "dashboardOverview.notifications.freezerMessage",
+        "time": "05:30",
+        "source": "Freezer A-01"
+      },
+      {
+        "id": 2,
+        "severity": "warning",
+        "titleKey": "dashboardOverview.notifications.humidityTitle",
+        "messageKey": "dashboardOverview.notifications.humidityMessage",
+        "time": "04:55",
+        "source": "Storage B"
+      },
+      {
+        "id": 3,
+        "severity": "success",
+        "titleKey": "dashboardOverview.notifications.reportTitle",
+        "messageKey": "dashboardOverview.notifications.reportMessage",
+        "time": "03:40",
+        "source": "Compliance"
+      },
+      {
+        "id": 4,
+        "severity": "neutral",
+        "titleKey": "dashboardOverview.notifications.sensorTitle",
+        "messageKey": "dashboardOverview.notifications.sensorMessage",
+        "time": "02:10",
+        "source": "Sensor T-204"
+      }
+    ],
+    "trends": [
+      {
+        "labelKey": "dashboardOverview.trends.temperature",
+        "values": [
+          4.1,
+          4.2,
+          4.0,
+          4.3,
+          4.2,
+          4.1,
+          4.2
+        ],
+        "unit": "°C"
+      },
+      {
+        "labelKey": "dashboardOverview.trends.humidity",
+        "values": [
+          45,
+          46,
+          44,
+          45,
+          47,
+          46,
+          45
+        ],
+        "unit": "%"
+      },
+      {
+        "labelKey": "dashboardOverview.trends.alerts",
+        "values": [
+          6,
+          5,
+          4,
+          5,
+          3,
+          4,
+          3
+        ],
+        "unit": ""
+      },
+      {
+        "labelKey": "dashboardOverview.trends.compliance",
+        "values": [
+          94,
+          95,
+          96,
+          96,
+          97,
+          98,
+          98.7
+        ],
+        "unit": "%"
+      }
+    ],
+    "filters": [
+      {
+        "key": "role",
+        "labelKey": "dashboardOverview.filters.role",
+        "valueKey": "dashboardOverview.values.roleAdmin"
+      },
+      {
+        "key": "laboratory",
+        "labelKey": "dashboardOverview.filters.laboratory",
+        "valueKey": "dashboardOverview.values.centralLaboratory"
+      },
+      {
+        "key": "period",
+        "labelKey": "dashboardOverview.filters.period",
+        "valueKey": "dashboardOverview.values.last24Hours"
+      },
+      {
+        "key": "refreshRate",
+        "labelKey": "dashboardOverview.filters.refreshRate",
+        "valueKey": "dashboardOverview.values.refreshRate"
+      }
+    ],
+    "laboratories": [
+      {
+        "id": "lab-a",
+        "name": "Central Lab A",
+        "score": 99,
+        "sensors": 8,
+        "alerts": 1,
+        "status": "success"
+      },
+      {
+        "id": "lab-b",
+        "name": "Storage Room B",
+        "score": 96,
+        "sensors": 6,
+        "alerts": 2,
+        "status": "warning"
+      },
+      {
+        "id": "pharma-01",
+        "name": "Pharma Cold Chain",
+        "score": 100,
+        "sensors": 10,
+        "alerts": 0,
+        "status": "success"
+      }
+    ],
+    "operationalRisks": [
+      {
+        "id": 1,
+        "labelKey": "dashboardOverview.risks.temperatureDeviation",
+        "value": 1,
+        "status": "danger"
+      },
+      {
+        "id": 2,
+        "labelKey": "dashboardOverview.risks.disconnectedSensors",
+        "value": 0,
+        "status": "success"
+      },
+      {
+        "id": 3,
+        "labelKey": "dashboardOverview.risks.pendingEvidence",
+        "value": 2,
+        "status": "warning"
+      },
+      {
+        "id": 4,
+        "labelKey": "dashboardOverview.risks.openIncidents",
+        "value": 3,
+        "status": "warning"
+      }
+    ]
+  },
+  "incidents": [
+    {
+      "id": 1,
+      "title": "Temperature deviation in Freezer A-01",
+      "description": "Temperature exceeded the allowed cold chain threshold for 12 minutes.",
+      "severity": "critical",
+      "status": "open",
+      "sourceAlertId": 1,
+      "assignedTo": "Lab Technician",
+      "affectedArea": "Cold Storage Room A",
+      "correctiveAction": "",
+      "createdAt": "2026-05-12T09:30:00.000Z",
+      "updatedAt": "2026-05-12T09:30:00.000Z"
+    },
+    {
+      "id": 2,
+      "title": "Humidity warning in Storage B",
+      "description": "Humidity is approaching the configured compliance limit.",
+      "severity": "warning",
+      "status": "investigating",
+      "sourceAlertId": 2,
+      "assignedTo": "Compliance Officer",
+      "affectedArea": "Storage Room B",
+      "correctiveAction": "Reviewing HVAC calibration.",
+      "createdAt": "2026-05-11T16:45:00.000Z",
+      "updatedAt": "2026-05-12T08:20:00.000Z"
+    },
+    {
+      "id": 3,
+      "title": "Connectivity loss in Sensor T-204",
+      "description": "Sensor stopped sending readings during a scheduled monitoring period.",
+      "severity": "info",
+      "status": "resolved",
+      "sourceAlertId": 3,
+      "assignedTo": "Operations Team",
+      "affectedArea": "Clinical Lab 2",
+      "correctiveAction": "Sensor gateway restarted and signal restored.",
+      "createdAt": "2026-05-10T13:10:00.000Z",
+      "updatedAt": "2026-05-10T14:05:00.000Z"
+    }
+  ],
+  "auditTraceability": {
+    "summary": {
+      "totalLogs": 1842,
+      "reviewedLogs": 1496,
+      "pendingLogs": 46,
+      "criticalEvents": 7,
+      "integrityScore": 99.4,
+      "retainedDays": 365
+    },
+    "traceabilityHealth": {
+      "auditCoverage": 98,
+      "evidenceCoverage": 94,
+      "changeIntegrity": 99,
+      "remoteCommandTraceability": 97
+    },
+    "auditLogs": [
+      {
+        "id": "AUD-1208",
+        "actor": "Dr. Maria Lopez",
+        "action": "Reviewed compliance evidence",
+        "module": "Compliance Traceability",
+        "severity": "info",
+        "status": "reviewed",
+        "ipAddress": "192.168.1.24",
+        "createdAt": "2026-05-13 09:45",
+        "evidenceId": "EVD-442"
+      },
+      {
+        "id": "AUD-1207",
+        "actor": "System",
+        "action": "Registered temperature threshold event",
+        "module": "Sensor History",
+        "severity": "warning",
+        "status": "pending",
+        "ipAddress": "10.0.0.12",
+        "createdAt": "2026-05-13 09:12",
+        "evidenceId": "EVD-441"
+      },
+      {
+        "id": "AUD-1206",
+        "actor": "Lab Technician",
+        "action": "Executed remote cooling adjustment",
+        "module": "Remote Command History",
+        "severity": "critical",
+        "status": "reviewed",
+        "ipAddress": "192.168.1.41",
+        "createdAt": "2026-05-13 08:54",
+        "evidenceId": "EVD-440"
+      },
+      {
+        "id": "AUD-1205",
+        "actor": "Compliance Officer",
+        "action": "Approved incident closure evidence",
+        "module": "Incident History",
+        "severity": "info",
+        "status": "reviewed",
+        "ipAddress": "192.168.1.18",
+        "createdAt": "2026-05-12 18:20",
+        "evidenceId": "EVD-439"
+      },
+      {
+        "id": "AUD-1204",
+        "actor": "SafeLab Administrator",
+        "action": "Updated user permission set",
+        "module": "Change History",
+        "severity": "warning",
+        "status": "pending",
+        "ipAddress": "192.168.1.10",
+        "createdAt": "2026-05-12 17:36",
+        "evidenceId": "EVD-438"
+      }
+    ],
+    "timeline": [
+      {
+        "id": 1,
+        "time": "09:45",
+        "title": "Compliance evidence reviewed",
+        "module": "Compliance",
+        "status": "reviewed"
+      },
+      {
+        "id": 2,
+        "time": "09:12",
+        "title": "Sensor threshold event recorded",
+        "module": "Sensors",
+        "status": "pending"
+      },
+      {
+        "id": 3,
+        "time": "08:54",
+        "title": "Remote command execution traced",
+        "module": "Remote Control",
+        "status": "reviewed"
+      },
+      {
+        "id": 4,
+        "time": "07:35",
+        "title": "Asset status change appended",
+        "module": "Assets",
+        "status": "reviewed"
+      }
+    ],
+    "evidence": [
+      {
+        "id": "EVD-442",
+        "type": "Compliance report",
+        "owner": "Compliance Officer",
+        "linkedRecord": "CMP-087",
+        "status": "ready"
+      },
+      {
+        "id": "EVD-441",
+        "type": "Sensor reading snapshot",
+        "owner": "System",
+        "linkedRecord": "SNS-204",
+        "status": "pending"
+      },
+      {
+        "id": "EVD-440",
+        "type": "Command execution receipt",
+        "owner": "Lab Technician",
+        "linkedRecord": "CMD-081",
+        "status": "ready"
+      },
+      {
+        "id": "EVD-439",
+        "type": "Incident closure note",
+        "owner": "Operations Team",
+        "linkedRecord": "INC-025",
+        "status": "ready"
+      }
+    ],
+    "trackedEntities": [
+      {
+        "labelKey": "audit.tracked.assets",
+        "value": 156,
+        "icon": "pi pi-box",
+        "trend": "+12"
+      },
+      {
+        "labelKey": "audit.tracked.sensors",
+        "value": 24,
+        "icon": "pi pi-wifi",
+        "trend": "+4"
+      },
+      {
+        "labelKey": "audit.tracked.incidents",
+        "value": 31,
+        "icon": "pi pi-exclamation-triangle",
+        "trend": "+3"
+      },
+      {
+        "labelKey": "audit.tracked.commands",
+        "value": 18,
+        "icon": "pi pi-sliders-h",
+        "trend": "+2"
+      }
+    ],
+    "changeHistory": [
+      {
+        "id": "CHG-088",
+        "object": "Threshold rule",
+        "description": "Temperature range adjusted for Cold Room A",
+        "changedBy": "Compliance Officer",
+        "risk": "medium"
+      },
+      {
+        "id": "CHG-087",
+        "object": "User role",
+        "description": "Supervisor permissions updated",
+        "changedBy": "SafeLab Administrator",
+        "risk": "medium"
+      },
+      {
+        "id": "CHG-086",
+        "object": "Sensor assignment",
+        "description": "Sensor T-204 linked to Clinical Lab 2",
+        "changedBy": "Lab Technician",
+        "risk": "low"
+      }
+    ],
+    "commandHistory": [
+      {
+        "id": "CMD-081",
+        "command": "Adjust cooling level",
+        "actuator": "Cold Chamber A-01",
+        "requestedBy": "Lab Technician",
+        "result": "confirmed"
+      },
+      {
+        "id": "CMD-080",
+        "command": "Restart sensor gateway",
+        "actuator": "Gateway S-02",
+        "requestedBy": "SafeLab Administrator",
+        "result": "confirmed"
+      },
+      {
+        "id": "CMD-079",
+        "command": "Cancel pending actuator command",
+        "actuator": "Freezer B-02",
+        "requestedBy": "Dr. Maria Lopez",
+        "result": "cancelled"
+      }
+    ]
+  }
+}
