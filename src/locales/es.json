@@ -364,5 +364,131 @@
       "pendingEvidence": "Evidencias pendientes",
       "openIncidents": "Incidentes abiertos"
     }
+  },
+  "audit": {
+    "heroEyebrow": "Auditoría y trazabilidad",
+    "integrityScore": "Puntaje de integridad",
+    "updatedRecently": "Actualizado recientemente",
+    "navigationLabel": "Vistas de auditoría y trazabilidad",
+    "metricsLabel": "Métricas de auditoría",
+    "loading": "Cargando datos de auditoría...",
+    "emptyLogs": "Ningún registro de auditoría coincide con los filtros seleccionados.",
+    "auditLogEyebrow": "Control de auditoría",
+    "auditLogTitle": "Registros recientes de auditoría",
+    "timelineEyebrow": "Línea de tiempo de trazabilidad",
+    "timelineTitle": "Últimos eventos rastreados",
+    "healthEyebrow": "Cobertura",
+    "healthTitle": "Salud de trazabilidad",
+    "evidenceEyebrow": "Repositorio de evidencia",
+    "evidenceTitle": "Evidencia de auditoría",
+    "trackedEyebrow": "Alcance rastreado",
+    "trackedTitle": "Trazabilidad de entidades",
+    "changeEyebrow": "Cambios del sistema",
+    "changeTitle": "Historial de cambios",
+    "commandEyebrow": "Acciones remotas",
+    "commandTitle": "Historial de comandos",
+    "pages": {
+      "AuditLog": {
+        "title": "Registro de auditoría",
+        "description": "Revisa la actividad de usuarios, cambios del sistema y eventos operativos registrados en SafeLab."
+      },
+      "ActivityHistory": {
+        "title": "Historial de actividad",
+        "description": "Rastrea la actividad relevante realizada por usuarios, módulos y reglas automáticas de la plataforma."
+      },
+      "TraceabilityTimeline": {
+        "title": "Línea de tiempo de trazabilidad",
+        "description": "Sigue la secuencia cronológica de activos, sensores, incidentes, evidencia y acciones remotas."
+      },
+      "EquipmentHistory": {
+        "title": "Historial de equipos",
+        "description": "Revisa registros históricos relacionados con estado de equipos, mantenimiento y cambios de almacenamiento."
+      },
+      "ComplianceTraceability": {
+        "title": "Trazabilidad de cumplimiento",
+        "description": "Valida que evaluaciones, infracciones y evidencias de cumplimiento permanezcan auditables."
+      },
+      "AuditEvidence": {
+        "title": "Evidencia de auditoría",
+        "description": "Gestiona archivos y registros de evidencia vinculados a eventos de auditoría, incidentes y revisiones de cumplimiento."
+      },
+      "OperationalTraceability": {
+        "title": "Trazabilidad operativa",
+        "description": "Analiza registros operativos generados por sensores, activos, alertas y flujos de incidentes."
+      },
+      "ChangeHistory": {
+        "title": "Historial de cambios",
+        "description": "Revisa cambios de configuración y permisos que afectan el comportamiento de la plataforma."
+      },
+      "RemoteCommandHistory": {
+        "title": "Historial de comandos remotos",
+        "description": "Rastrea comandos remotos ejecutados sobre actuadores conectados y equipos monitoreados."
+      }
+    },
+    "metrics": {
+      "totalLogs": "Registros totales",
+      "reviewedLogs": "Registros revisados",
+      "pendingLogs": "Pendientes de revisión",
+      "criticalEvents": "Eventos críticos",
+      "integrityScore": "Puntaje de integridad",
+      "retention": "{days} días retenidos",
+      "evidenceReady": "Evidencia vinculada",
+      "needsReview": "Requiere validación",
+      "highPriority": "Alta prioridad",
+      "immutableTrace": "Registros protegidos"
+    },
+    "filters": {
+      "search": "Buscar",
+      "searchPlaceholder": "Buscar por actor, módulo, acción o evidencia...",
+      "severity": "Severidad",
+      "status": "Estado",
+      "allStatuses": "Todos los estados",
+      "allSeverities": "Todas las severidades"
+    },
+    "table": {
+      "id": "ID",
+      "actor": "Actor",
+      "action": "Acción",
+      "module": "Módulo",
+      "severity": "Severidad",
+      "status": "Estado",
+      "createdAt": "Fecha de registro",
+      "evidence": "Evidencia"
+    },
+    "severity": {
+      "info": "Info",
+      "warning": "Advertencia",
+      "critical": "Crítico"
+    },
+    "status": {
+      "reviewed": "Revisado",
+      "pending": "Pendiente",
+      "ready": "Listo"
+    },
+    "risk": {
+      "low": "Riesgo bajo",
+      "medium": "Riesgo medio",
+      "high": "Riesgo alto"
+    },
+    "commandResult": {
+      "confirmed": "Confirmado",
+      "cancelled": "Cancelado",
+      "failed": "Fallido"
+    },
+    "health": {
+      "auditCoverage": "Cobertura de auditoría",
+      "evidenceCoverage": "Cobertura de evidencia",
+      "changeIntegrity": "Integridad de cambios",
+      "remoteCommandTraceability": "Trazabilidad de comandos remotos"
+    },
+    "tracked": {
+      "assets": "Activos rastreados",
+      "sensors": "Sensores rastreados",
+      "incidents": "Incidentes trazados",
+      "commands": "Comandos remotos"
+    },
+    "errors": {
+      "load": "No se pudieron cargar los datos de auditoría y trazabilidad."
+    }
   }
 }
