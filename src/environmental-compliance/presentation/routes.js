@@ -1,16 +1,17 @@
 import ComingSoonView from '@/shared/presentation/views/ComingSoonView.vue'
+import ComplianceStatusView from './views/ComplianceStatusView.vue'
 
 export const routes = [
   {
     path: 'environmental-compliance',
     name: 'environmental-compliance',
-    component: ComingSoonView,
+    redirect: { name: 'environmental-compliance-compliance-status' },
     meta: { title: 'Environmental Compliance', contextKey: 'compliance' }
   },
   {
     path: 'environmental-compliance/compliance-status',
     name: 'environmental-compliance-compliance-status',
-    component: ComingSoonView,
+    component: ComplianceStatusView,
     meta: { title: 'Compliance Status', contextKey: 'compliance', viewKey: 'compliance.ComplianceStatus' }
   },
   {

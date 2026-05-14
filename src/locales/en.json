@@ -99,7 +99,45 @@
       "EnvironmentalValidationResults": "Environmental Validation Results",
       "ViolationHistory": "Violation History",
       "ViolationDetail": "Violation Detail",
-      "ComplianceEvidence": "Compliance Evidence"
+      "ComplianceEvidence": "Compliance Evidence",
+      "status": {
+        "eyebrow": "Environmental Compliance",
+        "title": "Environmental Compliance",
+        "subtitle": "Monitoring of regulations and standards.",
+        "kpis": {
+          "compliance": "General compliance",
+          "violations": "Active violations",
+          "audits": "Pending audits"
+        },
+        "rulesTitle": "Active compliance rules",
+        "rulesSubtitle": "Monitored conditions in real time.",
+        "violationsLabel": "Violations",
+        "ruleType": "Type: {type}",
+        "ruleLabels": {
+          "temperatureRange": "Temperature range",
+          "humidityMax": "Humidity max",
+          "energyRange": "Energy range",
+          "vibrationRange": "Vibration range",
+          "doorStatus": "Door status",
+          "generic": "Rule"
+        },
+        "types": {
+          "Temperature": "Temperature",
+          "Humidity": "Humidity",
+          "Energy": "Energy",
+          "Vibration": "Vibration",
+          "DoorStatus": "Door status"
+        },
+        "badges": {
+          "compliant": "Complies",
+          "violation": "Violation"
+        },
+        "states": {
+          "loading": "Loading compliance data...",
+          "error": "Failed to load compliance data.",
+          "empty": "No compliance rules detected."
+        }
+      }
     },
     "iam": {
       "Login": "Login",
