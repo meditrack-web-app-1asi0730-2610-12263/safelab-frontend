@@ -1,58 +1,98 @@
+import AlertsPage from './views/alerts-page.component.vue'
+import AlertDetailPage from './views/alert-detail-page.component.vue'
+import NotificationsPage from './views/notifications-page.component.vue'
+import DeliveryRulesPage from './views/delivery-rules-page.component.vue'
 import ComingSoonView from '@/shared/presentation/views/ComingSoonView.vue'
 
 export const routes = [
   {
     path: 'alerts-notifications',
     name: 'alerts-notifications',
-    component: ComingSoonView,
-    meta: { title: 'Alerts & Notifications', contextKey: 'alerts' }
+    component: AlertsPage,
+    meta: {
+      titleKey: 'contextLabels.alerts',
+      contextKey: 'alerts'
+    }
   },
   {
     path: 'alerts-notifications/active-alerts',
     name: 'alerts-notifications-active-alerts',
-    component: ComingSoonView,
-    meta: { title: 'Active Alerts', contextKey: 'alerts', viewKey: 'alerts.ActiveAlerts' }
+    component: AlertsPage,
+    meta: {
+      titleKey: 'menu.alerts.ActiveAlerts',
+      contextKey: 'alerts',
+      viewKey: 'alerts.ActiveAlerts'
+    }
   },
   {
-    path: 'alerts-notifications/alert-detail',
+    path: 'alerts-notifications/alert-detail/:id',
     name: 'alerts-notifications-alert-detail',
-    component: ComingSoonView,
-    meta: { title: 'Alert Detail', contextKey: 'alerts', viewKey: 'alerts.AlertDetail' }
+    component: AlertDetailPage,
+    props: true,
+    meta: {
+      titleKey: 'menu.alerts.AlertDetail',
+      contextKey: 'alerts',
+      viewKey: 'alerts.AlertDetail'
+    }
   },
   {
     path: 'alerts-notifications/alert-history',
     name: 'alerts-notifications-alert-history',
-    component: ComingSoonView,
-    meta: { title: 'Alert History', contextKey: 'alerts', viewKey: 'alerts.AlertHistory' }
+    component: AlertsPage,
+    meta: {
+      titleKey: 'menu.alerts.AlertHistory',
+      contextKey: 'alerts',
+      viewKey: 'alerts.AlertHistory'
+    }
   },
   {
     path: 'alerts-notifications/critical-alerts',
     name: 'alerts-notifications-critical-alerts',
-    component: ComingSoonView,
-    meta: { title: 'Critical Alerts', contextKey: 'alerts', viewKey: 'alerts.CriticalAlerts' }
+    component: AlertsPage,
+    meta: {
+      titleKey: 'menu.alerts.CriticalAlerts',
+      contextKey: 'alerts',
+      viewKey: 'alerts.CriticalAlerts'
+    }
   },
   {
     path: 'alerts-notifications/notification-settings',
     name: 'alerts-notifications-notification-settings',
-    component: ComingSoonView,
-    meta: { title: 'Notification Settings', contextKey: 'alerts', viewKey: 'alerts.NotificationSettings' }
+    component: DeliveryRulesPage,
+    meta: {
+      titleKey: 'menu.alerts.NotificationSettings',
+      contextKey: 'alerts',
+      viewKey: 'alerts.NotificationSettings'
+    }
   },
   {
     path: 'alerts-notifications/notification-history',
     name: 'alerts-notifications-notification-history',
-    component: ComingSoonView,
-    meta: { title: 'Notification History', contextKey: 'alerts', viewKey: 'alerts.NotificationHistory' }
+    component: NotificationsPage,
+    meta: {
+      titleKey: 'menu.alerts.NotificationHistory',
+      contextKey: 'alerts',
+      viewKey: 'alerts.NotificationHistory'
+    }
   },
   {
     path: 'alerts-notifications/recipient-management',
     name: 'alerts-notifications-recipient-management',
     component: ComingSoonView,
-    meta: { title: 'Recipient Management', contextKey: 'alerts', viewKey: 'alerts.RecipientManagement' }
+    meta: {
+      titleKey: 'menu.alerts.RecipientManagement',
+      contextKey: 'alerts',
+      viewKey: 'alerts.RecipientManagement'
+    }
   },
   {
     path: 'alerts-notifications/escalation-policy',
     name: 'alerts-notifications-escalation-policy',
     component: ComingSoonView,
-    meta: { title: 'Escalation Policy', contextKey: 'alerts', viewKey: 'alerts.EscalationPolicy' }
-  },
+    meta: {
+      titleKey: 'menu.alerts.EscalationPolicy',
+      contextKey: 'alerts',
+      viewKey: 'alerts.EscalationPolicy'
+    }
+  }
 ]
