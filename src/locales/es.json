@@ -597,6 +597,63 @@
       "deliveryRules": "No hay reglas de entrega configuradas."
     }
   },
+  "reportsAnalytics": {
+    "module": {
+      "eyebrow": "Reportes y analítica",
+      "title": "Resumen analítico",
+      "description": "Revisa métricas operativas, preparación de reportes y tendencias de monitoreo para apoyar decisiones."
+    },
+    "navigation": {
+      "reports": "Reportes",
+      "reportsDescription": "Genera y administra reportes operativos.",
+      "historicalData": "Datos históricos",
+      "historicalDataDescription": "Revisa el historial ambiental y de sensores.",
+      "exportData": "Exportar datos",
+      "exportDataDescription": "Exporta analítica y evidencias de cumplimiento."
+    },
+    "summary": {
+      "totalReports": "Reportes",
+      "totalReportsDescription": "Reportes registrados",
+      "activeAlerts": "Alertas activas",
+      "activeAlertsDescription": "Pendientes de revisión operativa",
+      "averageTemperature": "Temp. promedio",
+      "averageTemperatureDescription": "En sensores de temperatura",
+      "averageHumidity": "Humedad promedio",
+      "averageHumidityDescription": "En sensores de humedad"
+    },
+    "trends": {
+      "title": "Tendencias de monitoreo",
+      "subtitle": "Indicadores actuales calculados con datos operativos de SafeLab."
+    },
+    "risk": {
+      "title": "Riesgo operativo",
+      "subtitle": "Resumen de riesgo basado en alertas, desviaciones de sensores y cumplimiento.",
+      "criticalAlerts": "Alertas críticas",
+      "outOfRangeSensors": "Sensores fuera de rango",
+      "disconnectedSensors": "Sensores desconectados",
+      "complianceScore": "Cumplimiento",
+      "levels": {
+        "low": "Riesgo bajo",
+        "medium": "Riesgo medio",
+        "high": "Riesgo alto"
+      }
+    },
+    "recentReports": {
+      "title": "Reportes recientes",
+      "subtitle": "Últimos reportes generados o pendientes.",
+      "empty": "No hay reportes disponibles.",
+      "allEquipment": "Todos los equipos"
+    },
+    "recentAlerts": {
+      "title": "Alertas recientes",
+      "subtitle": "Últimos eventos operativos usados en la analítica.",
+      "empty": "No hay alertas disponibles."
+    },
+    "states": {
+      "loading": "Cargando analítica...",
+      "error": "No se pudo cargar la analítica."
+    }
+  },
   "audit": {
     "heroEyebrow": "Auditoría y trazabilidad",
     "integrityScore": "Puntaje de integridad",
