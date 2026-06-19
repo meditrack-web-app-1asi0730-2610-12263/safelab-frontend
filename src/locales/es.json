@@ -723,5 +723,71 @@
       "load": "No se pudieron cargar los datos de auditoría y trazabilidad."
     },
     "highlightReportsCopy": "Analiza tendencias, KPI y reportes operativos."
+  },
+  "userProfiles": {
+    "module": {
+      "eyebrow": "Perfiles de usuario",
+      "title": "Mi perfil",
+      "description": "Revisa y actualiza tu información personal, preferencias y datos de acceso."
+    },
+    "summary": {
+      "currentUser": "Usuario actual"
+    },
+    "sections": {
+      "personalDataEyebrow": "Datos del perfil",
+      "personalData": "Información personal",
+      "accessEyebrow": "Contexto de acceso",
+      "accessInformation": "Información de acceso",
+      "preferencesEyebrow": "Configuración personal",
+      "preferences": "Preferencias",
+      "securityEyebrow": "Seguridad",
+      "security": "Configuración de seguridad"
+    },
+    "fields": {
+      "userId": "ID de usuario",
+      "firstName": "Nombres",
+      "lastName": "Apellidos",
+      "email": "Correo",
+      "phone": "Teléfono",
+      "position": "Cargo",
+      "organization": "Organización",
+      "laboratory": "Laboratorio",
+      "role": "Rol",
+      "language": "Idioma",
+      "timezone": "Zona horaria",
+      "notificationPreference": "Preferencia de notificación",
+      "lastAccess": "Último acceso",
+      "lastPasswordChange": "Último cambio de contraseña"
+    },
+    "roles": {
+      "safeLabAdministrator": "Administrador de SafeLab",
+      "bioclinicalCoordinator": "Coordinador bioclínico",
+      "labTechnician": "Técnico de laboratorio",
+      "complianceOfficer": "Responsable de cumplimiento",
+      "billingManager": "Responsable de facturación"
+    },
+    "status": {
+      "active": "Activo",
+      "inactive": "Inactivo"
+    },
+    "notificationPreference": {
+      "criticalOnly": "Solo alertas críticas",
+      "criticalAndDaily": "Alertas críticas y resumen diario",
+      "allOperational": "Todas las actualizaciones operativas"
+    },
+    "security": {
+      "description": "El cambio de contraseña es simulado en esta versión frontend y será conectado con IAM más adelante."
+    },
+    "actions": {
+      "saveChanges": "Guardar cambios",
+      "savePreferences": "Guardar preferencias",
+      "saving": "Guardando...",
+      "updateSecurity": "Actualizar seguridad"
+    },
+    "states": {
+      "loading": "Cargando perfil...",
+      "error": "No se pudo cargar el perfil de usuario.",
+      "saved": "Perfil actualizado correctamente."
+    }
   }
 }
