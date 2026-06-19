@@ -1,18 +1,31 @@
 <script setup>
-import { useRouter } from 'vue-router'
+import { computed, ref, onMounted, onBeforeUnmount, watch } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { setLocale } from '@/shared/application/services/i18n.service'
 import { useAppStore } from '@/shared/application/stores/app.store'
+import { useNotificationStore } from '@/alerts-notifications/application/stores/notification.store'
+import NotificationBellPanel from '@/alerts-notifications/presentation/components/NotificationBellPanel.vue'
 
 const router = useRouter()
+const route = useRoute()
 const appStore = useAppStore()
+const notificationStore = useNotificationStore()
 const { t, locale } = useI18n()
+
+const isNotificationPanelOpen = ref(false)
+const notificationWrapperRef = ref(null)
+
+const isNotificationsRoute = computed(() =>
+    route.meta?.topbarContext === 'notifications'
+)
 
 function toggleSidebar() {
   if (window.innerWidth < 1024) {
     appStore.openMobileSidebar()
     return
   }
+
   appStore.toggleSidebar()
 }
 
@@ -24,41 +37,161 @@ function openProfile() {
   router.push('/user-profiles/my-profile')
 }
 
-function openNotifications() {
-  router.push('/alerts-notifications/active-alerts')
+function closeNotifications() {
+  isNotificationPanelOpen.value = false
 }
+
+function toggleNotifications() {
+  isNotificationPanelOpen.value = !isNotificationPanelOpen.value
+
+  if (isNotificationPanelOpen.value) {
+    notificationStore.fetchNotifications()
+  }
+}
+
+function handleClickOutside(event) {
+  if (!isNotificationPanelOpen.value) {
+    return
+  }
+
+  const wrapper = notificationWrapperRef.value
+
+  if (wrapper && !wrapper.contains(event.target)) {
+    closeNotifications()
+  }
+}
+
+function handleEscapeKey(event) {
+  if (event.key === 'Escape') {
+    closeNotifications()
+  }
+}
+
+watch(
+    () => route.fullPath,
+    () => {
+      closeNotifications()
+    }
+)
+
+onMounted(() => {
+  document.addEventListener('click', handleClickOutside)
+  document.addEventListener('keydown', handleEscapeKey)
+})
+
+onBeforeUnmount(() => {
+  document.removeEventListener('click', handleClickOutside)
+  document.removeEventListener('keydown', handleEscapeKey)
+})
 </script>
 
 <template>
   <header class="app-topbar">
-    <button class="icon-button menu-toggle" type="button" :aria-label="t('actions.toggleSidebar')" @click="toggleSidebar">
+    <button
+        class="icon-button menu-toggle"
+        type="button"
+        :aria-label="t('actions.toggleSidebar')"
+        @click="toggleSidebar"
+    >
       <i class="pi pi-bars" aria-hidden="true"></i>
     </button>
 
     <div class="topbar-search" role="search">
       <i class="pi pi-search" aria-hidden="true"></i>
-      <input :placeholder="t('app.searchPlaceholder')" :aria-label="t('app.search')" />
+      <input
+          :placeholder="t('app.searchPlaceholder')"
+          :aria-label="t('app.search')"
+      />
     </div>
 
     <div class="topbar-actions">
       <div class="language-pill" role="group" :aria-label="t('actions.language')">
-        <button type="button" :class="{ active: locale === 'en' }" @click="changeLanguage('en')">EN</button>
-        <button type="button" :class="{ active: locale === 'es' }" @click="changeLanguage('es')">ES</button>
+        <button
+            type="button"
+            :class="{ active: locale === 'en' }"
+            @click="changeLanguage('en')"
+        >
+          EN
+        </button>
+
+        <button
+            type="button"
+            :class="{ active: locale === 'es' }"
+            @click="changeLanguage('es')"
+        >
+          ES
+        </button>
       </div>
 
-      <button class="notification-button" type="button" :aria-label="t('actions.notifications')" @click="openNotifications">
-        <i class="pi pi-bell" aria-hidden="true"></i>
-        <span class="notification-dot" aria-hidden="true"></span>
-      </button>
+      <div
+          ref="notificationWrapperRef"
+          class="notification-wrapper"
+      >
+        <button
+            class="notification-button"
+            :class="{ active: isNotificationPanelOpen || isNotificationsRoute }"
+            type="button"
+            :aria-label="t('actions.notifications')"
+            @click="toggleNotifications"
+        >
+          <i class="pi pi-bell" aria-hidden="true"></i>
 
-      <button class="profile-button" type="button" :aria-label="t('actions.profile')" @click="openProfile">
+          <span
+              v-if="notificationStore.unreadCount > 0"
+              class="notification-count"
+              aria-hidden="true"
+          >
+            {{ notificationStore.unreadCount }}
+          </span>
+        </button>
+
+        <NotificationBellPanel v-if="isNotificationPanelOpen" />
+      </div>
+
+      <button
+          class="profile-button"
+          type="button"
+          :aria-label="t('actions.profile')"
+          @click="openProfile"
+      >
         <span class="avatar">{{ appStore.currentUser.initials }}</span>
+
         <span class="profile-copy">
           <strong>{{ appStore.currentUser.fullName }}</strong>
           <small>{{ t('roles.safeLabAdministrator') }}</small>
         </span>
+
         <i class="pi pi-angle-right" aria-hidden="true"></i>
       </button>
     </div>
   </header>
 </template>
+
+<style scoped>
+.notification-wrapper {
+  position: relative;
+}
+
+.notification-count {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: 999px;
+  color: #ffffff;
+  background: #ef4444;
+  font-size: 0.68rem;
+  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.notification-button.active {
+  outline: 2px solid rgba(79, 70, 229, 0.35);
+  background: #eef2ff;
+  color: #4f46e5;
+}
+</style>
