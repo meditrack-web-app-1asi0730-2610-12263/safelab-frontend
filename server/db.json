@@ -777,5 +777,121 @@
         "result": "cancelled"
       }
     ]
-  }
+  },
+  "subscriptions": [
+    {
+      "id": 1,
+      "currentPlanId": 2,
+      "planName": "Professional Monitoring",
+      "status": "active",
+      "renewalDate": "2026-07-01",
+      "monthlyCost": 99,
+      "billingCycle": "monthly",
+      "devicesUsed": 24,
+      "devicesLimit": 35,
+      "latestInvoiceId": "INV-2026-001",
+      "customerName": "SafeLab Central",
+      "updatedAt": "2026-06-19T06:00:00.000Z"
+    }
+  ],
+  "billingPlans": [
+    {
+      "id": 1,
+      "name": "Basic Monitoring",
+      "description": "For small laboratories starting with monitored storage.",
+      "monthlyCost": 49,
+      "deviceLimit": 15,
+      "sensorsLimit": 25,
+      "reportsLimit": 10,
+      "alertsLimit": 50
+    },
+    {
+      "id": 2,
+      "name": "Professional Monitoring",
+      "description": "For laboratories that require compliance tracking and analytics.",
+      "monthlyCost": 99,
+      "deviceLimit": 35,
+      "sensorsLimit": 75,
+      "reportsLimit": 35,
+      "alertsLimit": 150
+    },
+    {
+      "id": 3,
+      "name": "Enterprise Monitoring",
+      "description": "For organizations with multiple locations and advanced monitoring.",
+      "monthlyCost": 199,
+      "deviceLimit": 100,
+      "sensorsLimit": 250,
+      "reportsLimit": 100,
+      "alertsLimit": 500
+    }
+  ],
+  "invoices": [
+    {
+      "id": 1,
+      "code": "INV-2026-001",
+      "description": "Professional Monitoring subscription",
+      "period": "2026-06-01 - 2026-06-30",
+      "amount": 99,
+      "status": "paid",
+      "dueDate": "2026-06-05",
+      "createdAt": "2026-06-01T08:00:00.000Z",
+      "downloadUrl": "#"
+    },
+    {
+      "id": 2,
+      "code": "INV-2026-002",
+      "description": "Professional Monitoring subscription",
+      "period": "2026-07-01 - 2026-07-31",
+      "amount": 99,
+      "status": "pending",
+      "dueDate": "2026-07-05",
+      "createdAt": "2026-07-01T08:00:00.000Z",
+      "downloadUrl": "#"
+    },
+    {
+      "id": 3,
+      "code": "INV-2026-003",
+      "description": "Additional device usage adjustment",
+      "period": "2026-06-10 - 2026-06-19",
+      "amount": 15,
+      "status": "paid",
+      "dueDate": "2026-06-20",
+      "createdAt": "2026-06-19T09:00:00.000Z",
+      "downloadUrl": "#"
+    }
+  ],
+  "payments": [
+    {
+      "id": 1,
+      "code": "PAY-2026-001",
+      "method": "Visa ending 4242",
+      "amount": 99,
+      "status": "completed",
+      "paidAt": "2026-06-02 10:30",
+      "invoiceCode": "INV-2026-001"
+    },
+    {
+      "id": 2,
+      "code": "PAY-2026-002",
+      "method": "Visa ending 4242",
+      "amount": 15,
+      "status": "completed",
+      "paidAt": "2026-06-19 09:40",
+      "invoiceCode": "INV-2026-003"
+    }
+  ],
+  "usageLimits": [
+    {
+      "id": 1,
+      "devicesUsed": 24,
+      "devicesLimit": 35,
+      "sensorsUsed": 48,
+      "sensorsLimit": 75,
+      "reportsGenerated": 18,
+      "reportsLimit": 35,
+      "alertsCreated": 92,
+      "alertsLimit": 150
+    }
+  ]
 }
