@@ -1,22 +1,19 @@
 <script setup>
+import { useI18n } from 'vue-i18n'
+
 defineProps({
   status: {
     type: String,
     required: true
   }
-});
+})
 
-const statusLabels = {
-  open: 'Open',
-  investigating: 'Investigating',
-  resolved: 'Resolved',
-  closed: 'Closed'
-};
+const { t } = useI18n({ useScope: 'global' })
 </script>
 
 <template>
   <span class="incident-status-badge" :class="`incident-status-badge--${status}`">
-    {{ statusLabels[status] || status }}
+    {{ t(`incidentManagement.status.${status}`) }}
   </span>
 </template>
 
@@ -25,9 +22,9 @@ const statusLabels = {
   display: inline-flex;
   align-items: center;
   border-radius: 999px;
-  padding: 0.25rem 0.75rem;
+  padding: 0.3rem 0.75rem;
   font-size: 0.75rem;
-  font-weight: 700;
+  font-weight: 800;
   text-transform: capitalize;
 }
 

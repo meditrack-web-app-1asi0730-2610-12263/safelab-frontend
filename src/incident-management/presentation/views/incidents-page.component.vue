@@ -1,114 +1,161 @@
 <script setup>
-import { computed, onMounted, ref } from 'vue';
-import { useRouter } from 'vue-router';
-import { useIncidentStore } from '../../application/stores/incident.store';
-import IncidentCard from '../components/incident-card.component.vue';
+import { computed, onMounted, ref } from 'vue'
+import { useRouter } from 'vue-router'
+import { useI18n } from 'vue-i18n'
+import { useIncidentStore } from '../../application/stores/incident.store'
+import IncidentCard from '../components/incident-card.component.vue'
 
-const router = useRouter();
-const incidentStore = useIncidentStore();
+const router = useRouter()
+const incidentStore = useIncidentStore()
+const { t } = useI18n({ useScope: 'global' })
 
-const selectedStatus = ref('all');
-const selectedSeverity = ref('all');
+const selectedStatus = ref('all')
+const selectedSeverity = ref('all')
+const searchQuery = ref('')
 
 const filteredIncidents = computed(() => {
+  const query = searchQuery.value.trim().toLowerCase()
+
   return incidentStore.incidents.filter((incident) => {
     const matchesStatus =
-        selectedStatus.value === 'all' || incident.status === selectedStatus.value;
+        selectedStatus.value === 'all' || incident.status === selectedStatus.value
 
     const matchesSeverity =
-        selectedSeverity.value === 'all' || incident.severity === selectedSeverity.value;
+        selectedSeverity.value === 'all' || incident.severity === selectedSeverity.value
 
-    return matchesStatus && matchesSeverity;
-  });
-});
+    const matchesQuery =
+        !query ||
+        incident.title.toLowerCase().includes(query) ||
+        incident.description.toLowerCase().includes(query) ||
+        String(incident.code || '').toLowerCase().includes(query) ||
+        String(incident.relatedSensorCode || '').toLowerCase().includes(query) ||
+        String(incident.affectedArea || '').toLowerCase().includes(query)
+
+    return matchesStatus && matchesSeverity && matchesQuery
+  })
+})
 
 const goToDetail = (incidentId) => {
   router.push({
     name: 'incident-management-detail',
     params: { id: incidentId }
-  });
-};
+  })
+}
 
 onMounted(async () => {
-  await incidentStore.fetchIncidents();
-});
+  await incidentStore.fetchIncidents()
+})
 </script>
 
 <template>
   <main class="incidents-page" aria-labelledby="incidents-title">
-    <header class="incidents-page__header">
+    <header class="page-hero incidents-hero">
       <div>
-        <p class="incidents-page__eyebrow">Operations</p>
+        <p class="eyebrow">
+          {{ t('incidentManagement.module.eyebrow') }}
+        </p>
 
         <h1 id="incidents-title">
-          Incident Management
+          {{ t('incidentManagement.module.title') }}
         </h1>
 
         <p>
-          Track, investigate, resolve and document operational incidents related to
-          cold chain monitoring.
+          {{ t('incidentManagement.module.description') }}
         </p>
       </div>
     </header>
 
-    <section class="incidents-page__summary" aria-label="Incident summary">
-      <article>
-        <span>{{ incidentStore.totalIncidents }}</span>
-        <p>Total incidents</p>
+    <section class="summary-grid" aria-label="Incident summary">
+      <article class="summary-card">
+        <div class="summary-icon total">
+          <i class="pi pi-list"></i>
+        </div>
+        <div>
+          <span>{{ t('incidentManagement.summary.total') }}</span>
+          <strong>{{ incidentStore.totalIncidents }}</strong>
+          <small>{{ t('incidentManagement.summary.totalDescription') }}</small>
+        </div>
       </article>
 
-      <article>
-        <span>{{ incidentStore.openIncidents.length }}</span>
-        <p>Open</p>
+      <article class="summary-card">
+        <div class="summary-icon open">
+          <i class="pi pi-exclamation-circle"></i>
+        </div>
+        <div>
+          <span>{{ t('incidentManagement.summary.open') }}</span>
+          <strong>{{ incidentStore.openIncidents.length }}</strong>
+          <small>{{ t('incidentManagement.summary.openDescription') }}</small>
+        </div>
       </article>
 
-      <article>
-        <span>{{ incidentStore.investigatingIncidents.length }}</span>
-        <p>Investigating</p>
+      <article class="summary-card">
+        <div class="summary-icon investigation">
+          <i class="pi pi-search"></i>
+        </div>
+        <div>
+          <span>{{ t('incidentManagement.summary.investigating') }}</span>
+          <strong>{{ incidentStore.investigatingIncidents.length }}</strong>
+          <small>{{ t('incidentManagement.summary.investigatingDescription') }}</small>
+        </div>
       </article>
 
-      <article>
-        <span>{{ incidentStore.criticalIncidents.length }}</span>
-        <p>Critical</p>
+      <article class="summary-card">
+        <div class="summary-icon critical">
+          <i class="pi pi-exclamation-triangle"></i>
+        </div>
+        <div>
+          <span>{{ t('incidentManagement.summary.critical') }}</span>
+          <strong>{{ incidentStore.criticalIncidents.length }}</strong>
+          <small>{{ t('incidentManagement.summary.criticalDescription') }}</small>
+        </div>
       </article>
     </section>
 
-    <section class="incidents-page__filters" aria-label="Incident filters">
+    <section class="filters-panel" aria-label="Incident filters">
       <label>
-        Status
+        {{ t('incidentManagement.filters.search') }}
+        <input
+            v-model="searchQuery"
+            type="search"
+            :placeholder="t('incidentManagement.filters.searchPlaceholder')"
+        />
+      </label>
+
+      <label>
+        {{ t('incidentManagement.filters.status') }}
         <select v-model="selectedStatus">
-          <option value="all">All</option>
-          <option value="open">Open</option>
-          <option value="investigating">Investigating</option>
-          <option value="resolved">Resolved</option>
-          <option value="closed">Closed</option>
+          <option value="all">{{ t('incidentManagement.filters.all') }}</option>
+          <option value="open">{{ t('incidentManagement.status.open') }}</option>
+          <option value="investigating">{{ t('incidentManagement.status.investigating') }}</option>
+          <option value="resolved">{{ t('incidentManagement.status.resolved') }}</option>
+          <option value="closed">{{ t('incidentManagement.status.closed') }}</option>
         </select>
       </label>
 
       <label>
-        Severity
+        {{ t('incidentManagement.filters.severity') }}
         <select v-model="selectedSeverity">
-          <option value="all">All</option>
-          <option value="critical">Critical</option>
-          <option value="warning">Warning</option>
-          <option value="info">Info</option>
+          <option value="all">{{ t('incidentManagement.filters.all') }}</option>
+          <option value="critical">{{ t('incidentManagement.severity.critical') }}</option>
+          <option value="warning">{{ t('incidentManagement.severity.warning') }}</option>
+          <option value="info">{{ t('incidentManagement.severity.info') }}</option>
         </select>
       </label>
     </section>
 
-    <section v-if="incidentStore.loading" class="incidents-page__state">
-      Loading incidents...
+    <section v-if="incidentStore.loading" class="state-card">
+      {{ t('incidentManagement.states.loading') }}
     </section>
 
-    <section v-else-if="incidentStore.error" class="incidents-page__state incidents-page__state--error">
-      Could not load incidents.
+    <section v-else-if="incidentStore.error" class="state-card error">
+      {{ t('incidentManagement.states.error') }}
     </section>
 
-    <section v-else-if="filteredIncidents.length === 0" class="incidents-page__state">
-      No incidents found with the selected filters.
+    <section v-else-if="filteredIncidents.length === 0" class="state-card">
+      {{ t('incidentManagement.states.empty') }}
     </section>
 
-    <section v-else class="incidents-page__grid" aria-label="Incident list">
+    <section v-else class="incidents-grid" aria-label="Incident list">
       <IncidentCard
           v-for="incident in filteredIncidents"
           :key="incident.id"
@@ -121,114 +168,147 @@ onMounted(async () => {
 
 <style scoped>
 .incidents-page {
-  min-height: 100vh;
-  background: linear-gradient(to bottom right, #f8fafc 0%, #f1f5f9 100%);
-  padding: 2rem;
+  display: grid;
+  gap: 22px;
 }
 
-.incidents-page__header {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
+.incidents-hero {
+  background:
+      radial-gradient(circle at right, rgba(35, 213, 171, 0.18), transparent 32%),
+      #ffffff;
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(170px, 1fr));
   gap: 1rem;
-  margin-bottom: 1.5rem;
 }
 
-.incidents-page__eyebrow {
-  margin: 0 0 0.5rem;
-  color: #4f46e5;
-  font-size: 0.75rem;
+.summary-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.1rem;
+  border-radius: 18px;
+  background: #ffffff;
+  border: 1px solid var(--border);
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
+}
+
+.summary-card span {
+  display: block;
+  color: var(--muted);
+  font-size: 0.78rem;
   font-weight: 800;
-  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
-.incidents-page h1 {
-  margin: 0;
-  color: #0f172a;
-  font-size: 2rem;
-}
-
-.incidents-page__header p:last-child {
-  max-width: 720px;
-  color: #475569;
-  line-height: 1.6;
-}
-
-.incidents-page__summary {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-}
-
-.incidents-page__summary article {
-  border-radius: 0.75rem;
-  background: #ffffff;
-  padding: 1rem;
-  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.08);
-}
-
-.incidents-page__summary span {
-  color: #0f172a;
-  font-size: 1.75rem;
-  font-weight: 800;
-}
-
-.incidents-page__summary p {
-  margin: 0.25rem 0 0;
-  color: #64748b;
-}
-
-.incidents-page__filters {
-  display: flex;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-}
-
-.incidents-page__filters label {
-  color: #334155;
-  font-size: 0.875rem;
-  font-weight: 700;
-}
-
-.incidents-page__filters select {
+.summary-card strong {
   display: block;
-  min-width: 180px;
-  border: 1px solid #cbd5e1;
-  border-radius: 0.5rem;
-  background: #ffffff;
-  margin-top: 0.375rem;
-  padding: 0.625rem;
+  color: var(--text);
+  font-size: 1.9rem;
 }
 
-.incidents-page__grid {
+.summary-card small {
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.summary-icon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+}
+
+.summary-icon.total {
+  color: #4f46e5;
+  background: #e0e7ff;
+}
+
+.summary-icon.open {
+  color: #ef4444;
+  background: #fee2e2;
+}
+
+.summary-icon.investigation {
+  color: #f59e0b;
+  background: #fef3c7;
+}
+
+.summary-icon.critical {
+  color: #b91c1c;
+  background: #fee2e2;
+}
+
+.filters-panel {
+  align-items: end;
+  background: #ffffff;
+  border-radius: 18px;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 2fr 1fr 1fr;
+  padding: 1rem;
+  border: 1px solid var(--border);
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
+}
+
+.filters-panel label {
+  color: var(--text);
+  display: grid;
+  font-size: 0.875rem;
+  font-weight: 800;
+  gap: 0.5rem;
+}
+
+.filters-panel input,
+.filters-panel select {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #ffffff;
+  color: var(--text);
+  font: inherit;
+  min-height: 42px;
+  padding: 0.5rem 0.75rem;
+}
+
+.incidents-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
 }
 
-.incidents-page__state {
-  border-radius: 0.75rem;
+.state-card {
+  border-radius: 18px;
   background: #ffffff;
-  color: #475569;
+  color: var(--muted);
   padding: 1rem;
   text-align: center;
+  font-weight: 700;
+  border: 1px solid var(--border);
 }
 
-.incidents-page__state--error {
+.state-card.error {
   background: #fee2e2;
   color: #991b1b;
 }
 
-@media (max-width: 900px) {
-  .incidents-page__summary,
-  .incidents-page__grid {
-    grid-template-columns: 1fr;
+@media (max-width: 1000px) {
+  .summary-grid,
+  .incidents-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 
-  .incidents-page__filters {
-    flex-direction: column;
+  .filters-panel {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .summary-grid,
+  .incidents-grid {
+    grid-template-columns: 1fr;
   }
 }
 </style>
