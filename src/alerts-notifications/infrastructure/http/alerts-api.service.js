@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const http = axios.create({
-    baseURL: import.meta.env.VITE_API_BASE_URL
+    baseURL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000'
 })
 
 export class AlertsApiService {
@@ -33,7 +33,8 @@ export class AlertsApiService {
 
     escalate(id) {
         return this.update(id, {
-            status: 'escalated'
+            status: 'escalated',
+            escalatedAt: new Date().toISOString()
         })
     }
 }

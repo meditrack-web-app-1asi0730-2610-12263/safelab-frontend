@@ -9,10 +9,13 @@ import './assets/styles/main.css'
 import App from './App.vue'
 import router from './router'
 import i18n from './shared/application/services/i18n.service'
+import { useAppStore } from './shared/application/stores/app.store'
 
 const app = createApp(App)
 
-app.use(createPinia())
+const pinia = createPinia()
+
+app.use(pinia)
 app.use(router)
 app.use(i18n)
 app.use(PrimeVue, {
@@ -23,5 +26,7 @@ app.use(PrimeVue, {
     }
   }
 })
+
+useAppStore().initializeTheme()
 
 app.mount('#app')

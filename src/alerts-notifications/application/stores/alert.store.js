@@ -1,6 +1,7 @@
 import { computed, ref } from 'vue'
 import { defineStore } from 'pinia'
 import { AlertService } from '../services/alert.service'
+import { filterRecordsForCurrentUser } from '@/shared/application/services/role-data-filter.service'
 
 const alertService = new AlertService()
 
@@ -65,7 +66,7 @@ export const useAlertStore = defineStore('alerts', () => {
         error.value = null
 
         try {
-            alerts.value = await alertService.findAll()
+            alerts.value = filterRecordsForCurrentUser(await alertService.findAll())
         } catch (exception) {
             console.error(exception)
             error.value = 'Could not load alerts.'

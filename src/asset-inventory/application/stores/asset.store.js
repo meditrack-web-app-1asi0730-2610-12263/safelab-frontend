@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import { AssetService } from '../../infrastructure/services/AssetService'
+import { filterRecordsForCurrentUser } from '@/shared/application/services/role-data-filter.service'
 
 export const useAssetStore = defineStore('asset', {
     state: () => ({
@@ -11,7 +12,7 @@ export const useAssetStore = defineStore('asset', {
         async fetchAssets() {
             this.isLoading = true; this.error = null
             try {
-                this.assets = await AssetService.getAll()
+                this.assets = filterRecordsForCurrentUser(await AssetService.getAll())
             } catch (err) {
                 this.error = 'No se pudieron cargar los activos.'
             } finally {

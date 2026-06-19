@@ -1,14 +1,31 @@
 <script setup>
-import IncidentStatusBadge from './incident-status-badge.component.vue';
+import { useI18n } from 'vue-i18n'
+import IncidentStatusBadge from './incident-status-badge.component.vue'
 
 defineProps({
   incident: {
     type: Object,
     required: true
   }
-});
+})
 
-defineEmits(['view-detail']);
+defineEmits(['view-detail'])
+
+const { t } = useI18n({ useScope: 'global' })
+
+const formatDate = (value) => {
+  if (!value) return '—'
+
+  const date = new Date(value)
+
+  if (Number.isNaN(date.getTime())) {
+    return value
+  }
+
+  const pad = (number) => String(number).padStart(2, '0')
+
+  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())} ${pad(date.getHours())}:${pad(date.getMinutes())}`
+}
 </script>
 
 <template>
@@ -16,7 +33,8 @@ defineEmits(['view-detail']);
     <div class="incident-card__header">
       <div>
         <p class="incident-card__eyebrow">
-          {{ incident.severity }}
+          {{ incident.code || `INC-${incident.id}` }} ·
+          {{ t(`incidentManagement.severity.${incident.severity}`) }}
         </p>
 
         <h3 class="incident-card__title">
@@ -33,19 +51,34 @@ defineEmits(['view-detail']);
 
     <dl class="incident-card__meta">
       <div>
-        <dt>Assigned to</dt>
-        <dd>{{ incident.assignedTo || 'Unassigned' }}</dd>
+        <dt>{{ t('incidentManagement.fields.assignedTo') }}</dt>
+        <dd>{{ incident.assignedTo || t('incidentManagement.empty.unassigned') }}</dd>
       </div>
 
       <div>
-        <dt>Affected area</dt>
-        <dd>{{ incident.affectedArea || 'Not specified' }}</dd>
+        <dt>{{ t('incidentManagement.fields.affectedArea') }}</dt>
+        <dd>{{ incident.affectedArea || t('incidentManagement.empty.notSpecified') }}</dd>
+      </div>
+
+      <div>
+        <dt>{{ t('incidentManagement.fields.relatedSensor') }}</dt>
+        <dd>{{ incident.relatedSensorCode || '—' }}</dd>
+      </div>
+
+      <div>
+        <dt>Scope</dt>
+        <dd>{{ incident.ownerName || incident.facilityName || '—' }}</dd>
+      </div>
+
+      <div>
+        <dt>{{ t('incidentManagement.fields.dueDate') }}</dt>
+        <dd>{{ incident.dueDate || '—' }}</dd>
       </div>
     </dl>
 
     <footer class="incident-card__footer">
       <small>
-        Created at {{ new Date(incident.createdAt).toLocaleString() }}
+        {{ t('incidentManagement.fields.createdAt') }} {{ formatDate(incident.createdAt) }}
       </small>
 
       <button
@@ -53,7 +86,7 @@ defineEmits(['view-detail']);
           type="button"
           @click="$emit('view-detail', incident.id)"
       >
-        View details
+        {{ t('incidentManagement.actions.viewDetails') }}
       </button>
     </footer>
   </article>
@@ -62,10 +95,13 @@ defineEmits(['view-detail']);
 <style scoped>
 .incident-card {
   border-left: 4px solid #475569;
-  border-radius: 0.75rem;
+  border-radius: 18px;
   background: #ffffff;
   padding: 1rem;
-  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.08);
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
+  border-top: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
 }
 
 .incident-card--critical {
@@ -88,9 +124,9 @@ defineEmits(['view-detail']);
 
 .incident-card__eyebrow {
   margin: 0 0 0.25rem;
-  color: #475569;
-  font-size: 0.75rem;
-  font-weight: 700;
+  color: #4f46e5;
+  font-size: 0.72rem;
+  font-weight: 800;
   text-transform: uppercase;
 }
 
@@ -113,16 +149,23 @@ defineEmits(['view-detail']);
   margin: 1rem 0;
 }
 
+.incident-card__meta div {
+  border-radius: 14px;
+  background: #f8fafc;
+  padding: 0.75rem;
+}
+
 .incident-card__meta dt {
   color: #64748b;
-  font-size: 0.75rem;
-  font-weight: 700;
+  font-size: 0.72rem;
+  font-weight: 800;
   text-transform: uppercase;
 }
 
 .incident-card__meta dd {
   margin: 0.25rem 0 0;
   color: #334155;
+  font-weight: 700;
 }
 
 .incident-card__footer {
@@ -136,15 +179,16 @@ defineEmits(['view-detail']);
 
 .incident-card__footer small {
   color: #64748b;
+  font-weight: 700;
 }
 
 .incident-card__button {
   border: none;
-  border-radius: 0.5rem;
+  border-radius: 12px;
   background: #4f46e5;
   color: #ffffff;
   cursor: pointer;
-  font-weight: 700;
+  font-weight: 800;
   padding: 0.625rem 0.875rem;
 }
 

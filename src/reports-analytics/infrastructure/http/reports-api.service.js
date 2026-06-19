@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const http = axios.create({
-    baseURL: import.meta.env.VITE_API_BASE_URL
+    baseURL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000'
 })
 
 export class ReportsApiService {
@@ -10,7 +10,12 @@ export class ReportsApiService {
     }
 
     generate(payload) {
-        return http.post('/reports', payload)
+        return http.post('/reports', {
+            ...payload,
+            status: 'generated',
+            createdAt: new Date().toISOString(),
+            downloadUrl: '#'
+        })
     }
 
     getById(id) {
@@ -18,8 +23,6 @@ export class ReportsApiService {
     }
 
     download(id) {
-        return http.get(`/reports/${id}/download`, {
-            responseType: 'blob'
-        })
+        return http.get(`/reports/${id}`)
     }
 }

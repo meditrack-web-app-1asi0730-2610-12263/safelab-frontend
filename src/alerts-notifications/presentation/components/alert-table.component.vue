@@ -1,7 +1,8 @@
 <script setup>
-import { useRouter } from 'vue-router';
-import AlertSeverityTag from './alert-severity-tag.component.vue';
-import AlertStatusTag from './alert-status-tag.component.vue';
+import { useRouter } from 'vue-router'
+import { useI18n } from 'vue-i18n'
+import AlertSeverityTag from './alert-severity-tag.component.vue'
+import AlertStatusTag from './alert-status-tag.component.vue'
 
 defineProps({
   alerts: {
@@ -12,9 +13,10 @@ defineProps({
     type: Boolean,
     default: false
   }
-});
+})
 
-const router = useRouter();
+const router = useRouter()
+const { t } = useI18n({ useScope: 'global' })
 
 const goToDetail = (alert) => {
   router.push({
@@ -25,44 +27,57 @@ const goToDetail = (alert) => {
 </script>
 
 <template>
-  <section class="alert-table-wrapper" aria-label="Alerts table">
+  <section class="alert-table-wrapper" :aria-label="t('alertsNotifications.table.alertsTable')">
     <p v-if="loading" class="loading-message">
-      Loading alerts...
+      {{ t('alertsNotifications.loading.alerts') }}
     </p>
 
     <table v-else class="alert-table">
       <thead>
       <tr>
-        <th>Type</th>
-        <th>Device</th>
-        <th>Location</th>
-        <th>Severity</th>
-        <th>Status</th>
-        <th>Created at</th>
-        <th aria-label="Actions"></th>
+        <th>{{ t('alertsNotifications.table.type') }}</th>
+        <th>{{ t('alertsNotifications.table.device') }}</th>
+        <th>{{ t('alertsNotifications.table.location') }}</th>
+        <th>Scope</th>
+        <th>{{ t('alertsNotifications.table.severity') }}</th>
+        <th>{{ t('alertsNotifications.table.status') }}</th>
+        <th>{{ t('alertsNotifications.table.createdAt') }}</th>
+        <th>{{ t('alertsNotifications.table.actions') }}</th>
       </tr>
       </thead>
 
       <tbody>
       <tr v-for="alert in alerts" :key="alert.id">
-        <td>{{ alert.type }}</td>
+        <td>
+          <strong>{{ alert.type }}</strong>
+          <small>{{ alert.title }}</small>
+        </td>
+
         <td>{{ alert.deviceName }}</td>
         <td>{{ alert.location }}</td>
         <td>
+          <strong>{{ alert.ownerName || alert.facilityName || '—' }}</strong>
+          <small v-if="alert.segment">{{ alert.segment }}</small>
+        </td>
+
+        <td>
           <AlertSeverityTag :severity="alert.severity" />
         </td>
+
         <td>
           <AlertStatusTag :status="alert.status" />
         </td>
+
         <td>{{ alert.createdAt }}</td>
+
         <td>
           <button
               class="table-action"
               type="button"
-              :aria-label="`View details for alert ${alert.id}`"
+              :aria-label="t('alertsNotifications.actions.viewDetails')"
               @click="goToDetail(alert)"
           >
-            View Details
+            {{ t('alertsNotifications.actions.viewDetails') }}
           </button>
         </td>
       </tr>
@@ -74,9 +89,10 @@ const goToDetail = (alert) => {
 <style scoped>
 .alert-table-wrapper {
   overflow-x: auto;
-  border-radius: 0.5rem;
+  border-radius: 22px;
   background: #ffffff;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--border);
+  box-shadow: 0 16px 38px rgba(31, 41, 79, 0.07);
 }
 
 .alert-table {
@@ -85,42 +101,56 @@ const goToDetail = (alert) => {
 }
 
 .alert-table th {
-  background: #f1f5f9;
-  color: #334155;
-  font-size: 0.75rem;
-  font-weight: 700;
-  padding: 0.75rem 1rem;
+  background: #f8fafc;
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 0.85rem 1rem;
   text-align: left;
   text-transform: uppercase;
 }
 
 .alert-table td {
-  border-bottom: 1px solid #e2e8f0;
-  color: #334155;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
   padding: 1rem;
+  vertical-align: middle;
 }
 
 .alert-table tbody tr:hover {
   background: #f8fafc;
 }
 
-.table-action {
-  border: 1px solid #cbd5e1;
-  border-radius: 0.375rem;
-  background: white;
-  color: #334155;
-  cursor: pointer;
+.alert-table td strong {
+  display: block;
+}
+
+.alert-table td small {
+  display: block;
+  margin-top: 4px;
+  color: var(--muted);
   font-weight: 600;
-  min-height: 40px;
-  padding: 0.5rem 0.75rem;
+}
+
+.table-action {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: white;
+  color: var(--text);
+  cursor: pointer;
+  font-weight: 800;
+  min-height: 38px;
+  padding: 0.45rem 0.75rem;
 }
 
 .table-action:hover {
-  background: #f8fafc;
+  background: #eef2ff;
+  color: #4f46e5;
 }
 
 .loading-message {
   padding: 1rem;
-  color: #475569;
+  color: var(--muted);
+  font-weight: 700;
 }
 </style>

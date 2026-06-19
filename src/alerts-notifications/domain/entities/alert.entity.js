@@ -14,7 +14,8 @@ export class Alert {
                     assignedTo = null,
                     createdAt,
                     acknowledgedAt = null,
-                    resolvedAt = null
+                    resolvedAt = null,
+                    ...metadata
                 }) {
         this.id = id;
         this.type = type;
@@ -29,6 +30,7 @@ export class Alert {
         this.createdAt = createdAt;
         this.acknowledgedAt = acknowledgedAt;
         this.resolvedAt = resolvedAt;
+        Object.assign(this, metadata);
     }
 
     acknowledge() {

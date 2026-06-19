@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import { ReportService } from '../services/report.service'
+import { filterRecordsForCurrentUser } from '@/shared/application/services/role-data-filter.service'
 
 const reportService = new ReportService()
 
@@ -17,7 +18,7 @@ export const useReportStore = defineStore('reportsAnalyticsReports', {
             this.error = null
 
             try {
-                this.reports = await reportService.findAll()
+                this.reports = filterRecordsForCurrentUser(await reportService.findAll())
             } catch (error) {
                 console.error(error)
                 this.error = 'Could not load reports.'

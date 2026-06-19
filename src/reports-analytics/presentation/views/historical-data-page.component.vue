@@ -7,8 +7,13 @@ const historicalDataStore = useHistoricalDataStore()
 
 const updateFilter = (key, value) => {
   historicalDataStore.fetchRecords({
-    [key]: value
+    [key]: value || null
   })
+}
+
+const clearFilters = () => {
+  historicalDataStore.clearFilters()
+  historicalDataStore.fetchRecords()
 }
 
 onMounted(() => {
@@ -31,14 +36,14 @@ onMounted(() => {
             :value="historicalDataStore.filters.equipmentId || ''"
             type="text"
             placeholder="Optional"
-            @input="updateFilter('equipmentId', $event.target.value || null)"
+            @input="updateFilter('equipmentId', $event.target.value)"
         />
       </label>
 
       <label>
         Start date
         <input
-            :value="historicalDataStore.filters.startDate"
+            :value="historicalDataStore.filters.startDate || ''"
             type="date"
             @change="updateFilter('startDate', $event.target.value)"
         />
@@ -47,13 +52,17 @@ onMounted(() => {
       <label>
         End date
         <input
-            :value="historicalDataStore.filters.endDate"
+            :value="historicalDataStore.filters.endDate || ''"
             type="date"
             @change="updateFilter('endDate', $event.target.value)"
         />
       </label>
 
-      <button type="button" class="secondary-button" @click="historicalDataStore.clearFilters">
+      <button
+          type="button"
+          class="secondary-button"
+          @click="clearFilters"
+      >
         Clear filters
       </button>
     </section>
@@ -62,7 +71,10 @@ onMounted(() => {
       {{ historicalDataStore.error }}
     </p>
 
-    <p v-if="!historicalDataStore.loading && !historicalDataStore.error && historicalDataStore.records.length === 0" class="empty-message">
+    <p
+        v-if="!historicalDataStore.loading && !historicalDataStore.error && historicalDataStore.records.length === 0"
+        class="empty-message"
+    >
       No historical data found.
     </p>
 
@@ -75,19 +87,18 @@ onMounted(() => {
 
 <style scoped>
 .historical-data-page {
-  min-height: 100vh;
-  padding: 2rem;
-  background: #f8fafc;
+  display: grid;
+  gap: 22px;
 }
 
 .page-header {
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .eyebrow {
   color: #4f46e5;
-  font-size: 0.875rem;
-  font-weight: 700;
+  font-size: 0.78rem;
+  font-weight: 800;
   letter-spacing: 0.08em;
   margin: 0 0 0.25rem;
   text-transform: uppercase;
@@ -106,12 +117,13 @@ p {
 .filters-panel {
   align-items: end;
   background: #ffffff;
-  border-radius: 0.75rem;
+  border-radius: 18px;
   display: grid;
   gap: 1rem;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  margin-bottom: 1.5rem;
   padding: 1rem;
+  border: 1px solid var(--border);
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
 }
 
 label {
@@ -123,25 +135,32 @@ label {
 
 input {
   border: 1px solid #cbd5e1;
-  border-radius: 0.5rem;
+  border-radius: 12px;
+  min-height: 42px;
   padding: 0.65rem;
 }
 
 .secondary-button {
   background: #eef2ff;
   border: none;
-  border-radius: 0.5rem;
+  border-radius: 12px;
   color: #4338ca;
   cursor: pointer;
-  font-weight: 700;
+  font-weight: 800;
+  min-height: 42px;
   padding: 0.7rem 1rem;
+}
+
+.secondary-button:hover {
+  background: #e0e7ff;
 }
 
 .empty-message,
 .error-message {
-  border-radius: 0.5rem;
-  margin: 1rem 0;
+  border-radius: 14px;
+  margin: 0;
   padding: 1rem;
+  font-weight: 700;
 }
 
 .empty-message {
@@ -157,10 +176,6 @@ input {
 }
 
 @media (max-width: 900px) {
-  .historical-data-page {
-    padding: 1rem;
-  }
-
   .filters-panel {
     grid-template-columns: 1fr;
   }
