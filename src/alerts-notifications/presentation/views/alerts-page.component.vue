@@ -1,52 +1,32 @@
 <script setup>
 import { computed, onMounted } from 'vue'
-import { RouterLink } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { useAlertStore } from '../../application/stores/alert.store'
 import AlertTable from '../components/alert-table.component.vue'
 
-const { t } = useI18n()
+const { t } = useI18n({ useScope: 'global' })
 const alertStore = useAlertStore()
 
 const severityOptions = computed(() => [
-  {
-    label: t('alertsNotifications.severity.info'),
-    value: 'info'
-  },
-  {
-    label: t('alertsNotifications.severity.warning'),
-    value: 'warning'
-  },
-  {
-    label: t('alertsNotifications.severity.critical'),
-    value: 'critical'
-  }
+  { label: t('alertsNotifications.severity.info'), value: 'info' },
+  { label: t('alertsNotifications.severity.warning'), value: 'warning' },
+  { label: t('alertsNotifications.severity.critical'), value: 'critical' }
 ])
 
 const statusOptions = computed(() => [
-  {
-    label: t('alertsNotifications.status.active'),
-    value: 'active'
-  },
-  {
-    label: t('alertsNotifications.status.acknowledged'),
-    value: 'acknowledged'
-  },
-  {
-    label: t('alertsNotifications.status.resolved'),
-    value: 'resolved'
-  },
-  {
-    label: t('alertsNotifications.status.escalated'),
-    value: 'escalated'
-  }
+  { label: t('alertsNotifications.status.active'), value: 'active' },
+  { label: t('alertsNotifications.status.acknowledged'), value: 'acknowledged' },
+  { label: t('alertsNotifications.status.resolved'), value: 'resolved' },
+  { label: t('alertsNotifications.status.escalated'), value: 'escalated' }
 ])
 
 const criticalCount = computed(() => alertStore.criticalAlerts.length)
-
 const unacknowledgedCount = computed(() => alertStore.unacknowledgedAlerts.length)
-
 const totalAlerts = computed(() => alertStore.alerts.length)
+
+const warningCount = computed(() =>
+    alertStore.alerts.filter((alert) => alert.severity === 'warning').length
+)
 
 const updateFilter = (key, value) => {
   alertStore.setFilters({
@@ -65,7 +45,7 @@ onMounted(() => {
 
 <template>
   <main class="alerts-page" aria-labelledby="alerts-page-title">
-    <header class="page-header">
+    <header class="page-hero alerts-hero">
       <div>
         <p class="eyebrow">
           {{ t('alertsNotifications.module.eyebrow') }}
@@ -75,65 +55,63 @@ onMounted(() => {
           {{ t('alertsNotifications.module.title') }}
         </h1>
 
-        <p class="page-description">
+        <p>
           {{ t('alertsNotifications.module.description') }}
         </p>
-        <nav
-            class="quick-actions"
-            :aria-label="t('alertsNotifications.module.title')"
-        >
-          <RouterLink
-              :to="{ name: 'alerts-notifications-notification-history' }"
-              class="quick-action-link"
-          >
-            <i class="pi pi-history" aria-hidden="true"></i>
-            <span>{{ t('alertsNotifications.actions.notificationHistory') }}</span>
-          </RouterLink>
-
-          <RouterLink
-              :to="{ name: 'alerts-notifications-notification-settings' }"
-              class="quick-action-link"
-          >
-            <i class="pi pi-cog" aria-hidden="true"></i>
-            <span>{{ t('alertsNotifications.actions.notificationSettings') }}</span>
-          </RouterLink>
-        </nav>
       </div>
     </header>
 
-    <section
-        class="summary-grid"
-        :aria-label="t('alertsNotifications.summary.totalAlerts')"
-    >
+    <section class="summary-grid">
       <article class="summary-card critical">
-                <span class="summary-label">
-                    {{ t('alertsNotifications.summary.criticalAlerts') }}
-                </span>
+        <div class="summary-icon">
+          <i class="pi pi-exclamation-triangle"></i>
+        </div>
 
-        <strong>{{ criticalCount }}</strong>
+        <div>
+          <span>{{ t('alertsNotifications.summary.criticalAlerts') }}</span>
+          <strong>{{ criticalCount }}</strong>
+          <small>{{ t('alertsNotifications.summary.criticalDescription') }}</small>
+        </div>
       </article>
 
       <article class="summary-card warning">
-                <span class="summary-label">
-                    {{ t('alertsNotifications.summary.unacknowledged') }}
-                </span>
+        <div class="summary-icon">
+          <i class="pi pi-bell"></i>
+        </div>
 
-        <strong>{{ unacknowledgedCount }}</strong>
+        <div>
+          <span>{{ t('alertsNotifications.summary.unacknowledged') }}</span>
+          <strong>{{ unacknowledgedCount }}</strong>
+          <small>{{ t('alertsNotifications.summary.unacknowledgedDescription') }}</small>
+        </div>
       </article>
 
       <article class="summary-card info">
-                <span class="summary-label">
-                    {{ t('alertsNotifications.summary.totalAlerts') }}
-                </span>
+        <div class="summary-icon">
+          <i class="pi pi-list"></i>
+        </div>
 
-        <strong>{{ totalAlerts }}</strong>
+        <div>
+          <span>{{ t('alertsNotifications.summary.totalAlerts') }}</span>
+          <strong>{{ totalAlerts }}</strong>
+          <small>{{ t('alertsNotifications.summary.totalDescription') }}</small>
+        </div>
+      </article>
+
+      <article class="summary-card yellow">
+        <div class="summary-icon">
+          <i class="pi pi-clock"></i>
+        </div>
+
+        <div>
+          <span>{{ t('alertsNotifications.summary.warningAlerts') }}</span>
+          <strong>{{ warningCount }}</strong>
+          <small>{{ t('alertsNotifications.summary.warningDescription') }}</small>
+        </div>
       </article>
     </section>
 
-    <section
-        class="filters-panel"
-        :aria-label="t('alertsNotifications.filters.search')"
-    >
+    <section class="filters-panel">
       <label>
         {{ t('alertsNotifications.filters.search') }}
 
@@ -187,20 +165,12 @@ onMounted(() => {
         </select>
       </label>
 
-      <button
-          type="button"
-          class="secondary-button"
-          @click="clearFilters"
-      >
+      <button type="button" class="secondary-button" @click="clearFilters">
         {{ t('alertsNotifications.filters.clearFilters') }}
       </button>
     </section>
 
-    <p
-        v-if="alertStore.error"
-        class="error-message"
-        role="alert"
-    >
+    <p v-if="alertStore.error" class="error-message" role="alert">
       {{ t('alertsNotifications.errors.loadAlerts') }}
     </p>
 
@@ -220,237 +190,170 @@ onMounted(() => {
 
 <style scoped>
 .alerts-page {
-  min-height: 100vh;
-  padding: 2rem;
-  background: linear-gradient(to bottom right, #f8fafc 0%, #f1f5f9 100%);
+  display: grid;
+  gap: 22px;
 }
 
-.page-header {
-  margin-bottom: 1.5rem;
+.alerts-hero {
+  background:
+      radial-gradient(circle at right, rgba(35, 213, 171, 0.18), transparent 32%),
+      #ffffff;
 }
 
-.eyebrow {
-  color: #4f46e5;
-  font-size: 0.875rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  margin: 0 0 0.25rem;
-  text-transform: uppercase;
-}
-
-h1 {
-  color: #0f172a;
-  font-size: 2rem;
-  font-weight: 700;
-  line-height: 1.2;
-  margin: 0;
-}
-
-.page-description {
-  color: #475569;
-  font-size: 1rem;
-  margin: 0.5rem 0 0;
-}
-.quick-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-  margin-top: 1.25rem;
-}
-
-.quick-action-link {
-  align-items: center;
-  background: #ffffff;
-  border: 1px solid #cbd5e1;
-  border-radius: 0.5rem;
-  color: #334155;
-  display: inline-flex;
-  font-size: 0.875rem;
-  font-weight: 700;
-  gap: 0.5rem;
-  min-height: 40px;
-  padding: 0.625rem 1rem;
-  text-decoration: none;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-  transition:
-      background-color 150ms ease-in-out,
-      border-color 150ms ease-in-out,
-      color 150ms ease-in-out,
-      box-shadow 150ms ease-in-out,
-      transform 150ms ease-in-out;
-}
-
-.quick-action-link:hover {
-  background: #eef2ff;
-  border-color: #4f46e5;
-  color: #4338ca;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transform: translateY(-1px);
-}
-
-.quick-action-link:focus {
-  outline: 2px solid #4f46e5;
-  outline-offset: 2px;
-}
-
-.quick-action-link i {
-  font-size: 1rem;
-}
 .summary-grid {
   display: grid;
+  grid-template-columns: repeat(4, minmax(170px, 1fr));
   gap: 1rem;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  margin-bottom: 1.5rem;
 }
 
 .summary-card {
-  border-left: 4px solid #4f46e5;
-  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.1rem;
+  border-radius: 18px;
   background: #ffffff;
-  padding: 1rem;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--border);
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
+}
+
+.summary-card span {
+  display: block;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
 }
 
 .summary-card strong {
   display: block;
-  color: #0f172a;
-  font-size: 2rem;
-  font-weight: 700;
-  line-height: 1;
-  margin-top: 0.75rem;
+  margin-top: 0.15rem;
+  color: var(--text);
+  font-size: 1.9rem;
 }
 
-.summary-label {
-  color: #334155;
-  font-size: 0.875rem;
+.summary-card small {
+  color: var(--muted);
   font-weight: 600;
 }
 
-.summary-card.critical {
-  border-left-color: #dc2626;
+.summary-icon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  font-size: 1.1rem;
 }
 
-.summary-card.warning {
-  border-left-color: #f59e0b;
+.summary-card.critical .summary-icon {
+  color: #ef4444;
+  background: #fee2e2;
 }
 
-.summary-card.info {
-  border-left-color: #2563eb;
+.summary-card.warning .summary-icon {
+  color: #f59e0b;
+  background: #fef3c7;
+}
+
+.summary-card.info .summary-icon {
+  color: #4f46e5;
+  background: #e0e7ff;
+}
+
+.summary-card.yellow .summary-icon {
+  color: #ca8a04;
+  background: #fef9c3;
 }
 
 .filters-panel {
   align-items: end;
   background: #ffffff;
-  border-radius: 0.5rem;
+  border-radius: 18px;
   display: grid;
   gap: 1rem;
   grid-template-columns: 2fr 1fr 1fr auto;
-  margin-bottom: 1.5rem;
   padding: 1rem;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--border);
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
 }
 
 label {
-  color: #334155;
+  color: var(--text);
   display: grid;
   font-size: 0.875rem;
-  font-weight: 600;
+  font-weight: 700;
   gap: 0.5rem;
 }
 
 input,
 select {
-  border: 1px solid #cbd5e1;
-  border-radius: 0.375rem;
+  border: 1px solid var(--border);
+  border-radius: 12px;
   background: #ffffff;
-  color: #334155;
+  color: var(--text);
   font: inherit;
-  min-height: 40px;
+  min-height: 42px;
   padding: 0.5rem 0.75rem;
-}
-
-input::placeholder {
-  color: #94a3b8;
 }
 
 input:focus,
 select:focus,
 .secondary-button:focus {
   border-color: #4f46e5;
-  outline: 2px solid #4f46e5;
+  outline: 2px solid rgba(79, 70, 229, 0.25);
   outline-offset: 2px;
 }
 
 .secondary-button {
-  border: 1px solid #cbd5e1;
-  border-radius: 0.375rem;
+  border: 1px solid var(--border);
+  border-radius: 12px;
   background: #ffffff;
-  color: #334155;
+  color: var(--text);
   cursor: pointer;
-  font-weight: 600;
-  min-height: 40px;
+  font-weight: 800;
+  min-height: 42px;
   padding: 0.5rem 1rem;
-  transition: background-color 150ms ease-in-out, border-color 150ms ease-in-out;
 }
 
 .secondary-button:hover {
   background: #f8fafc;
-  border-color: #94a3b8;
 }
 
 .error-message {
   background: #fee2e2;
   border-left: 4px solid #dc2626;
+  border-radius: 14px;
   color: #991b1b;
-  font-weight: 500;
-  margin: 0 0 1rem;
+  font-weight: 700;
+  margin: 0;
   padding: 1rem;
 }
 
 .empty-message {
   background: #ffffff;
   border-left: 4px solid #2563eb;
-  border-radius: 0.5rem;
+  border-radius: 14px;
   color: #1e40af;
-  margin: 0 0 1rem;
+  margin: 0;
   padding: 1rem;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 8px 20px rgba(31, 41, 79, 0.06);
 }
 
-@media (max-width: 1023px) {
+@media (max-width: 1100px) {
+  .summary-grid,
   .filters-panel {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, 1fr);
   }
-
-  .secondary-button {
-    width: fit-content;
-  }
-
 }
-@media (max-width: 767px) {
-  .alerts-page {
-    padding: 1rem;
-  }
 
+@media (max-width: 720px) {
   .summary-grid,
   .filters-panel {
     grid-template-columns: 1fr;
   }
 
-  h1 {
-    font-size: 1.75rem;
-  }
-
   .secondary-button {
-    width: 100%;
-  }
-
-  .quick-actions {
-    flex-direction: column;
-  }
-
-  .quick-action-link {
-    justify-content: center;
     width: 100%;
   }
 }
