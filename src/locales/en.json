@@ -1065,5 +1065,96 @@
       "noCorrectiveAction": "No corrective action has been documented yet.",
       "noTimeline": "No timeline events registered."
     }
+  },
+  "subscriptionBilling": {
+    "module": {
+      "eyebrow": "Subscription Billing",
+      "title": "My Subscription",
+      "description": "Review your current plan, billing information and usage limits."
+    },
+    "overview": {
+      "currentPlan": "Current plan",
+      "status": "Status",
+      "renewalDate": "Renewal date",
+      "monthlyCost": "Monthly cost",
+      "deviceUsage": "Device usage",
+      "devices": "devices"
+    },
+    "status": {
+      "active": "Active",
+      "inactive": "Inactive",
+      "cancelled": "Cancelled"
+    },
+    "billingCycle": {
+      "monthly": "Monthly",
+      "yearly": "Yearly"
+    },
+    "navigation": {
+      "invoices": "View Invoices",
+      "invoicesDescription": "Review generated invoices.",
+      "paymentHistory": "Payment History",
+      "paymentHistoryDescription": "Track completed payments.",
+      "usageLimits": "Usage & Limits",
+      "usageLimitsDescription": "Review subscription limits.",
+      "upgradePlan": "Upgrade Plan",
+      "upgradePlanDescription": "Compare available plans."
+    },
+    "activity": {
+      "title": "Recent Billing Activity",
+      "latestInvoice": "Latest invoice",
+      "latestInvoiceDescription": "Most recent generated invoice for your subscription.",
+      "billingCycle": "Billing cycle",
+      "billingCycleDescription": "Your subscription renews automatically every billing cycle."
+    },
+    "invoices": {
+      "title": "Invoices",
+      "description": "Review invoice status, billing periods and downloadable documents.",
+      "invoice": "Invoice",
+      "period": "Period",
+      "amount": "Amount",
+      "status": "Status",
+      "dueDate": "Due date",
+      "actions": "Actions"
+    },
+    "invoiceStatus": {
+      "paid": "Paid",
+      "pending": "Pending",
+      "failed": "Failed"
+    },
+    "payments": {
+      "title": "Payment History",
+      "description": "Review successful payments and billing methods.",
+      "amount": "Amount",
+      "paidAt": "Paid at",
+      "status": "Status"
+    },
+    "paymentStatus": {
+      "completed": "Completed",
+      "pending": "Pending",
+      "failed": "Failed"
+    },
+    "usage": {
+      "title": "Usage & Limits",
+      "description": "Monitor usage against the limits included in your current plan.",
+      "devices": "Devices",
+      "sensors": "Sensors",
+      "reports": "Reports",
+      "alerts": "Alerts"
+    },
+    "upgrade": {
+      "title": "Upgrade Plan",
+      "description": "Compare available SafeLab plans and select a better fit for your operation.",
+      "currentPlan": "Current plan",
+      "selectPlan": "Select plan",
+      "perMonth": "per month",
+      "confirmPlan": "Do you want to switch to {plan}?"
+    },
+    "actions": {
+      "download": "Download"
+    },
+    "states": {
+      "loading": "Loading billing data...",
+      "error": "Could not load billing data."
+    }
   }
 }
