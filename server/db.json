@@ -1529,4 +1529,28 @@
       "alertsLimit": 150
     }
   ]
+  },
+  "userProfiles": [
+    {
+      "id": 1,
+      "userId": "USR-001",
+      "firstName": "Maria",
+      "lastName": "Lopez",
+      "fullName": "Maria Lopez",
+      "initials": "ML",
+      "email": "maria.lopez@safelab.com",
+      "phone": "+51 987 654 321",
+      "role": "safeLabAdministrator",
+      "status": "active",
+      "position": "SafeLab Administrator",
+      "organization": "SafeLab Central",
+      "laboratory": "Central Laboratory",
+      "language": "en",
+      "timezone": "America/Lima",
+      "notificationPreference": "critical-and-daily",
+      "lastAccess": "2026-06-19T09:15:00.000Z",
+      "lastPasswordChange": "2026-06-01T08:30:00.000Z",
+      "updatedAt": "2026-06-19T19:28:20.531Z"
+    }
+  ]
 }

@@ -1156,5 +1156,71 @@
       "loading": "Loading billing data...",
       "error": "Could not load billing data."
     }
+  },
+  "userProfiles": {
+    "module": {
+      "eyebrow": "User Profiles",
+      "title": "My Profile",
+      "description": "Review and update your personal information, preferences and access details."
+    },
+    "summary": {
+      "currentUser": "Current user"
+    },
+    "sections": {
+      "personalDataEyebrow": "Profile data",
+      "personalData": "Personal information",
+      "accessEyebrow": "Access context",
+      "accessInformation": "Access information",
+      "preferencesEyebrow": "Personal settings",
+      "preferences": "Preferences",
+      "securityEyebrow": "Security",
+      "security": "Security settings"
+    },
+    "fields": {
+      "userId": "User ID",
+      "firstName": "First name",
+      "lastName": "Last name",
+      "email": "Email",
+      "phone": "Phone",
+      "position": "Position",
+      "organization": "Organization",
+      "laboratory": "Laboratory",
+      "role": "Role",
+      "language": "Language",
+      "timezone": "Timezone",
+      "notificationPreference": "Notification preference",
+      "lastAccess": "Last access",
+      "lastPasswordChange": "Last password change"
+    },
+    "roles": {
+      "safeLabAdministrator": "SafeLab Administrator",
+      "bioclinicalCoordinator": "Bioclinical Coordinator",
+      "labTechnician": "Lab Technician",
+      "complianceOfficer": "Compliance Officer",
+      "billingManager": "Billing Manager"
+    },
+    "status": {
+      "active": "Active",
+      "inactive": "Inactive"
+    },
+    "notificationPreference": {
+      "criticalOnly": "Critical alerts only",
+      "criticalAndDaily": "Critical alerts and daily summary",
+      "allOperational": "All operational updates"
+    },
+    "security": {
+      "description": "Password changes are simulated in this frontend version and will be connected to IAM later."
+    },
+    "actions": {
+      "saveChanges": "Save changes",
+      "savePreferences": "Save preferences",
+      "saving": "Saving...",
+      "updateSecurity": "Update security info"
+    },
+    "states": {
+      "loading": "Loading profile...",
+      "error": "Could not load user profile.",
+      "saved": "Profile updated successfully."
+    }
   }
 }
