@@ -597,6 +597,92 @@
       "deliveryRules": "No delivery rules configured."
     }
   },
+  "remoteControl": {
+    "module": {
+      "eyebrow": "Remote Control & Actuation",
+      "title": "Remote Control Panel",
+      "description": "Review authorized actuators, validate safety status and execute simulated remote commands."
+    },
+    "summary": {
+      "totalDevices": "Total devices",
+      "totalDescription": "Registered actuators",
+      "availableDevices": "Available",
+      "availableDescription": "Ready for commands",
+      "blockedDevices": "Blocked",
+      "blockedDescription": "Locked or offline",
+      "executedToday": "Executed today",
+      "executedDescription": "Remote commands"
+    },
+    "filters": {
+      "deviceType": "Device type",
+      "allTypes": "All types"
+    },
+    "types": {
+      "Cooling": "Cooling",
+      "DoorLock": "Door lock",
+      "Alarm": "Alarm",
+      "Telemetry": "Telemetry",
+      "Ventilation": "Ventilation"
+    },
+    "status": {
+      "online": "Online",
+      "offline": "Offline",
+      "maintenance": "Maintenance"
+    },
+    "safetyStates": {
+      "ready": "Ready",
+      "locked": "Locked",
+      "review": "Needs review"
+    },
+    "commands": {
+      "runSelfCheck": "Run self-check",
+      "setSafeMode": "Set safe mode",
+      "lockDevice": "Lock device",
+      "unlockDevice": "Unlock device",
+      "restartTelemetry": "Restart telemetry",
+      "acknowledgeBuzzer": "Acknowledge buzzer"
+    },
+    "commandStatus": {
+      "completed": "Completed",
+      "pending": "Pending",
+      "failed": "Failed"
+    },
+    "table": {
+      "type": "Type",
+      "location": "Location",
+      "linkedSensor": "Linked sensor",
+      "safetyState": "Safety state",
+      "lastCommand": "Last command"
+    },
+    "history": {
+      "title": "Command history",
+      "subtitle": "Latest remote command execution records.",
+      "command": "Command",
+      "device": "Device",
+      "status": "Status",
+      "requestedBy": "Requested by",
+      "createdAt": "Created at"
+    },
+    "policy": {
+      "title": "Safety policies",
+      "subtitle": "Control rules applied before executing a command.",
+      "active": "Active",
+      "inactive": "Inactive"
+    },
+    "actions": {
+      "refresh": "Refresh"
+    },
+    "states": {
+      "loading": "Loading remote control data..."
+    },
+    "empty": {
+      "noCommand": "No command yet",
+      "noHistory": "No commands registered yet."
+    },
+    "messages": {
+      "confirmCommand": "Do you want to execute {command} on {device}?"
+    }
+  },
   "audit": {
     "heroEyebrow": "Audit & Traceability",
     "integrityScore": "Integrity score",

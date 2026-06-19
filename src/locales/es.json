@@ -597,6 +597,92 @@
       "deliveryRules": "No hay reglas de entrega configuradas."
     }
   },
+  "remoteControl": {
+    "module": {
+      "eyebrow": "Control remoto y actuación",
+      "title": "Panel de control remoto",
+      "description": "Revisa actuadores autorizados, valida el estado de seguridad y ejecuta comandos remotos simulados."
+    },
+    "summary": {
+      "totalDevices": "Dispositivos totales",
+      "totalDescription": "Actuadores registrados",
+      "availableDevices": "Disponibles",
+      "availableDescription": "Listos para comandos",
+      "blockedDevices": "Bloqueados",
+      "blockedDescription": "Bloqueados o desconectados",
+      "executedToday": "Ejecutados hoy",
+      "executedDescription": "Comandos remotos"
+    },
+    "filters": {
+      "deviceType": "Tipo de dispositivo",
+      "allTypes": "Todos los tipos"
+    },
+    "types": {
+      "Cooling": "Enfriamiento",
+      "DoorLock": "Cerradura",
+      "Alarm": "Alarma",
+      "Telemetry": "Telemetría",
+      "Ventilation": "Ventilación"
+    },
+    "status": {
+      "online": "En línea",
+      "offline": "Desconectado",
+      "maintenance": "Mantenimiento"
+    },
+    "safetyStates": {
+      "ready": "Listo",
+      "locked": "Bloqueado",
+      "review": "Requiere revisión"
+    },
+    "commands": {
+      "runSelfCheck": "Ejecutar revisión",
+      "setSafeMode": "Activar modo seguro",
+      "lockDevice": "Bloquear dispositivo",
+      "unlockDevice": "Desbloquear dispositivo",
+      "restartTelemetry": "Reiniciar telemetría",
+      "acknowledgeBuzzer": "Reconocer alarma"
+    },
+    "commandStatus": {
+      "completed": "Completado",
+      "pending": "Pendiente",
+      "failed": "Fallido"
+    },
+    "table": {
+      "type": "Tipo",
+      "location": "Ubicación",
+      "linkedSensor": "Sensor vinculado",
+      "safetyState": "Estado de seguridad",
+      "lastCommand": "Último comando"
+    },
+    "history": {
+      "title": "Historial de comandos",
+      "subtitle": "Últimos registros de ejecución de comandos remotos.",
+      "command": "Comando",
+      "device": "Dispositivo",
+      "status": "Estado",
+      "requestedBy": "Solicitado por",
+      "createdAt": "Creado el"
+    },
+    "policy": {
+      "title": "Políticas de seguridad",
+      "subtitle": "Reglas de control aplicadas antes de ejecutar un comando.",
+      "active": "Activa",
+      "inactive": "Inactiva"
+    },
+    "actions": {
+      "refresh": "Actualizar"
+    },
+    "states": {
+      "loading": "Cargando datos de control remoto..."
+    },
+    "empty": {
+      "noCommand": "Sin comandos",
+      "noHistory": "Aún no hay comandos registrados."
+    },
+    "messages": {
+      "confirmCommand": "¿Deseas ejecutar {command} en {device}?"
+    }
+  },
   "audit": {
     "heroEyebrow": "Auditoría y trazabilidad",
     "integrityScore": "Puntaje de integridad",
