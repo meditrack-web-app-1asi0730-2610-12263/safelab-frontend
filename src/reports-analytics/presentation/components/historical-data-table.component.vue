@@ -2,69 +2,96 @@
 defineProps({
   records: {
     type: Array,
-    default: () => []
+    required: true
   },
   loading: {
     type: Boolean,
     default: false
   }
 })
+
+const hasValue = (value) => {
+  return value !== null && value !== undefined && value !== ''
+}
+
+const formatTemperature = (value) => {
+  return hasValue(value) ? `${value} °C` : '—'
+}
+
+const formatHumidity = (value) => {
+  return hasValue(value) ? `${value} %` : '—'
+}
 </script>
 
 <template>
-  <table class="historical-table" aria-label="Historical data">
-    <thead>
-    <tr>
-      <th>Equipment</th>
-      <th>Location</th>
-      <th>Temperature</th>
-      <th>Humidity</th>
-      <th>Recorded at</th>
-    </tr>
-    </thead>
+  <section class="historical-table-wrapper">
+    <p v-if="loading" class="loading-message">
+      Loading historical data...
+    </p>
 
-    <tbody>
-    <tr v-if="loading">
-      <td colspan="5">Loading historical data...</td>
-    </tr>
+    <table v-else class="historical-table">
+      <thead>
+      <tr>
+        <th>Equipment</th>
+        <th>Location</th>
+        <th>Temperature</th>
+        <th>Humidity</th>
+        <th>Recorded at</th>
+      </tr>
+      </thead>
 
-    <tr
-        v-for="record in records"
-        v-else
-        :key="record.id"
-    >
-      <td>{{ record.equipmentName }}</td>
-      <td>{{ record.location }}</td>
-      <td>{{ record.temperature }} °C</td>
-      <td>{{ record.humidity }} %</td>
-      <td>{{ record.recordedAt }}</td>
-    </tr>
-    </tbody>
-  </table>
+      <tbody>
+      <tr v-for="record in records" :key="record.id">
+        <td>{{ record.equipmentName }}</td>
+        <td>{{ record.location }}</td>
+        <td>{{ formatTemperature(record.temperature) }}</td>
+        <td>{{ formatHumidity(record.humidity) }}</td>
+        <td>{{ record.recordedAt || '—' }}</td>
+      </tr>
+      </tbody>
+    </table>
+  </section>
 </template>
 
 <style scoped>
-.historical-table {
+.historical-table-wrapper {
+  overflow-x: auto;
+  border-radius: 18px;
   background: #ffffff;
-  border-collapse: collapse;
-  border-radius: 0.75rem;
-  overflow: hidden;
-  width: 100%;
+  border: 1px solid var(--border);
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
 }
 
-th {
-  background: #f1f5f9;
-  color: #334155;
-  font-size: 0.75rem;
-  font-weight: 700;
-  padding: 0.75rem;
+.historical-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.historical-table th {
+  background: #f8fafc;
+  color: #64748b;
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 0.85rem 1rem;
   text-align: left;
   text-transform: uppercase;
 }
 
-td {
-  border-bottom: 1px solid #e2e8f0;
-  color: #334155;
-  padding: 0.75rem;
+.historical-table td {
+  border-bottom: 1px solid var(--border);
+  color: #0f172a;
+  padding: 0.9rem 1rem;
+  vertical-align: middle;
+}
+
+.historical-table tbody tr:hover {
+  background: #f8fafc;
+}
+
+.loading-message {
+  margin: 0;
+  padding: 1rem;
+  color: #64748b;
+  font-weight: 700;
 }
 </style>
