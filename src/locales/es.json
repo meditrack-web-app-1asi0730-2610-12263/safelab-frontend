@@ -107,7 +107,8 @@
         "kpis": {
           "compliance": "Cumplimiento general",
           "violations": "Infracciones activas",
-          "audits": "Auditorías pendientes"
+          "audits": "Auditorías pendientes",
+          "monitoredSensors": "Sensores monitoreados"
         },
         "rulesTitle": "Reglas de cumplimiento activas",
         "rulesSubtitle": "Condiciones monitoreadas en tiempo real.",
@@ -136,6 +137,22 @@
           "loading": "Cargando datos de cumplimiento...",
           "error": "No se pudieron cargar los datos de cumplimiento.",
           "empty": "No se detectaron reglas de cumplimiento."
+        },
+        "violationsTitle": "Infracciones recientes de cumplimiento",
+        "violationsSubtitle": "Sensores actualmente fuera de los rangos ambientales configurados.",
+        "evidenceTitle": "Resumen de evidencias de cumplimiento",
+        "evidenceSubtitle": "Estado actual de preparación de reglas y evidencias para auditorías.",
+        "noViolationsTitle": "No hay infracciones activas",
+        "noViolationsDescription": "Todas las reglas monitoreadas se encuentran dentro de los rangos aceptados.",
+        "currentValue": "Valor actual",
+        "allowedRange": "Rango permitido",
+        "lastReading": "Última lectura",
+        "sensorsLabel": "Sensores",
+        "evidence": {
+          "totalRules": "Reglas totales",
+          "compliantRules": "Reglas conformes",
+          "violatedRules": "Reglas infringidas",
+          "pendingEvidence": "Evidencias pendientes"
         }
       }
     },

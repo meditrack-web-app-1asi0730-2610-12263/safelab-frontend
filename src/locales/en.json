@@ -107,7 +107,8 @@
         "kpis": {
           "compliance": "General compliance",
           "violations": "Active violations",
-          "audits": "Pending audits"
+          "audits": "Pending audits",
+          "monitoredSensors": "Monitored sensors"
         },
         "rulesTitle": "Active compliance rules",
         "rulesSubtitle": "Monitored conditions in real time.",
@@ -136,6 +137,22 @@
           "loading": "Loading compliance data...",
           "error": "Failed to load compliance data.",
           "empty": "No compliance rules detected."
+        },
+        "violationsTitle": "Recent compliance violations",
+        "violationsSubtitle": "Sensors currently outside configured environmental ranges.",
+        "evidenceTitle": "Compliance evidence summary",
+        "evidenceSubtitle": "Current readiness of rules and evidence for audits.",
+        "noViolationsTitle": "No active violations",
+        "noViolationsDescription": "All monitored rules are currently within accepted ranges.",
+        "currentValue": "Current value",
+        "allowedRange": "Allowed range",
+        "lastReading": "Last reading",
+        "sensorsLabel": "Sensors",
+        "evidence": {
+          "totalRules": "Total rules",
+          "compliantRules": "Compliant rules",
+          "violatedRules": "Violated rules",
+          "pendingEvidence": "Pending evidence"
         }
       }
     },
