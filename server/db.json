@@ -1,4 +1,123 @@
 {
+  "users": [
+    {
+      "id": 1,
+      "username": "admin",
+      "email": "admin@safelab.com",
+      "password": "admin123",
+      "firstName": "Maria",
+      "lastName": "Lopez",
+      "fullName": "Dr. Maria Lopez",
+      "initials": "ML",
+      "phone": "+51 987 654 321",
+      "role": "safeLabAdministrator",
+      "status": "active",
+      "organization": "SafeLab Central",
+      "laboratory": "Central Laboratory",
+      "timezone": "America/Lima",
+      "allowedContexts": [
+        "dashboard-overview",
+        "asset-inventory",
+        "sensor-monitoring",
+        "environmental-compliance",
+        "alerts-notifications",
+        "remote-control",
+        "reports-analytics",
+        "incident-management",
+        "audit-traceability",
+        "subscription-billing",
+        "identity-access"
+      ],
+      "createdAt": "2026-06-19T09:15:00.000Z",
+      "updatedAt": "2026-06-19T09:15:00.000Z"
+    },
+    {
+      "id": 2,
+      "username": "coordinator",
+      "email": "coordinator@safelab.com",
+      "password": "demo123",
+      "firstName": "Carlos",
+      "lastName": "Mendoza",
+      "fullName": "Carlos Mendoza",
+      "initials": "CM",
+      "phone": "+51 955 111 222",
+      "role": "bioclinicalCoordinator",
+      "status": "active",
+      "organization": "SafeLab Central",
+      "laboratory": "Central Laboratory",
+      "timezone": "America/Lima",
+      "allowedContexts": [
+        "dashboard-overview",
+        "asset-inventory",
+        "sensor-monitoring",
+        "environmental-compliance",
+        "alerts-notifications",
+        "reports-analytics",
+        "incident-management",
+        "audit-traceability"
+      ],
+      "createdAt": "2026-06-19T09:20:00.000Z",
+      "updatedAt": "2026-06-19T09:20:00.000Z"
+    }
+  ],
+  "billingPlans": [
+    {
+      "id": 1,
+      "name": "Basic Monitoring",
+      "description": "For small laboratories starting with monitored storage.",
+      "monthlyCost": 49,
+      "deviceLimit": 15,
+      "sensorsLimit": 25,
+      "reportsLimit": 10,
+      "alertsLimit": 50
+    },
+    {
+      "id": 2,
+      "name": "Professional Monitoring",
+      "description": "For laboratories that require compliance tracking and analytics.",
+      "monthlyCost": 99,
+      "deviceLimit": 35,
+      "sensorsLimit": 75,
+      "reportsLimit": 35,
+      "alertsLimit": 150
+    },
+    {
+      "id": 3,
+      "name": "Enterprise Monitoring",
+      "description": "For organizations with multiple locations and advanced monitoring.",
+      "monthlyCost": 199,
+      "deviceLimit": 100,
+      "sensorsLimit": 250,
+      "reportsLimit": 100,
+      "alertsLimit": 500
+    }
+  ],
+  "userSubscriptions": [
+    {
+      "id": 1,
+      "userId": 1,
+      "planId": 3,
+      "planName": "Enterprise Monitoring",
+      "status": "active",
+      "monthlyCost": 199,
+      "billingCycle": "monthly",
+      "paymentStatus": "paid",
+      "startedAt": "2026-06-19T09:15:00.000Z",
+      "renewalDate": "2026-07-01"
+    },
+    {
+      "id": 2,
+      "userId": 2,
+      "planId": 2,
+      "planName": "Professional Monitoring",
+      "status": "active",
+      "monthlyCost": 99,
+      "billingCycle": "monthly",
+      "paymentStatus": "paid",
+      "startedAt": "2026-06-19T09:20:00.000Z",
+      "renewalDate": "2026-07-01"
+    }
+  ],
   "currentUser": {
     "id": 1,
     "fullName": "Dr. Maria Lopez",

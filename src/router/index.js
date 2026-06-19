@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import AppShell from '@/shared/presentation/layouts/AppShell.vue'
-import HomeView from '@/shared/presentation/views/HomeView.vue'
+import { useAuthStore } from '@/identity-access/application/stores/auth.store'
+
 import { routes as IdentityAccessRoutes } from '@/identity-access/presentation/routes'
 import { routes as UserProfilesRoutes } from '@/user-profiles/presentation/routes'
 import { routes as SubscriptionBillingRoutes } from '@/subscription-billing/presentation/routes'
@@ -15,38 +16,75 @@ import { routes as IncidentManagementRoutes } from '@/incident-management/presen
 import { routes as AuditTraceabilityRoutes } from '@/audit-traceability/presentation/routes'
 
 const routes = [
-  {
-    path: '/',
-    component: AppShell,
-    children: [
-      { path: '', name: 'home', component: HomeView, meta: { title: 'SafeLab' } },
-  ...IdentityAccessRoutes,
-  ...UserProfilesRoutes,
-  ...SubscriptionBillingRoutes,
-  ...DashboardOverviewRoutes,
-  ...AssetInventoryRoutes,
-  ...SensorMonitoringRoutes,
-  ...EnvironmentalComplianceRoutes,
-  ...AlertsNotificationsRoutes,
-  ...RemoteControlRoutes,
-  ...ReportsAnalyticsRoutes,
-  ...IncidentManagementRoutes,
-  ...AuditTraceabilityRoutes
-    ]
-  },
-  { path: '/:pathMatch(.*)*', redirect: '/' }
+    ...IdentityAccessRoutes,
+
+    {
+        path: '/',
+        component: AppShell,
+        children: [
+            {
+                path: '',
+                redirect: '/dashboard-overview/laboratory-dashboard'
+            },
+            ...UserProfilesRoutes,
+            ...SubscriptionBillingRoutes,
+            ...DashboardOverviewRoutes,
+            ...AssetInventoryRoutes,
+            ...SensorMonitoringRoutes,
+            ...EnvironmentalComplianceRoutes,
+            ...AlertsNotificationsRoutes,
+            ...RemoteControlRoutes,
+            ...ReportsAnalyticsRoutes,
+            ...IncidentManagementRoutes,
+            ...AuditTraceabilityRoutes
+        ]
+    },
+
+    {
+        path: '/:pathMatch(.*)*',
+        redirect: '/'
+    }
 ]
 
 const router = createRouter({
-  history: createWebHistory(),
-  routes,
-  scrollBehavior() {
-    return { top: 0 }
-  }
+    history: createWebHistory(),
+    routes,
+    scrollBehavior() {
+        return { top: 0 }
+    }
 })
 
 router.beforeEach((to) => {
-  document.title = to.meta.title ? `${to.meta.title} | SafeLab` : 'SafeLab'
+    const authStore = useAuthStore()
+
+    authStore.restoreSession()
+
+    const isPublicRoute = to.meta.public === true
+    const isAuthenticated = authStore.isAuthenticated
+    const protectedContext = to.meta.sidebarContext
+
+    if (!isPublicRoute && !isAuthenticated) {
+        return {
+            path: '/identity-access/login',
+            query: {
+                redirect: to.fullPath
+            }
+        }
+    }
+
+    if (isPublicRoute && isAuthenticated) {
+        return '/dashboard-overview/laboratory-dashboard'
+    }
+
+    if (
+        isAuthenticated &&
+        protectedContext &&
+        !authStore.canAccessContext(protectedContext)
+    ) {
+        return '/dashboard-overview/laboratory-dashboard'
+    }
+
+    return true
 })
 
 export default router
