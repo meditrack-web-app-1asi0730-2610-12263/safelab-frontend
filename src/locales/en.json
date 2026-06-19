@@ -597,6 +597,63 @@
       "deliveryRules": "No delivery rules configured."
     }
   },
+  "reportsAnalytics": {
+    "module": {
+      "eyebrow": "Reports & Analytics",
+      "title": "Analytics Overview",
+      "description": "Review operational metrics, report readiness and monitoring trends to support decisions."
+    },
+    "navigation": {
+      "reports": "Reports",
+      "reportsDescription": "Generate and manage operational reports.",
+      "historicalData": "Historical Data",
+      "historicalDataDescription": "Review sensor and environmental history.",
+      "exportData": "Export Data",
+      "exportDataDescription": "Export analytics and compliance evidence."
+    },
+    "summary": {
+      "totalReports": "Reports",
+      "totalReportsDescription": "Registered reports",
+      "activeAlerts": "Active alerts",
+      "activeAlertsDescription": "Pending operational review",
+      "averageTemperature": "Avg. temperature",
+      "averageTemperatureDescription": "Across temperature sensors",
+      "averageHumidity": "Avg. humidity",
+      "averageHumidityDescription": "Across humidity sensors"
+    },
+    "trends": {
+      "title": "Monitoring trends",
+      "subtitle": "Current indicators calculated from SafeLab operational data."
+    },
+    "risk": {
+      "title": "Operational risk",
+      "subtitle": "Risk snapshot based on alerts, sensor deviations and compliance score.",
+      "criticalAlerts": "Critical alerts",
+      "outOfRangeSensors": "Out-of-range sensors",
+      "disconnectedSensors": "Disconnected sensors",
+      "complianceScore": "Compliance score",
+      "levels": {
+        "low": "Low risk",
+        "medium": "Medium risk",
+        "high": "High risk"
+      }
+    },
+    "recentReports": {
+      "title": "Recent reports",
+      "subtitle": "Latest generated or pending reports.",
+      "empty": "No reports available.",
+      "allEquipment": "All equipment"
+    },
+    "recentAlerts": {
+      "title": "Recent alerts",
+      "subtitle": "Latest operational events used in analytics.",
+      "empty": "No alerts available."
+    },
+    "states": {
+      "loading": "Loading analytics...",
+      "error": "Could not load analytics."
+    }
+  },
   "audit": {
     "heroEyebrow": "Audit & Traceability",
     "integrityScore": "Integrity score",
