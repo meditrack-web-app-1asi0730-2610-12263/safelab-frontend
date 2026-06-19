@@ -1,7 +1,7 @@
-import { defineStore } from 'pinia';
-import { NotificationService } from '../services/notification.service';
+import { defineStore } from 'pinia'
+import { NotificationService } from '../services/notification.service'
 
-const notificationService = new NotificationService();
+const notificationService = new NotificationService()
 
 export const useNotificationStore = defineStore('notifications', {
     state: () => ({
@@ -10,23 +10,53 @@ export const useNotificationStore = defineStore('notifications', {
         error: null
     }),
 
+    getters: {
+        recentNotifications(state) {
+            return [...state.notifications]
+                .sort((left, right) => {
+                    const leftDate = new Date(left.createdAt || left.sentAt || 0).getTime()
+                    const rightDate = new Date(right.createdAt || right.sentAt || 0).getTime()
+
+                    return rightDate - leftDate
+                })
+                .slice(0, 5)
+        },
+
+        unreadCount(state) {
+            return state.notifications.filter((notification) => !notification.readAt).length
+        }
+    },
+
     actions: {
-        async fetchNotifications(filters = {}) {
-            this.loading = true;
-            this.error = null;
+        async fetchNotifications() {
+            this.loading = true
+            this.error = null
 
             try {
-                this.notifications = await notificationService.findAll(filters);
+                this.notifications = await notificationService.findAll()
             } catch (error) {
-                this.error = 'Could not load notifications.';
+                console.error(error)
+                this.error = 'Could not load notifications.'
             } finally {
-                this.loading = false;
+                this.loading = false
             }
         },
 
+        async createNotification(payload) {
+            const notification = await notificationService.create(payload)
+            this.notifications.unshift(notification)
+
+            return notification
+        },
+
+        async markAsRead(id) {
+            await notificationService.markAsRead(id)
+            await this.fetchNotifications()
+        },
+
         async retryNotification(id) {
-            await notificationService.retry(id);
-            await this.fetchNotifications();
+            await notificationService.retry(id)
+            await this.fetchNotifications()
         }
     }
-});
+})

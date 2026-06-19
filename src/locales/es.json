@@ -36,16 +36,16 @@
   "contextLabels": {
     "iam": "Identidad y acceso",
     "profiles": "Perfiles de usuario",
-    "billing": "Planes y facturación",
-    "dashboard": "Panel y resumen",
+    "billing": "Facturación y planes",
+    "dashboard": "Panel",
     "assets": "Activos e inventario",
-    "sensors": "Monitoreo de sensores",
-    "compliance": "Cumplimiento ambiental",
-    "alerts": "Alertas y notificaciones",
+    "sensors": "Sensores",
+    "compliance": "Cumplimiento",
+    "alerts": "Alertas",
     "remote": "Control remoto",
     "reports": "Reportes y analítica",
-    "incidents": "Gestión de incidentes",
-    "audit": "Auditoría y trazabilidad",
+    "incidents": "Incidentes",
+    "audit": "Auditoría",
     "administration": "Administración"
   },
   "menu": {
@@ -490,13 +490,42 @@
   "alertsNotifications": {
     "module": {
       "eyebrow": "Monitoreo y operaciones",
-      "title": "Alertas y notificaciones",
-      "description": "Revisa alertas activas, reconoce incidentes y rastrea la entrega de notificaciones."
+      "title": "Alertas",
+      "description": "Revisa alertas activas, reconoce eventos operativos y controla problemas relacionados con sensores."
     },
     "summary": {
       "criticalAlerts": "Alertas críticas",
+      "criticalDescription": "Requieren acción inmediata",
       "unacknowledged": "Sin reconocer",
-      "totalAlerts": "Alertas totales"
+      "unacknowledgedDescription": "Pendientes de revisión",
+      "totalAlerts": "Alertas totales",
+      "totalDescription": "Eventos registrados",
+      "warningAlerts": "Alertas de advertencia",
+      "warningDescription": "Necesitan seguimiento"
+    },
+    "table": {
+      "alertsTable": "Tabla de alertas",
+      "type": "Tipo",
+      "device": "Dispositivo",
+      "location": "Ubicación",
+      "severity": "Severidad",
+      "status": "Estado",
+      "createdAt": "Creado el",
+      "actions": "Acciones",
+      "message": "Mensaje",
+      "channel": "Canal",
+      "sentAt": "Enviado el",
+      "deliveredAt": "Entregado el",
+      "retries": "Reintentos",
+      "minimumSeverity": "Severidad mínima",
+      "recipients": "Destinatarios",
+      "active": "Activo"
+    },
+    "notificationPanel": {
+      "title": "Notificaciones recientes",
+      "unread": "sin leer",
+      "viewAll": "Ver todas las notificaciones",
+      "markAsRead": "Marcar como leída"
     },
     "filters": {
       "search": "Buscar",

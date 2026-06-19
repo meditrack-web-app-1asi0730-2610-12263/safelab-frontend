@@ -36,16 +36,16 @@
   "contextLabels": {
     "iam": "Identity & Access",
     "profiles": "User Profiles",
-    "billing": "Plans & Billing",
-    "dashboard": "Dashboard & Overview",
+    "billing": "Billing & Plans",
+    "dashboard": "Dashboard",
     "assets": "Assets & Inventory",
     "sensors": "Sensor Monitoring",
-    "compliance": "Environmental Compliance",
-    "alerts": "Alerts & Notifications",
+    "compliance": "Compliance",
+    "alerts": "Alerts",
     "remote": "Remote Control",
     "reports": "Reports & Analytics",
-    "incidents": "Incident Management",
-    "audit": "Audit & Traceability",
+    "incidents": "Incidents",
+    "audit": "Audit Trail",
     "administration": "Administration"
   },
   "menu": {
@@ -490,13 +490,42 @@
   "alertsNotifications": {
     "module": {
       "eyebrow": "Monitoring & Operations",
-      "title": "Alerts & Notifications",
-      "description": "Review active alerts, acknowledge incidents and track notification delivery."
+      "title": "Alerts",
+      "description": "Review active alerts, acknowledge operational events and track sensor-related issues."
     },
     "summary": {
       "criticalAlerts": "Critical alerts",
+      "criticalDescription": "Require immediate action",
       "unacknowledged": "Unacknowledged",
-      "totalAlerts": "Total alerts"
+      "unacknowledgedDescription": "Pending review",
+      "totalAlerts": "Total alerts",
+      "totalDescription": "Registered events",
+      "warningAlerts": "Warning alerts",
+      "warningDescription": "Need follow-up"
+    },
+    "table": {
+      "alertsTable": "Alerts table",
+      "type": "Type",
+      "device": "Device",
+      "location": "Location",
+      "severity": "Severity",
+      "status": "Status",
+      "createdAt": "Created at",
+      "actions": "Actions",
+      "message": "Message",
+      "channel": "Channel",
+      "sentAt": "Sent at",
+      "deliveredAt": "Delivered at",
+      "retries": "Retries",
+      "minimumSeverity": "Minimum severity",
+      "recipients": "Recipients",
+      "active": "Active"
+    },
+    "notificationPanel": {
+      "title": "Recent notifications",
+      "unread": "unread",
+      "viewAll": "View all notifications",
+      "markAsRead": "Mark as read"
     },
     "filters": {
       "search": "Search",
