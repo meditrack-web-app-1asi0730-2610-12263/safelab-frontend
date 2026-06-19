@@ -234,6 +234,22 @@
         },
         "aria": {
           "status": "Status {status}"
+        },
+        "summary": {
+          "totalSensors": "Total sensors",
+          "totalSensorsDescription": "Devices registered",
+          "normalReadings": "Normal readings",
+          "normalReadingsDescription": "Within target range",
+          "outOfRange": "Out of range",
+          "outOfRangeDescription": "Requires review",
+          "invalidReadings": "Invalid readings",
+          "invalidReadingsDescription": "Disconnected or invalid"
+        },
+        "sensorStatus": {
+          "Active": "Active",
+          "Inactive": "Inactive",
+          "Disconnected": "Disconnected",
+          "Maintenance": "Maintenance"
         }
       }
     },
