@@ -223,6 +223,164 @@
       "retryCount": 0
     }
   ],
+  "remoteActuators": [
+    {
+      "id": 1,
+      "name": "Cold Chamber A-01 Controller",
+      "code": "ACT-CCA-01",
+      "type": "Cooling",
+      "location": "Central Lab A",
+      "linkedSensorCode": "LAB-A-01",
+      "status": "online",
+      "safetyState": "ready",
+      "commandStatus": "completed",
+      "lastCommand": "runSelfCheck",
+      "lastCommandAt": "2026-06-19T13:47:37.215Z",
+      "supports": [
+        "runSelfCheck",
+        "setSafeMode"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Storage Room C Ventilation",
+      "code": "ACT-VNT-C01",
+      "type": "Ventilation",
+      "location": "Storage Room C",
+      "linkedSensorCode": "STOR-C-01",
+      "status": "online",
+      "safetyState": "review",
+      "commandStatus": "idle",
+      "lastCommand": "runSelfCheck",
+      "lastCommandAt": "2026-06-19T03:40:00.000Z",
+      "supports": [
+        "runSelfCheck",
+        "setSafeMode"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Freezer B-02 Door Lock",
+      "code": "ACT-DLK-B02",
+      "type": "DoorLock",
+      "location": "Pharma Cold Chain",
+      "linkedSensorCode": "FREEZ-B-02",
+      "status": "online",
+      "safetyState": "ready",
+      "commandStatus": "idle",
+      "lastCommand": null,
+      "lastCommandAt": null,
+      "supports": [
+        "lockDevice",
+        "unlockDevice",
+        "runSelfCheck"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Hospital-01 Telemetry Module",
+      "code": "ACT-TEL-H01",
+      "type": "Telemetry",
+      "location": "Hospital Pharmacy",
+      "linkedSensorCode": "HOSP-01",
+      "status": "offline",
+      "safetyState": "locked",
+      "commandStatus": "failed",
+      "lastCommand": "restartTelemetry",
+      "lastCommandAt": "2026-06-18T22:40:00.000Z",
+      "supports": [
+        "restartTelemetry",
+        "runSelfCheck"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Local Alarm A-02",
+      "code": "ACT-ALM-A02",
+      "type": "Alarm",
+      "location": "Central Lab A",
+      "linkedSensorCode": "LAB-A-02",
+      "status": "online",
+      "safetyState": "ready",
+      "commandStatus": "idle",
+      "lastCommand": "acknowledgeBuzzer",
+      "lastCommandAt": "2026-06-19T05:35:00.000Z",
+      "supports": [
+        "acknowledgeBuzzer",
+        "runSelfCheck"
+      ]
+    }
+  ],
+  "remoteCommands": [
+    {
+      "id": 1,
+      "actuatorId": 1,
+      "actuatorName": "Cold Chamber A-01 Controller",
+      "type": "runSelfCheck",
+      "requestedBy": "Dr. Maria Lopez",
+      "status": "completed",
+      "createdAt": "2026-06-19T04:20:00.000Z",
+      "completedAt": "2026-06-19T04:20:10.000Z",
+      "result": "Self-check completed",
+      "notes": "Device responded normally."
+    },
+    {
+      "id": 2,
+      "actuatorId": 4,
+      "actuatorName": "Hospital-01 Telemetry Module",
+      "type": "restartTelemetry",
+      "requestedBy": "Miguel Herrera",
+      "status": "failed",
+      "createdAt": "2026-06-18T22:40:00.000Z",
+      "completedAt": "2026-06-18T22:41:00.000Z",
+      "result": "Device unavailable",
+      "notes": "Telemetry module did not respond."
+    },
+    {
+      "id": 3,
+      "actuatorId": 5,
+      "actuatorName": "Local Alarm A-02",
+      "type": "acknowledgeBuzzer",
+      "requestedBy": "Carlos Mendoza",
+      "status": "completed",
+      "createdAt": "2026-06-19T05:35:00.000Z",
+      "completedAt": "2026-06-19T05:35:04.000Z",
+      "result": "Local alarm acknowledged",
+      "notes": "Notification remains active until the cause is resolved."
+    },
+    {
+      "actuatorId": 1,
+      "actuatorName": "Cold Chamber A-01 Controller",
+      "type": "runSelfCheck",
+      "requestedBy": "Dr. Maria Lopez",
+      "status": "completed",
+      "createdAt": "2026-06-19T13:47:37.215Z",
+      "completedAt": "2026-06-19T13:47:37.215Z",
+      "result": "Command simulated successfully",
+      "notes": "Remote command executed in SafeLab simulation environment.",
+      "id": 4
+    }
+  ],
+  "deviceControlPolicies": [
+    {
+      "id": 1,
+      "name": "Safe command confirmation",
+      "description": "Every remote command requires user confirmation before execution.",
+      "isActive": true
+    },
+    {
+      "id": 2,
+      "name": "Locked devices cannot be controlled",
+      "description": "Devices in locked safety state reject command execution.",
+      "isActive": true
+    },
+    {
+      "id": 3,
+      "name": "Disconnected devices are read-only",
+      "description": "Offline devices can be reviewed but cannot receive remote commands.",
+      "isActive": true
+    }
+  ],
   "sensors": [
     {
       "id": 1,
