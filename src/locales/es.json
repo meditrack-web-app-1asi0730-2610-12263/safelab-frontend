@@ -723,5 +723,76 @@
       "load": "No se pudieron cargar los datos de auditoría y trazabilidad."
     },
     "highlightReportsCopy": "Analiza tendencias, KPI y reportes operativos."
+  },
+  "incidentManagement": {
+    "module": {
+      "eyebrow": "Operaciones",
+      "title": "Gestión de incidentes",
+      "description": "Rastrea, investiga, resuelve y documenta incidentes operativos relacionados con el monitoreo de cadena de frío."
+    },
+    "summary": {
+      "total": "Incidentes totales",
+      "totalDescription": "Casos registrados",
+      "open": "Abiertos",
+      "openDescription": "Esperando acción",
+      "investigating": "En investigación",
+      "investigatingDescription": "En revisión",
+      "critical": "Críticos",
+      "criticalDescription": "Alta prioridad"
+    },
+    "filters": {
+      "search": "Buscar",
+      "searchPlaceholder": "Buscar por título, sensor, área o código",
+      "status": "Estado",
+      "severity": "Severidad",
+      "all": "Todos"
+    },
+    "status": {
+      "open": "Abierto",
+      "investigating": "Investigando",
+      "resolved": "Resuelto",
+      "closed": "Cerrado"
+    },
+    "severity": {
+      "critical": "Crítico",
+      "warning": "Advertencia",
+      "info": "Info"
+    },
+    "fields": {
+      "assignedTo": "Asignado a",
+      "affectedArea": "Área afectada",
+      "relatedAlert": "Alerta relacionada",
+      "relatedSensor": "Sensor relacionado",
+      "relatedAsset": "Activo relacionado",
+      "evidence": "Evidencias",
+      "dueDate": "Fecha límite",
+      "createdAt": "Creado el",
+      "updatedAt": "Actualizado el"
+    },
+    "sections": {
+      "correctiveAction": "Acción correctiva",
+      "timeline": "Línea de tiempo del incidente"
+    },
+    "actions": {
+      "viewDetails": "Ver detalles",
+      "back": "Volver",
+      "markInvestigating": "Iniciar investigación",
+      "markResolved": "Marcar como resuelto",
+      "closeIncident": "Cerrar incidente",
+      "viewReport": "Ver reporte"
+    },
+    "states": {
+      "loading": "Cargando incidentes...",
+      "loadingDetail": "Cargando incidente...",
+      "error": "No se pudieron cargar los incidentes.",
+      "errorDetail": "No se pudo cargar el detalle del incidente.",
+      "empty": "No se encontraron incidentes con los filtros seleccionados."
+    },
+    "empty": {
+      "unassigned": "Sin asignar",
+      "notSpecified": "No especificado",
+      "noCorrectiveAction": "Aún no se ha documentado una acción correctiva.",
+      "noTimeline": "No hay eventos registrados en la línea de tiempo."
+    }
   }
 }

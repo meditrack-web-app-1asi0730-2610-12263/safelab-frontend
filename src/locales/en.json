@@ -722,5 +722,76 @@
     "errors": {
       "load": "Could not load audit and traceability data."
     }
+  },
+  "incidentManagement": {
+    "module": {
+      "eyebrow": "Operations",
+      "title": "Incident Management",
+      "description": "Track, investigate, resolve and document operational incidents related to cold chain monitoring."
+    },
+    "summary": {
+      "total": "Total incidents",
+      "totalDescription": "Registered cases",
+      "open": "Open",
+      "openDescription": "Waiting for action",
+      "investigating": "Investigating",
+      "investigatingDescription": "Under review",
+      "critical": "Critical",
+      "criticalDescription": "High priority"
+    },
+    "filters": {
+      "search": "Search",
+      "searchPlaceholder": "Search by title, sensor, area or code",
+      "status": "Status",
+      "severity": "Severity",
+      "all": "All"
+    },
+    "status": {
+      "open": "Open",
+      "investigating": "Investigating",
+      "resolved": "Resolved",
+      "closed": "Closed"
+    },
+    "severity": {
+      "critical": "Critical",
+      "warning": "Warning",
+      "info": "Info"
+    },
+    "fields": {
+      "assignedTo": "Assigned to",
+      "affectedArea": "Affected area",
+      "relatedAlert": "Related alert",
+      "relatedSensor": "Related sensor",
+      "relatedAsset": "Related asset",
+      "evidence": "Evidence",
+      "dueDate": "Due date",
+      "createdAt": "Created at",
+      "updatedAt": "Updated at"
+    },
+    "sections": {
+      "correctiveAction": "Corrective action",
+      "timeline": "Incident timeline"
+    },
+    "actions": {
+      "viewDetails": "View details",
+      "back": "Back",
+      "markInvestigating": "Start investigation",
+      "markResolved": "Mark as resolved",
+      "closeIncident": "Close incident",
+      "viewReport": "View report"
+    },
+    "states": {
+      "loading": "Loading incidents...",
+      "loadingDetail": "Loading incident...",
+      "error": "Could not load incidents.",
+      "errorDetail": "Could not load incident detail.",
+      "empty": "No incidents found with the selected filters."
+    },
+    "empty": {
+      "unassigned": "Unassigned",
+      "notSpecified": "Not specified",
+      "noCorrectiveAction": "No corrective action has been documented yet.",
+      "noTimeline": "No timeline events registered."
+    }
   }
 }
