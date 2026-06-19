@@ -40,7 +40,11 @@ const props = defineProps({
   }
 })
 
-const emit = defineEmits(['update:searchQuery', 'update:statusFilter', 'update:typeFilter'])
+const emit = defineEmits([
+  'update:searchQuery',
+  'update:statusFilter',
+  'update:typeFilter'
+])
 
 const searchValue = computed({
   get: () => props.searchQuery,
@@ -62,22 +66,38 @@ const typeValue = computed({
   <div class="toolbar">
     <label class="search-input" :aria-label="searchAriaLabel">
       <i class="pi pi-search" aria-hidden="true" />
-      <input v-model="searchValue" type="text" :placeholder="searchPlaceholder" />
+
+      <input
+          v-model="searchValue"
+          type="text"
+          :placeholder="searchPlaceholder"
+      />
     </label>
 
     <div class="toolbar-actions">
       <label class="status-filter">
-        <span>{{ typeLabel }}:</span>
+        <span>{{ typeLabel }}</span>
+
         <select v-model="typeValue">
-          <option v-for="type in typeOptions" :key="type.value" :value="type.value">
+          <option
+              v-for="type in typeOptions"
+              :key="type.value"
+              :value="type.value"
+          >
             {{ type.label }}
           </option>
         </select>
       </label>
+
       <label class="status-filter">
-        <span>{{ statusLabel }}:</span>
+        <span>{{ statusLabel }}</span>
+
         <select v-model="statusValue">
-          <option v-for="status in statusOptions" :key="status.value" :value="status.value">
+          <option
+              v-for="status in statusOptions"
+              :key="status.value"
+              :value="status.value"
+          >
             {{ status.label }}
           </option>
         </select>
@@ -102,10 +122,10 @@ const typeValue = computed({
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  padding: 10px 14px;
+  padding: 11px 14px;
   border-radius: 16px;
   border: 1px solid var(--border);
-  background: #fff;
+  background: #ffffff;
   box-shadow: 0 8px 20px rgba(31, 41, 79, 0.06);
 }
 
@@ -114,6 +134,8 @@ const typeValue = computed({
   outline: none;
   flex: 1;
   background: transparent;
+  color: var(--text);
+  font-weight: 600;
 }
 
 .toolbar-actions {
@@ -126,18 +148,23 @@ const typeValue = computed({
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 8px 12px;
+  padding: 9px 12px;
   border: 1px solid var(--border);
   border-radius: 14px;
-  background: #fff;
+  background: #ffffff;
   box-shadow: 0 8px 20px rgba(31, 41, 79, 0.06);
-  font-weight: 600;
+  font-weight: 700;
+}
+
+.status-filter span {
+  color: var(--text);
 }
 
 .status-filter select {
   border: 0;
   background: transparent;
-  font-weight: 600;
+  color: var(--text);
+  font-weight: 700;
   outline: none;
 }
 
@@ -148,8 +175,12 @@ const typeValue = computed({
   }
 
   .toolbar-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .status-filter {
     justify-content: space-between;
   }
 }
 </style>
-
