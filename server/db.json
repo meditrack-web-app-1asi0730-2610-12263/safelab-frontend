@@ -1046,42 +1046,166 @@
   "incidents": [
     {
       "id": 1,
-      "title": "Temperature deviation in Freezer A-01",
-      "description": "Temperature exceeded the allowed cold chain threshold for 12 minutes.",
+      "code": "INC-001",
+      "title": "Temperature deviation in Lab-A-02",
+      "description": "Temperature exceeded the allowed cold chain threshold for refrigerated storage and requires immediate follow-up.",
       "severity": "critical",
       "status": "open",
       "sourceAlertId": 1,
+      "sourceAlertTitle": "Temperature threshold exceeded",
+      "relatedSensorCode": "LAB-A-02",
+      "relatedAssetName": "Vaccine Batch VX-42",
       "assignedTo": "Lab Technician",
-      "affectedArea": "Cold Storage Room A",
-      "correctiveAction": "",
-      "createdAt": "2026-05-12T09:30:00.000Z",
-      "updatedAt": "2026-05-12T09:30:00.000Z"
+      "affectedArea": "Central Lab A",
+      "priority": "high",
+      "dueDate": "2026-06-19",
+      "correctiveAction": "Verify cold chamber door seal, review recent temperature readings and confirm whether the stored batch remains viable.",
+      "resolutionNotes": "",
+      "evidenceCount": 2,
+      "createdAt": "2026-06-19T05:35:00.000Z",
+      "updatedAt": "2026-06-19T05:35:00.000Z",
+      "timeline": [
+        {
+          "id": 101,
+          "event": "Incident created from critical temperature alert",
+          "actor": "SafeLab System",
+          "createdAt": "2026-06-19T05:35:00.000Z"
+        }
+      ]
     },
     {
       "id": 2,
-      "title": "Humidity warning in Storage B",
-      "description": "Humidity is approaching the configured compliance limit.",
+      "code": "INC-002",
+      "title": "Humidity warning in Storage-C-01",
+      "description": "Humidity is above the configured compliance limit and may affect sensitive supplies.",
       "severity": "warning",
       "status": "investigating",
       "sourceAlertId": 2,
+      "sourceAlertTitle": "Humidity level out of range",
+      "relatedSensorCode": "STOR-C-01",
+      "relatedAssetName": "Culture Media Pack CM-31",
       "assignedTo": "Compliance Officer",
-      "affectedArea": "Storage Room B",
-      "correctiveAction": "Reviewing HVAC calibration.",
-      "createdAt": "2026-05-11T16:45:00.000Z",
-      "updatedAt": "2026-05-12T08:20:00.000Z"
+      "affectedArea": "Storage Room C",
+      "priority": "medium",
+      "dueDate": "2026-06-20",
+      "correctiveAction": "Inspect room ventilation and confirm humidity stabilization after corrective action.",
+      "resolutionNotes": "",
+      "evidenceCount": 1,
+      "createdAt": "2026-06-19T04:50:00.000Z",
+      "updatedAt": "2026-06-19T05:10:00.000Z",
+      "timeline": [
+        {
+          "id": 201,
+          "event": "Incident created from humidity warning",
+          "actor": "SafeLab System",
+          "createdAt": "2026-06-19T04:50:00.000Z"
+        },
+        {
+          "id": 202,
+          "event": "Status changed to investigating",
+          "actor": "Compliance Officer",
+          "createdAt": "2026-06-19T05:10:00.000Z"
+        }
+      ]
     },
     {
       "id": 3,
-      "title": "Connectivity loss in Sensor T-204",
+      "code": "INC-003",
+      "title": "Connectivity loss in Hospital-01",
       "description": "Sensor stopped sending readings during a scheduled monitoring period.",
+      "severity": "critical",
+      "status": "investigating",
+      "sourceAlertId": 3,
+      "sourceAlertTitle": "Sensor disconnected",
+      "relatedSensorCode": "HOSP-01",
+      "relatedAssetName": "Hospital-01 Telemetry Module",
+      "assignedTo": "Operations Team",
+      "affectedArea": "Hospital Pharmacy",
+      "priority": "high",
+      "dueDate": "2026-06-19",
+      "correctiveAction": "Restart telemetry module, validate network availability and confirm sensor recovery.",
+      "resolutionNotes": "",
+      "evidenceCount": 3,
+      "createdAt": "2026-06-18T22:35:00.000Z",
+      "updatedAt": "2026-06-18T23:00:00.000Z",
+      "timeline": [
+        {
+          "id": 301,
+          "event": "Incident created from disconnected sensor alert",
+          "actor": "SafeLab System",
+          "createdAt": "2026-06-18T22:35:00.000Z"
+        },
+        {
+          "id": 302,
+          "event": "Assigned to Operations Team",
+          "actor": "Dr. Maria Lopez",
+          "createdAt": "2026-06-18T23:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "code": "INC-004",
+      "title": "Audit evidence pending for environmental report",
+      "description": "Monthly environmental evidence has not been attached for the current compliance cycle.",
+      "severity": "warning",
+      "status": "open",
+      "sourceAlertId": 4,
+      "sourceAlertTitle": "Audit evidence pending",
+      "relatedSensorCode": "",
+      "relatedAssetName": "Compliance evidence package",
+      "assignedTo": "Quality Control Area",
+      "affectedArea": "Quality Control Area",
+      "priority": "medium",
+      "dueDate": "2026-06-21",
+      "correctiveAction": "Attach compliance evidence and validate report readiness before audit review.",
+      "resolutionNotes": "",
+      "evidenceCount": 0,
+      "createdAt": "2026-06-18T17:25:00.000Z",
+      "updatedAt": "2026-06-18T17:25:00.000Z",
+      "timeline": [
+        {
+          "id": 401,
+          "event": "Incident created from pending audit evidence alert",
+          "actor": "SafeLab System",
+          "createdAt": "2026-06-18T17:25:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "code": "INC-005",
+      "title": "Inventory risk resolved for Culture Media Pack",
+      "description": "Critical inventory condition was reviewed and documented by the laboratory team.",
       "severity": "info",
       "status": "resolved",
-      "sourceAlertId": 3,
-      "assignedTo": "Operations Team",
-      "affectedArea": "Clinical Lab 2",
-      "correctiveAction": "Sensor gateway restarted and signal restored.",
-      "createdAt": "2026-05-10T13:10:00.000Z",
-      "updatedAt": "2026-05-10T14:05:00.000Z"
+      "sourceAlertId": 5,
+      "sourceAlertTitle": "Critical supply requires review",
+      "relatedSensorCode": "STOR-C-01",
+      "relatedAssetName": "Culture Media Pack CM-31",
+      "assignedTo": "Carlos Mendoza",
+      "affectedArea": "Microbiology Area",
+      "priority": "low",
+      "dueDate": "2026-06-18",
+      "correctiveAction": "Verify item integrity and confirm storage condition.",
+      "resolutionNotes": "Supply condition was reviewed and accepted for continued use.",
+      "evidenceCount": 2,
+      "createdAt": "2026-06-17T11:20:00.000Z",
+      "updatedAt": "2026-06-17T13:10:00.000Z",
+      "timeline": [
+        {
+          "id": 501,
+          "event": "Incident created from inventory risk alert",
+          "actor": "SafeLab System",
+          "createdAt": "2026-06-17T11:20:00.000Z"
+        },
+        {
+          "id": 502,
+          "event": "Status changed to resolved",
+          "actor": "Carlos Mendoza",
+          "createdAt": "2026-06-17T13:10:00.000Z"
+        }
+      ]
     }
   ],
   "auditTraceability": {
