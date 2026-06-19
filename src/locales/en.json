@@ -722,5 +722,72 @@
     "errors": {
       "load": "Could not load audit and traceability data."
     }
+  },
+  "assetInventory": {
+    "module": {
+      "eyebrow": "Asset & Inventory Monitoring",
+      "title": "Asset List",
+      "description": "Review monitored laboratory assets, storage units, responsible staff and current compliance status."
+    },
+    "summary": {
+      "totalAssets": "Total assets",
+      "totalAssetsDescription": "Registered in inventory",
+      "compliant": "Compliant",
+      "compliantDescription": "Ready for operation",
+      "warning": "Warning",
+      "warningDescription": "Requires review",
+      "critical": "Critical",
+      "criticalDescription": "Immediate action"
+    },
+    "table": {
+      "title": "Monitored assets",
+      "subtitle": "Current asset coverage for laboratory storage and cold chain control.",
+      "id": "ID",
+      "assetName": "Asset Name",
+      "category": "Category",
+      "storageUnit": "Storage Unit",
+      "location": "Location",
+      "lastInspection": "Last Inspection",
+      "responsible": "Responsible",
+      "status": "Status",
+      "actions": "Actions",
+      "uncategorized": "Uncategorized",
+      "empty": "No assets registered yet."
+    },
+    "form": {
+      "title": "Asset Details",
+      "assetName": "Asset name",
+      "category": "Category",
+      "categoryPlaceholder": "Medical Supply, Equipment, Reagent...",
+      "storageUnit": "Storage Unit",
+      "location": "Location",
+      "locationPlaceholder": "Central Lab A",
+      "lastInspection": "Last Inspection",
+      "lastInspectionPlaceholder": "2026-06-18",
+      "responsible": "Responsible",
+      "responsiblePlaceholder": "Dr. Maria Lopez",
+      "status": "Status"
+    },
+    "actions": {
+      "newAsset": "New Asset",
+      "refresh": "Refresh",
+      "cancel": "Cancel",
+      "save": "Save",
+      "edit": "Edit asset",
+      "delete": "Delete asset"
+    },
+    "validation": {
+      "assetNameRequired": "Asset name is required.",
+      "storageUnitRequired": "Storage unit is required."
+    },
+    "status": {
+      "compliant": "Compliant",
+      "warning": "Warning",
+      "critical": "Critical",
+      "unknown": "Unknown"
+    },
+    "messages": {
+      "deleteConfirmation": "Are you sure you want to delete this asset?"
+    }
   }
 }

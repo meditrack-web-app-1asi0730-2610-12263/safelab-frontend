@@ -223,8 +223,82 @@
     {
       "id": 1,
       "name": "Vaccine Batch VX-42",
+      "category": "Medical Supply",
       "storageUnit": "Cold Chamber A-01",
-      "status": "compliant"
+      "location": "Central Lab A",
+      "status": "compliant",
+      "lastInspection": "2026-06-18",
+      "responsible": "Dr. Maria Lopez"
+    },
+    {
+      "id": 2,
+      "name": "Reagent Kit R-18",
+      "category": "Reagent",
+      "storageUnit": "Storage Room B",
+      "location": "Biochemistry Area",
+      "status": "warning",
+      "lastInspection": "2026-06-17",
+      "responsible": "Carlos Mendoza"
+    },
+    {
+      "id": 3,
+      "name": "Freezer Sensor Module",
+      "category": "Equipment",
+      "storageUnit": "Freezer A-01",
+      "location": "Cold Chain Area",
+      "status": "critical",
+      "lastInspection": "2026-06-16",
+      "responsible": "Miguel Herrera"
+    },
+    {
+      "id": 4,
+      "name": "Insulin Batch IN-204",
+      "category": "Medical Supply",
+      "storageUnit": "Cold Chamber A-02",
+      "location": "Pharma Cold Chain",
+      "status": "compliant",
+      "lastInspection": "2026-06-18",
+      "responsible": "Ana Torres"
+    },
+    {
+      "id": 5,
+      "name": "Blood Sample Rack BS-09",
+      "category": "Sample Container",
+      "storageUnit": "Refrigerator R-03",
+      "location": "Hematology Area",
+      "status": "warning",
+      "lastInspection": "2026-06-15",
+      "responsible": "Lucia Ramirez"
+    },
+    {
+      "id": 6,
+      "name": "Temperature Logger TL-88",
+      "category": "Monitoring Device",
+      "storageUnit": "Cold Chamber A-01",
+      "location": "Central Lab A",
+      "status": "compliant",
+      "lastInspection": "2026-06-18",
+      "responsible": "Miguel Herrera"
+    },
+    {
+      "id": 7,
+      "name": "Culture Media Pack CM-31",
+      "category": "Reagent",
+      "storageUnit": "Storage Room B",
+      "location": "Microbiology Area",
+      "status": "critical",
+      "lastInspection": "2026-06-14",
+      "responsible": "Carlos Mendoza"
+    },
+    {
+      "id": 8,
+      "name": "Calibration Thermometer CT-12",
+      "category": "Equipment",
+      "storageUnit": "Maintenance Cabinet M-01",
+      "location": "Quality Control Area",
+      "status": "compliant",
+      "lastInspection": "2026-06-13",
+      "responsible": "Lucia Ramirez"
     }
   ],
   "dashboardOverview": {
@@ -409,7 +483,7 @@
         "values": [
           4.1,
           4.2,
-          4.0,
+          4,
           4.3,
           4.2,
           4.1,

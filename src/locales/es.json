@@ -723,5 +723,72 @@
       "load": "No se pudieron cargar los datos de auditoría y trazabilidad."
     },
     "highlightReportsCopy": "Analiza tendencias, KPI y reportes operativos."
+  },
+  "assetInventory": {
+    "module": {
+      "eyebrow": "Monitoreo de activos e inventario",
+      "title": "Lista de activos",
+      "description": "Revisa los activos monitoreados del laboratorio, unidades de almacenamiento, responsables y estado actual de cumplimiento."
+    },
+    "summary": {
+      "totalAssets": "Activos totales",
+      "totalAssetsDescription": "Registrados en inventario",
+      "compliant": "Cumplen",
+      "compliantDescription": "Listos para operar",
+      "warning": "Advertencia",
+      "warningDescription": "Requieren revisión",
+      "critical": "Críticos",
+      "criticalDescription": "Acción inmediata"
+    },
+    "table": {
+      "title": "Activos monitoreados",
+      "subtitle": "Cobertura actual de activos para almacenamiento de laboratorio y control de cadena de frío.",
+      "id": "ID",
+      "assetName": "Nombre del activo",
+      "category": "Categoría",
+      "storageUnit": "Unidad de almacenamiento",
+      "location": "Ubicación",
+      "lastInspection": "Última inspección",
+      "responsible": "Responsable",
+      "status": "Estado",
+      "actions": "Acciones",
+      "uncategorized": "Sin categoría",
+      "empty": "Aún no hay activos registrados."
+    },
+    "form": {
+      "title": "Detalles del activo",
+      "assetName": "Nombre del activo",
+      "category": "Categoría",
+      "categoryPlaceholder": "Insumo médico, Equipo, Reactivo...",
+      "storageUnit": "Unidad de almacenamiento",
+      "location": "Ubicación",
+      "locationPlaceholder": "Laboratorio Central A",
+      "lastInspection": "Última inspección",
+      "lastInspectionPlaceholder": "2026-06-18",
+      "responsible": "Responsable",
+      "responsiblePlaceholder": "Dra. Maria Lopez",
+      "status": "Estado"
+    },
+    "actions": {
+      "newAsset": "Nuevo activo",
+      "refresh": "Actualizar",
+      "cancel": "Cancelar",
+      "save": "Guardar",
+      "edit": "Editar activo",
+      "delete": "Eliminar activo"
+    },
+    "validation": {
+      "assetNameRequired": "El nombre del activo es obligatorio.",
+      "storageUnitRequired": "La unidad de almacenamiento es obligatoria."
+    },
+    "status": {
+      "compliant": "Conforme",
+      "warning": "Advertencia",
+      "critical": "Crítico",
+      "unknown": "Desconocido"
+    },
+    "messages": {
+      "deleteConfirmation": "¿Estás seguro de que deseas eliminar este activo?"
+    }
   }
 }
