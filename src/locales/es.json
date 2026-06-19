@@ -723,5 +723,96 @@
       "load": "No se pudieron cargar los datos de auditoría y trazabilidad."
     },
     "highlightReportsCopy": "Analiza tendencias, KPI y reportes operativos."
+  },
+  "subscriptionBilling": {
+    "module": {
+      "eyebrow": "Facturación de suscripción",
+      "title": "Mi suscripción",
+      "description": "Revisa tu plan actual, información de facturación y límites de uso."
+    },
+    "overview": {
+      "currentPlan": "Plan actual",
+      "status": "Estado",
+      "renewalDate": "Fecha de renovación",
+      "monthlyCost": "Costo mensual",
+      "deviceUsage": "Uso de dispositivos",
+      "devices": "dispositivos"
+    },
+    "status": {
+      "active": "Activo",
+      "inactive": "Inactivo",
+      "cancelled": "Cancelado"
+    },
+    "billingCycle": {
+      "monthly": "Mensual",
+      "yearly": "Anual"
+    },
+    "navigation": {
+      "invoices": "Ver facturas",
+      "invoicesDescription": "Revisa facturas generadas.",
+      "paymentHistory": "Historial de pagos",
+      "paymentHistoryDescription": "Consulta pagos completados.",
+      "usageLimits": "Uso y límites",
+      "usageLimitsDescription": "Revisa los límites de suscripción.",
+      "upgradePlan": "Mejorar plan",
+      "upgradePlanDescription": "Compara los planes disponibles."
+    },
+    "activity": {
+      "title": "Actividad reciente de facturación",
+      "latestInvoice": "Última factura",
+      "latestInvoiceDescription": "Factura más reciente generada para tu suscripción.",
+      "billingCycle": "Ciclo de facturación",
+      "billingCycleDescription": "Tu suscripción se renueva automáticamente en cada ciclo."
+    },
+    "invoices": {
+      "title": "Facturas",
+      "description": "Revisa el estado de facturas, periodos de cobro y documentos descargables.",
+      "invoice": "Factura",
+      "period": "Periodo",
+      "amount": "Monto",
+      "status": "Estado",
+      "dueDate": "Fecha límite",
+      "actions": "Acciones"
+    },
+    "invoiceStatus": {
+      "paid": "Pagada",
+      "pending": "Pendiente",
+      "failed": "Fallida"
+    },
+    "payments": {
+      "title": "Historial de pagos",
+      "description": "Revisa pagos exitosos y métodos de facturación.",
+      "amount": "Monto",
+      "paidAt": "Pagado el",
+      "status": "Estado"
+    },
+    "paymentStatus": {
+      "completed": "Completado",
+      "pending": "Pendiente",
+      "failed": "Fallido"
+    },
+    "usage": {
+      "title": "Uso y límites",
+      "description": "Monitorea el uso frente a los límites incluidos en tu plan actual.",
+      "devices": "Dispositivos",
+      "sensors": "Sensores",
+      "reports": "Reportes",
+      "alerts": "Alertas"
+    },
+    "upgrade": {
+      "title": "Mejorar plan",
+      "description": "Compara los planes disponibles de SafeLab y selecciona el más adecuado.",
+      "currentPlan": "Plan actual",
+      "selectPlan": "Seleccionar plan",
+      "perMonth": "por mes",
+      "confirmPlan": "¿Deseas cambiar al plan {plan}?"
+    },
+    "actions": {
+      "download": "Descargar"
+    },
+    "states": {
+      "loading": "Cargando datos de facturación...",
+      "error": "No se pudieron cargar los datos de facturación."
+    }
   }
 }
