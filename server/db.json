@@ -946,6 +946,103 @@
       }
     ]
   },
+  "reports": [
+    {
+      "id": 1,
+      "title": "Monthly compliance report",
+      "equipmentId": null,
+      "equipmentName": "",
+      "startDate": "2026-06-01",
+      "endDate": "2026-06-19",
+      "format": "pdf",
+      "status": "generated",
+      "createdAt": "2026-06-19T06:00:00.000Z",
+      "downloadUrl": "#"
+    },
+    {
+      "id": 2,
+      "title": "Cold chain operational report",
+      "equipmentId": 1,
+      "equipmentName": "Cold Chamber A-01",
+      "startDate": "2026-06-10",
+      "endDate": "2026-06-19",
+      "format": "xlsx",
+      "status": "generated",
+      "createdAt": "2026-06-18T18:20:00.000Z",
+      "downloadUrl": "#"
+    },
+    {
+      "id": 3,
+      "title": "Sensor incident summary",
+      "equipmentId": 6,
+      "equipmentName": "Hospital-01",
+      "startDate": "2026-06-15",
+      "endDate": "2026-06-19",
+      "format": "csv",
+      "status": "pending",
+      "createdAt": "2026-06-18T11:45:00.000Z",
+      "downloadUrl": null
+    },
+    {
+      "id": 4,
+      "title": "Environmental audit evidence",
+      "equipmentId": null,
+      "equipmentName": "",
+      "startDate": "2026-05-01",
+      "endDate": "2026-05-31",
+      "format": "pdf",
+      "status": "generated",
+      "createdAt": "2026-06-17T09:30:00.000Z",
+      "downloadUrl": "#"
+    }
+  ],
+  "historicalData": [
+    {
+      "id": 1,
+      "equipmentId": "LAB-A-01",
+      "equipmentName": "Lab-A-01",
+      "location": "Central Lab A",
+      "temperature": 3.8,
+      "humidity": 45,
+      "recordedAt": "2026-06-19 05:30"
+    },
+    {
+      "id": 2,
+      "equipmentId": "LAB-A-02",
+      "equipmentName": "Lab-A-02",
+      "location": "Central Lab A",
+      "temperature": 8.5,
+      "humidity": 46,
+      "recordedAt": "2026-06-19 04:55"
+    },
+    {
+      "id": 3,
+      "equipmentId": "STOR-C-01",
+      "equipmentName": "Storage-C-01",
+      "location": "Storage Room C",
+      "temperature": 5.1,
+      "humidity": 63,
+      "recordedAt": "2026-06-19 01:45"
+    },
+    {
+      "id": 4,
+      "equipmentId": "FREEZ-B-02",
+      "equipmentName": "Freezer-B-02",
+      "location": "Pharma Cold Chain",
+      "temperature": -21.4,
+      "humidity": 41,
+      "recordedAt": "2026-06-19 01:10"
+    },
+    {
+      "id": 5,
+      "equipmentId": "HOSP-01",
+      "equipmentName": "Hospital-01",
+      "location": "Hospital Pharmacy",
+      "temperature": null,
+      "humidity": null,
+      "recordedAt": "2026-06-18 07:30"
+    }
+  ],
   "incidents": [
     {
       "id": 1,

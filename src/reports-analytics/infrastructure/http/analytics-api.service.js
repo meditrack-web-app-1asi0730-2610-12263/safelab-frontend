@@ -1,19 +1,23 @@
 import axios from 'axios'
 
 const http = axios.create({
-    baseURL: import.meta.env.VITE_API_BASE_URL
+    baseURL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000'
 })
 
 export class AnalyticsApiService {
-    getSummary(filters = {}) {
-        return http.get('/analyticsSummary', {
-            params: filters
-        })
+    getSensors() {
+        return http.get('/sensors')
     }
 
-    getTrends(filters = {}) {
-        return http.get('/analyticsTrends', {
-            params: filters
-        })
+    getAlerts() {
+        return http.get('/alerts')
+    }
+
+    getAssets() {
+        return http.get('/assets')
+    }
+
+    getReports() {
+        return http.get('/reports')
     }
 }
