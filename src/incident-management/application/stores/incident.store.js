@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import { IncidentService } from '../services/incident.service'
 import { IncidentSeverity, IncidentStatus } from '../../domain/model/incident-status.model'
+import { filterRecordsForCurrentUser } from '@/shared/application/services/role-data-filter.service'
 
 const incidentService = new IncidentService()
 
@@ -42,7 +43,7 @@ export const useIncidentStore = defineStore('incident', {
             this.error = null
 
             try {
-                this.incidents = await incidentService.getIncidents()
+                this.incidents = filterRecordsForCurrentUser(await incidentService.getIncidents())
             } catch (error) {
                 console.error(error)
                 this.error = 'Could not load incidents.'

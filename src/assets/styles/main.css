@@ -349,3 +349,259 @@ p { color: var(--muted); line-height: 1.6; }
     .audit-list-cards article { grid-template-columns: 1fr; }
     .audit-list-cards .audit-status-badge { justify-self: flex-start; grid-row: auto; }
 }
+/* Role-aware production polish: light/dark workspace theme */
+:root[data-theme='dark'] {
+  --surface: #0f172a;
+  --surface-card: #172033;
+  --surface-soft: #1f2a44;
+  --primary: #8b7cf6;
+  --primary-dark: #c4b5fd;
+  --primary-blue: #60a5fa;
+  --accent: #2dd4bf;
+  --danger: #f87171;
+  --warning: #fbbf24;
+  --success: #34d399;
+  --text: #e5eefc;
+  --muted: #9aa8bd;
+  --border: #2b3954;
+  --shadow: 0 18px 45px rgba(0, 0, 0, 0.32);
+}
+
+:root[data-theme='dark'] body,
+:root[data-theme='dark'] .app-shell,
+:root[data-theme='dark'] .app-main,
+:root[data-theme='dark'] .app-content {
+  background: var(--surface) !important;
+  color: var(--text);
+}
+
+:root[data-theme='dark'] .app-topbar {
+  background: rgba(15, 23, 42, 0.88) !important;
+  border-bottom-color: var(--border) !important;
+}
+
+:root[data-theme='dark'] .page-hero,
+:root[data-theme='dark'] .content-card,
+:root[data-theme='dark'] .coming-soon-card,
+:root[data-theme='dark'] .metric-card,
+:root[data-theme='dark'] .summary-card,
+:root[data-theme='dark'] .dashboard-metric-card,
+:root[data-theme='dark'] .dashboard-widget-card,
+:root[data-theme='dark'] .alert-table-wrapper,
+:root[data-theme='dark'] .sensor-card,
+:root[data-theme='dark'] .incident-card,
+:root[data-theme='dark'] .profile-summary-card,
+:root[data-theme='dark'] .auth-card,
+:root[data-theme='dark'] .card,
+:root[data-theme='dark'] .table-card {
+  background: var(--surface-card) !important;
+  border-color: var(--border) !important;
+  color: var(--text) !important;
+}
+
+:root[data-theme='dark'] .dashboard-hero,
+:root[data-theme='dark'] .dashboard-overview-hero,
+:root[data-theme='dark'] .profile-hero,
+:root[data-theme='dark'] .asset-hero {
+  background: radial-gradient(circle at top right, rgba(45, 212, 191, .12), transparent 34%), var(--surface-card) !important;
+}
+
+:root[data-theme='dark'] .topbar-search,
+:root[data-theme='dark'] .language-pill,
+:root[data-theme='dark'] .profile-button,
+:root[data-theme='dark'] .icon-button,
+:root[data-theme='dark'] .notification-button,
+:root[data-theme='dark'] .theme-toggle-button,
+:root[data-theme='dark'] input,
+:root[data-theme='dark'] select,
+:root[data-theme='dark'] textarea,
+:root[data-theme='dark'] .table-action {
+  background: #111827 !important;
+  color: var(--text) !important;
+  border-color: var(--border) !important;
+}
+
+:root[data-theme='dark'] .alert-table th,
+:root[data-theme='dark'] .alert-table tbody tr:hover,
+:root[data-theme='dark'] .info-list div,
+:root[data-theme='dark'] .security-box,
+:root[data-theme='dark'] .incident-card__meta div,
+:root[data-theme='dark'] .payment-summary,
+:root[data-theme='dark'] .fake-card {
+  background: var(--surface-soft) !important;
+}
+
+:root[data-theme='dark'] h1,
+:root[data-theme='dark'] h2,
+:root[data-theme='dark'] h3,
+:root[data-theme='dark'] strong,
+:root[data-theme='dark'] dt,
+:root[data-theme='dark'] dd,
+:root[data-theme='dark'] .incident-card__title,
+:root[data-theme='dark'] .incident-card__description,
+:root[data-theme='dark'] .auth-header h2 {
+  color: var(--text) !important;
+}
+
+:root[data-theme='dark'] p,
+:root[data-theme='dark'] small,
+:root[data-theme='dark'] .muted,
+:root[data-theme='dark'] .profile-copy small,
+:root[data-theme='dark'] .auth-header p {
+  color: var(--muted) !important;
+}
+
+
+/* Final deployment polish */
+:root[data-theme='dark'] {
+  color-scheme: dark;
+}
+
+:root[data-theme='dark'] .route-frame,
+:root[data-theme='dark'] .dashboard-overview-page,
+:root[data-theme='dark'] .asset-page,
+:root[data-theme='dark'] .remote-page,
+:root[data-theme='dark'] .analytics-page,
+:root[data-theme='dark'] .reports-page,
+:root[data-theme='dark'] .profile-page,
+:root[data-theme='dark'] .subscription-page,
+:root[data-theme='dark'] .incident-page,
+:root[data-theme='dark'] .audit-page {
+  color: var(--text) !important;
+}
+
+:root[data-theme='dark'] article,
+:root[data-theme='dark'] .page-hero,
+:root[data-theme='dark'] .content-card,
+:root[data-theme='dark'] .summary-card,
+:root[data-theme='dark'] .metric-card,
+:root[data-theme='dark'] .dashboard-metric-card,
+:root[data-theme='dark'] .dashboard-widget-card,
+:root[data-theme='dark'] .dashboard-overview-hero,
+:root[data-theme='dark'] .dashboard-info-banner,
+:root[data-theme='dark'] .control-toolbar,
+:root[data-theme='dark'] .policy-card,
+:root[data-theme='dark'] .actuator-card,
+:root[data-theme='dark'] .report-card,
+:root[data-theme='dark'] .analytics-card,
+:root[data-theme='dark'] .profile-summary-card,
+:root[data-theme='dark'] .state-card,
+:root[data-theme='dark'] .billing-card,
+:root[data-theme='dark'] .plan-card,
+:root[data-theme='dark'] .auth-card {
+  background: var(--surface-card) !important;
+  border-color: var(--border) !important;
+  color: var(--text) !important;
+}
+
+:root[data-theme='dark'] .remote-hero,
+:root[data-theme='dark'] .asset-hero,
+:root[data-theme='dark'] .audit-hero,
+:root[data-theme='dark'] .profile-hero,
+:root[data-theme='dark'] .dashboard-hero,
+:root[data-theme='dark'] .dashboard-overview-hero {
+  background: radial-gradient(circle at top right, rgba(45, 212, 191, .12), transparent 34%), var(--surface-card) !important;
+}
+
+:root[data-theme='dark'] .p-datatable,
+:root[data-theme='dark'] .p-datatable-wrapper,
+:root[data-theme='dark'] .p-datatable-table,
+:root[data-theme='dark'] .p-datatable-thead > tr > th,
+:root[data-theme='dark'] .p-datatable-tbody > tr,
+:root[data-theme='dark'] .p-datatable-tbody > tr > td,
+:root[data-theme='dark'] .p-paginator,
+:root[data-theme='dark'] table,
+:root[data-theme='dark'] thead,
+:root[data-theme='dark'] tbody,
+:root[data-theme='dark'] tr,
+:root[data-theme='dark'] th,
+:root[data-theme='dark'] td {
+  background: #111827 !important;
+  color: var(--text) !important;
+  border-color: var(--border) !important;
+}
+
+:root[data-theme='dark'] .p-datatable-thead > tr > th,
+:root[data-theme='dark'] th {
+  background: #182238 !important;
+  color: #dbeafe !important;
+}
+
+:root[data-theme='dark'] .p-datatable-tbody > tr:nth-child(even),
+:root[data-theme='dark'] .p-datatable-tbody > tr:nth-child(even) > td,
+:root[data-theme='dark'] tbody tr:nth-child(even),
+:root[data-theme='dark'] tbody tr:nth-child(even) td {
+  background: #151f33 !important;
+}
+
+:root[data-theme='dark'] .actuator-meta div,
+:root[data-theme='dark'] .last-command,
+:root[data-theme='dark'] .timeline-body,
+:root[data-theme='dark'] .audit-list-cards article,
+:root[data-theme='dark'] .tracked-grid article,
+:root[data-theme='dark'] .laboratory-list article,
+:root[data-theme='dark'] .risk-grid article,
+:root[data-theme='dark'] .dashboard-notification-list li,
+:root[data-theme='dark'] .notification-list li,
+:root[data-theme='dark'] .info-list div,
+:root[data-theme='dark'] .security-box,
+:root[data-theme='dark'] .compliance-mini-grid div,
+:root[data-theme='dark'] .filter-summary-list div,
+:root[data-theme='dark'] .trend-row,
+:root[data-theme='dark'] .analytics-list article,
+:root[data-theme='dark'] .recent-list article,
+:root[data-theme='dark'] .report-list article {
+  background: #111827 !important;
+  border-color: var(--border) !important;
+  color: var(--text) !important;
+}
+
+:root[data-theme='dark'] input,
+:root[data-theme='dark'] select,
+:root[data-theme='dark'] textarea,
+:root[data-theme='dark'] .p-inputtext,
+:root[data-theme='dark'] .p-dropdown,
+:root[data-theme='dark'] .p-button:not(.primary-action):not(.logout-button),
+:root[data-theme='dark'] .language-pill,
+:root[data-theme='dark'] .profile-button,
+:root[data-theme='dark'] .icon-button,
+:root[data-theme='dark'] .notification-button,
+:root[data-theme='dark'] .theme-toggle-button {
+  background: #111827 !important;
+  color: var(--text) !important;
+  border-color: var(--border) !important;
+}
+
+:root[data-theme='dark'] h1,
+:root[data-theme='dark'] h2,
+:root[data-theme='dark'] h3,
+:root[data-theme='dark'] h4,
+:root[data-theme='dark'] strong,
+:root[data-theme='dark'] label,
+:root[data-theme='dark'] .profile-copy strong {
+  color: var(--text) !important;
+}
+
+:root[data-theme='dark'] p,
+:root[data-theme='dark'] small,
+:root[data-theme='dark'] span,
+:root[data-theme='dark'] .profile-copy small,
+:root[data-theme='dark'] .muted {
+  border-color: var(--border);
+}
+
+:root[data-theme='dark'] .linear-progress,
+:root[data-theme='dark'] .health-track {
+  background: #273449 !important;
+}
+
+:root[data-theme='dark'] .donut-chart::after {
+  background: var(--surface-card) !important;
+}
+
+:root[data-theme='dark'] .auth-page {
+  background:
+    radial-gradient(circle at 15% 15%, rgba(79, 70, 229, 0.16), transparent 30%),
+    radial-gradient(circle at 90% 90%, rgba(16, 185, 129, 0.16), transparent 34%),
+    #0f172a !important;
+}

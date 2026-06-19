@@ -2,6 +2,7 @@
 import { ref } from 'vue'
 import { RouterLink, useRouter } from 'vue-router'
 import { useAuthStore } from '../../application/stores/auth.store'
+import { registerRoleOptions } from '../../domain/models/role-access.config'
 import AuthShell from '../components/AuthShell.vue'
 
 const router = useRouter()
@@ -21,25 +22,7 @@ const form = ref({
 
 const validationError = ref('')
 
-const roleOptions = [
-  {
-    value: 'bioclinicalCoordinator',
-    label: 'Bioclinical Coordinator'
-  },
-  {
-    value: 'labTechnician',
-    label: 'Lab Technician'
-  },
-  {
-    value: 'complianceOfficer',
-    label: 'Compliance Officer'
-  },
-  {
-    value: 'billingManager',
-    label: 'Billing Manager'
-  }
-]
-
+const roleOptions = registerRoleOptions
 const validateForm = () => {
   validationError.value = ''
 

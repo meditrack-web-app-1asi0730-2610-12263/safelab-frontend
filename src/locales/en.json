@@ -11,6 +11,13 @@
   },
   "roles": {
     "safeLabAdministrator": "SafeLab Administrator",
+    "bioclinicalCoordinator": "Bioclinical Operations Coordinator",
+    "hospitalPharmacyCoordinator": "Hospital Pharmacy Coordinator",
+    "labTechnician": "Laboratory Technician",
+    "pharmacyTechnician": "Pharmacy Technician",
+    "complianceOfficer": "Compliance Officer",
+    "maintenanceOperator": "Maintenance Operator",
+    "billingManager": "Billing Manager",
     "laboratoryStaff": "Laboratory Staff",
     "pharmaceuticalCompany": "Pharmaceutical Company"
   },
@@ -23,7 +30,8 @@
     "closeMenu": "Close menu",
     "viewDetails": "View details",
     "newRecord": "New record",
-    "notifications": "Open notifications"
+    "notifications": "Open notifications",
+    "toggleTheme": "Toggle dark mode"
   },
   "status": {
     "inDevelopment": "In development",
@@ -507,7 +515,6 @@
       "warningDescription": "Need follow-up"
     },
     "table": {
-      "alertsTable": "Alerts table",
       "type": "Type",
       "device": "Device",
       "location": "Location",
@@ -554,23 +561,6 @@
       "delivered": "Delivered",
       "failed": "Failed",
       "notDelivered": "Not delivered"
-    },
-    "table": {
-      "type": "Type",
-      "device": "Device",
-      "location": "Location",
-      "severity": "Severity",
-      "status": "Status",
-      "createdAt": "Created at",
-      "actions": "Actions",
-      "message": "Message",
-      "channel": "Channel",
-      "sentAt": "Sent at",
-      "deliveredAt": "Delivered at",
-      "retries": "Retries",
-      "minimumSeverity": "Minimum severity",
-      "recipients": "Recipients",
-      "active": "Active"
     },
     "actions": {
       "notificationHistory": "Notification History",
@@ -687,7 +677,10 @@
       "DoorLock": "Door lock",
       "Alarm": "Alarm",
       "Telemetry": "Telemetry",
-      "Ventilation": "Ventilation"
+      "Ventilation": "Ventilation",
+      "Relay": "Relay",
+      "Power": "Power cycle",
+      "Lock": "Lock"
     },
     "status": {
       "online": "Online",
@@ -697,7 +690,9 @@
     "safetyStates": {
       "ready": "Ready",
       "locked": "Locked",
-      "review": "Needs review"
+      "review": "Needs review",
+      "enabled": "Enabled",
+      "blocked": "Blocked"
     },
     "commands": {
       "runSelfCheck": "Run self-check",
@@ -705,7 +700,11 @@
       "lockDevice": "Lock device",
       "unlockDevice": "Unlock device",
       "restartTelemetry": "Restart telemetry",
-      "acknowledgeBuzzer": "Acknowledge buzzer"
+      "acknowledgeBuzzer": "Acknowledge buzzer",
+      "start": "Start",
+      "stop": "Stop",
+      "reset": "Reset",
+      "Standby": "Standby"
     },
     "commandStatus": {
       "completed": "Completed",
@@ -1197,9 +1196,12 @@
     },
     "roles": {
       "safeLabAdministrator": "SafeLab Administrator",
-      "bioclinicalCoordinator": "Bioclinical Coordinator",
-      "labTechnician": "Lab Technician",
+      "bioclinicalCoordinator": "Bioclinical Operations Coordinator",
+      "hospitalPharmacyCoordinator": "Hospital Pharmacy Coordinator",
+      "labTechnician": "Laboratory Technician",
+      "pharmacyTechnician": "Pharmacy Technician",
       "complianceOfficer": "Compliance Officer",
+      "maintenanceOperator": "Maintenance Operator",
       "billingManager": "Billing Manager"
     },
     "status": {

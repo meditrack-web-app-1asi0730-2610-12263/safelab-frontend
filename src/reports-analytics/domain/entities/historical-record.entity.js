@@ -6,7 +6,8 @@ export class HistoricalRecord {
                     location = '',
                     temperature = null,
                     humidity = null,
-                    recordedAt
+                    recordedAt,
+                    ...metadata
                 }) {
         this.id = id
         this.equipmentId = equipmentId
@@ -15,5 +16,6 @@ export class HistoricalRecord {
         this.temperature = temperature
         this.humidity = humidity
         this.recordedAt = recordedAt
+        Object.assign(this, metadata)
     }
 }

@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import { fetchComplianceSensors } from '../services'
+import { filterRecordsForCurrentUser } from '@/shared/application/services/role-data-filter.service'
 
 const buildRuleKey = (type, minValue, maxValue) => `${type}:${minValue}:${maxValue}`
 
@@ -172,7 +173,7 @@ export const useComplianceStore = defineStore('environmental-compliance', {
             this.error = null
 
             try {
-                this.sensors = await fetchComplianceSensors()
+                this.sensors = filterRecordsForCurrentUser(await fetchComplianceSensors())
                 this.rules = deriveRules(this.sensors)
                 this.violations = deriveViolations(this.sensors)
                 this.kpis = computeKpis(this.sensors)

@@ -166,6 +166,18 @@
         />
 
         <Column
+            field="ownerName"
+            header="Scope"
+            sortable
+            style="min-width: 190px"
+        >
+          <template #body="{ data }">
+            <strong>{{ data.ownerName || data.facilityName || '—' }}</strong>
+            <small class="table-muted">{{ data.segment || 'platform' }}</small>
+          </template>
+        </Column>
+
+        <Column
             field="status"
             :header="t('assetInventory.table.status')"
             sortable

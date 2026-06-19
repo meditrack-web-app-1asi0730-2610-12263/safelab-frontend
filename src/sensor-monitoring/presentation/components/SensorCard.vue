@@ -158,6 +158,11 @@ const sensorStatusClass = (status) => ({
         <span>{{ t('menu.sensors.monitoring.details.lastReading') }}</span>
         <strong>{{ formatLastReading(sensor.lastReadingAt) }}</strong>
       </div>
+
+      <div v-if="sensor.ownerName || sensor.facilityName" class="sensor-meta-row">
+        <span>Scope</span>
+        <strong>{{ sensor.ownerName || sensor.facilityName }}</strong>
+      </div>
     </div>
   </article>
 </template>

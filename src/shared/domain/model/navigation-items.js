@@ -68,13 +68,6 @@ export const boundedContextNavigation = [
         icon: 'credit-card',
         path: '/subscription-billing/plans',
         roleScope: 'Company admin'
-    },
-    {
-        context: 'identity-access',
-        titleKey: 'contextLabels.administration',
-        icon: 'shield',
-        path: '/identity-access/users',
-        roleScope: 'SafeLab Admin'
     }
 ]
 

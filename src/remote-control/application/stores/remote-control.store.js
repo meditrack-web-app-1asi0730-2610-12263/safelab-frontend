@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import { RemoteControlService } from '../services/remote-control.service'
+import { filterRecordsForCurrentUser } from '@/shared/application/services/role-data-filter.service'
 
 const remoteControlService = new RemoteControlService()
 
@@ -58,8 +59,8 @@ export const useRemoteControlStore = defineStore('remote-control', {
                     remoteControlService.findPolicies()
                 ])
 
-                this.actuators = actuators
-                this.commands = commands
+                this.actuators = filterRecordsForCurrentUser(actuators)
+                this.commands = filterRecordsForCurrentUser(commands)
                 this.policies = policies
             } catch (error) {
                 console.error(error)

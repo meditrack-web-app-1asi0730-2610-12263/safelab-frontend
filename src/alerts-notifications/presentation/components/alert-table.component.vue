@@ -38,6 +38,7 @@ const goToDetail = (alert) => {
         <th>{{ t('alertsNotifications.table.type') }}</th>
         <th>{{ t('alertsNotifications.table.device') }}</th>
         <th>{{ t('alertsNotifications.table.location') }}</th>
+        <th>Scope</th>
         <th>{{ t('alertsNotifications.table.severity') }}</th>
         <th>{{ t('alertsNotifications.table.status') }}</th>
         <th>{{ t('alertsNotifications.table.createdAt') }}</th>
@@ -54,6 +55,10 @@ const goToDetail = (alert) => {
 
         <td>{{ alert.deviceName }}</td>
         <td>{{ alert.location }}</td>
+        <td>
+          <strong>{{ alert.ownerName || alert.facilityName || '—' }}</strong>
+          <small v-if="alert.segment">{{ alert.segment }}</small>
+        </td>
 
         <td>
           <AlertSeverityTag :severity="alert.severity" />

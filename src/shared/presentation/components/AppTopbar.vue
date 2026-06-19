@@ -20,6 +20,10 @@ const isNotificationsRoute = computed(() =>
     route.meta?.topbarContext === 'notifications'
 )
 
+const currentRoleLabel = computed(() =>
+  appStore.currentUser.roleLabel || appStore.currentUser.position || appStore.currentUser.role
+)
+
 function toggleSidebar() {
   if (window.innerWidth < 1024) {
     appStore.openMobileSidebar()
@@ -31,6 +35,10 @@ function toggleSidebar() {
 
 function changeLanguage(language) {
   setLocale(language)
+}
+
+function toggleTheme() {
+  appStore.toggleTheme()
 }
 
 function openProfile() {
@@ -96,15 +104,18 @@ onBeforeUnmount(() => {
       <i class="pi pi-bars" aria-hidden="true"></i>
     </button>
 
-    <div class="topbar-search" role="search">
-      <i class="pi pi-search" aria-hidden="true"></i>
-      <input
-          :placeholder="t('app.searchPlaceholder')"
-          :aria-label="t('app.search')"
-      />
-    </div>
+    <div class="topbar-spacer" aria-hidden="true"></div>
 
     <div class="topbar-actions">
+      <button
+          class="theme-toggle-button"
+          type="button"
+          :aria-label="t('actions.toggleTheme')"
+          @click="toggleTheme"
+      >
+        <i :class="appStore.isDarkMode ? 'pi pi-sun' : 'pi pi-moon'" aria-hidden="true"></i>
+      </button>
+
       <div class="language-pill" role="group" :aria-label="t('actions.language')">
         <button
             type="button"
@@ -158,7 +169,7 @@ onBeforeUnmount(() => {
 
         <span class="profile-copy">
           <strong>{{ appStore.currentUser.fullName }}</strong>
-          <small>{{ t('roles.safeLabAdministrator') }}</small>
+          <small>{{ currentRoleLabel }}</small>
         </span>
 
         <i class="pi pi-angle-right" aria-hidden="true"></i>
@@ -189,9 +200,31 @@ onBeforeUnmount(() => {
   justify-content: center;
 }
 
+.theme-toggle-button {
+  width: 42px;
+  height: 42px;
+  border: 0;
+  border-radius: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-dark);
+  background: var(--surface-card);
+  box-shadow: 0 8px 20px rgba(31,41,79,.08);
+  cursor: pointer;
+}
+
+.theme-toggle-button:hover {
+  outline: 2px solid rgba(79, 70, 229, 0.22);
+}
+
 .notification-button.active {
   outline: 2px solid rgba(79, 70, 229, 0.35);
   background: #eef2ff;
   color: #4f46e5;
+}
+
+.topbar-spacer {
+  flex: 1;
 }
 </style>

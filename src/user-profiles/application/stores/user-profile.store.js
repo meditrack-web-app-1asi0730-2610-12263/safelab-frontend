@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import { UserProfileApiService } from '../../infrastructure/http/user-profile-api.service'
 import { useAppStore } from '@/shared/application/stores/app.store'
+import { useAuthStore } from '@/identity-access/application/stores/auth.store'
 
 const userProfileApiService = new UserProfileApiService()
 
@@ -71,12 +72,17 @@ export const useUserProfileStore = defineStore('user-profile', {
             this.successMessage = ''
 
             try {
-                const response = await userProfileApiService.getCurrentProfile()
+                const authStore = useAuthStore()
+                authStore.restoreSession()
 
-                this.profile = response.data
-                this.form = buildFormFromProfile(response.data)
+                const accountId = authStore.currentUser?.id || 1
+                const response = await userProfileApiService.getProfileByAccountId(accountId)
+                const profile = Array.isArray(response.data) ? response.data[0] : response.data
 
-                syncTopbarUser(response.data)
+                this.profile = profile
+                this.form = buildFormFromProfile(profile)
+
+                syncTopbarUser(profile)
             } catch (error) {
                 console.error(error)
                 this.error = 'Could not load user profile.'
@@ -108,13 +114,26 @@ export const useUserProfileStore = defineStore('user-profile', {
                     updatedAt: new Date().toISOString()
                 }
 
-                const response = await userProfileApiService.updateProfile(payload)
+                const response = await userProfileApiService.updateProfile(this.profile.id, payload)
+                await userProfileApiService.updateUser(this.profile.accountId, {
+                    firstName: payload.firstName,
+                    lastName: payload.lastName,
+                    fullName: payload.fullName,
+                    initials: payload.initials,
+                    email: payload.email,
+                    phone: payload.phone,
+                    laboratory: payload.laboratory,
+                    updatedAt: payload.updatedAt
+                })
 
                 this.profile = response.data
                 this.form = buildFormFromProfile(response.data)
                 this.successMessage = 'Profile updated successfully.'
 
                 syncTopbarUser(response.data)
+
+                const authStore = useAuthStore()
+                authStore.updateCurrentUserProfile(response.data)
             } catch (error) {
                 console.error(error)
                 this.error = 'Could not update user profile.'
@@ -129,7 +148,7 @@ export const useUserProfileStore = defineStore('user-profile', {
             this.successMessage = ''
 
             try {
-                const response = await userProfileApiService.updateProfile({
+                const response = await userProfileApiService.updateProfile(this.profile.id, {
                     lastPasswordChange: new Date().toISOString(),
                     updatedAt: new Date().toISOString()
                 })
@@ -138,6 +157,9 @@ export const useUserProfileStore = defineStore('user-profile', {
                 this.successMessage = 'Security information updated successfully.'
 
                 syncTopbarUser(response.data)
+
+                const authStore = useAuthStore()
+                authStore.updateCurrentUserProfile(response.data)
             } catch (error) {
                 console.error(error)
                 this.error = 'Could not update security information.'

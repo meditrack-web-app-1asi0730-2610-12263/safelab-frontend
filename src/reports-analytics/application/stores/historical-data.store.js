@@ -1,6 +1,7 @@
 import { computed, ref } from 'vue'
 import { defineStore } from 'pinia'
 import { HistoricalDataService } from '../services/historical-data.service'
+import { filterRecordsForCurrentUser } from '@/shared/application/services/role-data-filter.service'
 
 const historicalDataService = new HistoricalDataService()
 
@@ -29,7 +30,7 @@ export const useHistoricalDataStore = defineStore('reportsAnalyticsHistoricalDat
         }
 
         try {
-            records.value = await historicalDataService.findAll(filters.value)
+            records.value = filterRecordsForCurrentUser(await historicalDataService.findAll(filters.value))
         } catch (exception) {
             console.error(exception)
             error.value = 'Could not load historical data.'

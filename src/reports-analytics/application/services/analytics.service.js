@@ -1,4 +1,5 @@
 import { AnalyticsApiService } from '../../infrastructure/http/analytics-api.service'
+import { filterRecordsForCurrentUser } from '@/shared/application/services/role-data-filter.service'
 
 const api = new AnalyticsApiService()
 
@@ -61,12 +62,17 @@ const countBy = (items, key) => {
 
 export class AnalyticsService {
     async getDashboard() {
-        const [sensors, alerts, assets, reports] = await Promise.all([
+        const [allSensors, allAlerts, allAssets, allReports] = await Promise.all([
             safeRequest(() => api.getSensors()),
             safeRequest(() => api.getAlerts()),
             safeRequest(() => api.getAssets()),
             safeRequest(() => api.getReports())
         ])
+
+        const sensors = filterRecordsForCurrentUser(allSensors)
+        const alerts = filterRecordsForCurrentUser(allAlerts)
+        const assets = filterRecordsForCurrentUser(allAssets)
+        const reports = filterRecordsForCurrentUser(allReports)
 
         const temperatureSensors = sensors.filter((sensor) => sensor.type === 'Temperature')
         const humiditySensors = sensors.filter((sensor) => sensor.type === 'Humidity')

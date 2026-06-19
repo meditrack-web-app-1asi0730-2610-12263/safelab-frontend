@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import { fetchSensors } from '../services'
+import { filterRecordsForCurrentUser } from '@/shared/application/services/role-data-filter.service'
 
 export const useSensorStore = defineStore('sensor-monitoring', {
     state: () => ({
@@ -45,7 +46,7 @@ export const useSensorStore = defineStore('sensor-monitoring', {
             this.error = null
 
             try {
-                this.sensors = await fetchSensors()
+                this.sensors = filterRecordsForCurrentUser(await fetchSensors())
             } catch (error) {
                 this.error = error
             } finally {

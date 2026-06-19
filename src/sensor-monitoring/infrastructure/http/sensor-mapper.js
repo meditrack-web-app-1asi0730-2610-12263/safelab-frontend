@@ -22,6 +22,7 @@ export const mapSensorDto = (dto) => {
     }
 
     return {
+        ...dto,
         id: dto.id,
         name: dto.name,
         code: dto.code,

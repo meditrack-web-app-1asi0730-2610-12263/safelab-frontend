@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import { NotificationService } from '../services/notification.service'
+import { useAuthStore } from '@/identity-access/application/stores/auth.store'
 
 const notificationService = new NotificationService()
 
@@ -33,7 +34,15 @@ export const useNotificationStore = defineStore('notifications', {
             this.error = null
 
             try {
-                this.notifications = await notificationService.findAll()
+                const authStore = useAuthStore()
+                authStore.restoreSession()
+                const notifications = await notificationService.findAll()
+
+                this.notifications = authStore.isAdmin
+                    ? notifications
+                    : notifications.filter((notification) =>
+                        String(notification.recipientId || '') === String(authStore.currentUser?.id || '')
+                    )
             } catch (error) {
                 console.error(error)
                 this.error = 'Could not load notifications.'

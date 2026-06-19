@@ -12,7 +12,8 @@ export class Report {
                     format = ReportFormat.PDF,
                     status = ReportStatus.PENDING,
                     createdAt = null,
-                    downloadUrl = null
+                    downloadUrl = null,
+                    ...metadata
                 }) {
         this.id = id
         this.title = title
@@ -24,11 +25,13 @@ export class Report {
         this.status = status
         this.createdAt = createdAt
         this.downloadUrl = downloadUrl
+        Object.assign(this, metadata)
     }
 
     markGenerated(downloadUrl) {
         this.status = ReportStatus.GENERATED
         this.downloadUrl = downloadUrl
+        Object.assign(this, metadata)
     }
 
     markFailed() {

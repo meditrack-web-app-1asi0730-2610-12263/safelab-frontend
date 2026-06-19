@@ -66,6 +66,11 @@ const formatDate = (value) => {
       </div>
 
       <div>
+        <dt>Scope</dt>
+        <dd>{{ incident.ownerName || incident.facilityName || '—' }}</dd>
+      </div>
+
+      <div>
         <dt>{{ t('incidentManagement.fields.dueDate') }}</dt>
         <dd>{{ incident.dueDate || '—' }}</dd>
       </div>

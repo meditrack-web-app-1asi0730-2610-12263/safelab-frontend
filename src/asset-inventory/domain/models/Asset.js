@@ -7,7 +7,8 @@ export class Asset {
                     location = '',
                     status = 'compliant',
                     lastInspection = '',
-                    responsible = ''
+                    responsible = '',
+                    ...metadata
                 } = {}) {
         this.id = id
         this.name = name
@@ -17,5 +18,6 @@ export class Asset {
         this.status = status
         this.lastInspection = lastInspection
         this.responsible = responsible
+        Object.assign(this, metadata)
     }
 }

@@ -21,7 +21,8 @@ export class Incident {
                     evidenceCount = 0,
                     createdAt = new Date().toISOString(),
                     updatedAt = new Date().toISOString(),
-                    timeline = []
+                    timeline = [],
+                    ...metadata
                 } = {}) {
         this.id = id
         this.code = code
@@ -43,6 +44,7 @@ export class Incident {
         this.createdAt = createdAt
         this.updatedAt = updatedAt
         this.timeline = Array.isArray(timeline) ? timeline : []
+        Object.assign(this, metadata)
     }
 
     get isOpen() {

@@ -163,12 +163,14 @@ function logout() {
   border: 0;
   border-radius: 12px;
   color: #ffffff;
-  background: rgba(255, 255, 255, 0.13);
+  background: linear-gradient(135deg, #ef4444, #dc2626);
   cursor: pointer;
-  font-weight: 800;
+  font-weight: 900;
+  box-shadow: 0 10px 22px rgba(239, 68, 68, 0.24);
 }
 
 .logout-button:hover {
-  background: rgba(255, 255, 255, 0.22);
+  background: linear-gradient(135deg, #dc2626, #b91c1c);
 }
+
 </style>

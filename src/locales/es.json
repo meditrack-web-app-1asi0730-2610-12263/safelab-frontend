@@ -11,6 +11,13 @@
   },
   "roles": {
     "safeLabAdministrator": "Administrador de SafeLab",
+    "bioclinicalCoordinator": "Coordinador de operaciones bioclínicas",
+    "hospitalPharmacyCoordinator": "Coordinador de farmacia hospitalaria",
+    "labTechnician": "Técnico de laboratorio",
+    "pharmacyTechnician": "Técnico de farmacia",
+    "complianceOfficer": "Responsable de cumplimiento",
+    "maintenanceOperator": "Operador de mantenimiento",
+    "billingManager": "Responsable de facturación",
     "laboratoryStaff": "Personal de laboratorio",
     "pharmaceuticalCompany": "Empresa farmacéutica"
   },
@@ -23,7 +30,8 @@
     "closeMenu": "Cerrar menú",
     "viewDetails": "Ver detalles",
     "newRecord": "Nuevo registro",
-    "notifications": "Abrir notificaciones"
+    "notifications": "Abrir notificaciones",
+    "toggleTheme": "Cambiar modo oscuro"
   },
   "status": {
     "inDevelopment": "En desarrollo",
@@ -507,7 +515,6 @@
       "warningDescription": "Necesitan seguimiento"
     },
     "table": {
-      "alertsTable": "Tabla de alertas",
       "type": "Tipo",
       "device": "Dispositivo",
       "location": "Ubicación",
@@ -554,23 +561,6 @@
       "delivered": "Entregada",
       "failed": "Fallida",
       "notDelivered": "No entregada"
-    },
-    "table": {
-      "type": "Tipo",
-      "device": "Dispositivo",
-      "location": "Ubicación",
-      "severity": "Severidad",
-      "status": "Estado",
-      "createdAt": "Creado el",
-      "actions": "Acciones",
-      "message": "Mensaje",
-      "channel": "Canal",
-      "sentAt": "Enviado el",
-      "deliveredAt": "Entregado el",
-      "retries": "Reintentos",
-      "minimumSeverity": "Severidad mínima",
-      "recipients": "Destinatarios",
-      "active": "Activo"
     },
     "actions": {
       "notificationHistory": "Historial de notificaciones",
@@ -687,7 +677,10 @@
       "DoorLock": "Cerradura",
       "Alarm": "Alarma",
       "Telemetry": "Telemetría",
-      "Ventilation": "Ventilación"
+      "Ventilation": "Ventilación",
+      "Relay": "Relé",
+      "Power": "Ciclo de energía",
+      "Lock": "Bloqueo"
     },
     "status": {
       "online": "En línea",
@@ -697,7 +690,9 @@
     "safetyStates": {
       "ready": "Listo",
       "locked": "Bloqueado",
-      "review": "Requiere revisión"
+      "review": "Requiere revisión",
+      "enabled": "Habilitado",
+      "blocked": "Bloqueado"
     },
     "commands": {
       "runSelfCheck": "Ejecutar revisión",
@@ -705,7 +700,11 @@
       "lockDevice": "Bloquear dispositivo",
       "unlockDevice": "Desbloquear dispositivo",
       "restartTelemetry": "Reiniciar telemetría",
-      "acknowledgeBuzzer": "Reconocer alarma"
+      "acknowledgeBuzzer": "Reconocer alarma",
+      "start": "Iniciar",
+      "stop": "Detener",
+      "reset": "Reiniciar",
+      "Standby": "En espera"
     },
     "commandStatus": {
       "completed": "Completado",
@@ -1198,9 +1197,12 @@
     },
     "roles": {
       "safeLabAdministrator": "Administrador de SafeLab",
-      "bioclinicalCoordinator": "Coordinador bioclínico",
+      "bioclinicalCoordinator": "Coordinador de operaciones bioclínicas",
+      "hospitalPharmacyCoordinator": "Coordinador de farmacia hospitalaria",
       "labTechnician": "Técnico de laboratorio",
+      "pharmacyTechnician": "Técnico de farmacia",
       "complianceOfficer": "Responsable de cumplimiento",
+      "maintenanceOperator": "Operador de mantenimiento",
       "billingManager": "Responsable de facturación"
     },
     "status": {
