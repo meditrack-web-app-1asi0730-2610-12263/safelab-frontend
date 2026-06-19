@@ -1,4 +1,4 @@
-import { SubscriptionBillingApiService } from '../../infrastructure/http/subscription-billing-api.service'
+import { SubscriptionBillingApiService } from '../../infrastructure/http/subscription-api.service.js'
 import { Plan } from '../../domain/entities/plan.entity'
 import { Subscription } from '../../domain/entities/subscription.entity'
 import { Invoice } from '../../domain/entities/invoice.entity'
