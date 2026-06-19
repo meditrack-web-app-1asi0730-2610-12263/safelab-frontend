@@ -1,4 +1,7 @@
 {
+  "auth": {
+    "logout": "Cerrar sesión"
+  },
   "app": {
     "name": "SafeLab",
     "tagline": "Monitoreo de laboratorio en tiempo real",
