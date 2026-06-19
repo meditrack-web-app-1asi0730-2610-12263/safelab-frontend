@@ -1,16 +1,17 @@
 <script setup>
 import { useI18n } from 'vue-i18n'
 
-const props = defineProps({
+defineProps({
   rule: {
     type: Object,
     required: true
   }
 })
 
-const { t } = useI18n()
+const { t } = useI18n({ useScope: 'global' })
 
-const badgeClass = (status) => status === 'Violation' ? 'status-pill danger' : 'status-pill success'
+const badgeClass = (status) =>
+    status === 'Violation' ? 'status-pill danger' : 'status-pill success'
 
 const unitByType = {
   Temperature: '°C',
@@ -37,18 +38,35 @@ const formatRange = (rule) => {
 <template>
   <article class="rule-row">
     <div>
-      <strong>{{ t(labelKeyByType[rule.type] ?? 'menu.compliance.status.ruleLabels.generic') }}: {{ formatRange(rule) }}</strong>
-      <p>{{ t('menu.compliance.status.ruleType', { type: t(`menu.compliance.status.types.${rule.type}`) }) }}</p>
+      <strong>
+        {{ t(labelKeyByType[rule.type] ?? 'menu.compliance.status.ruleLabels.generic') }}:
+        {{ formatRange(rule) }}
+      </strong>
+
+      <p>
+        {{ t('menu.compliance.status.ruleType', {
+        type: t(`menu.compliance.status.types.${rule.type}`)
+      }) }}
+      </p>
     </div>
+
     <div class="rule-meta">
+      <div>
+        <span>{{ t('menu.compliance.status.sensorsLabel') }}</span>
+        <strong>{{ rule.sensorCount }}</strong>
+      </div>
+
       <div>
         <span>{{ t('menu.compliance.status.violationsLabel') }}</span>
         <strong>{{ rule.violationCount }}</strong>
       </div>
+
       <span :class="badgeClass(rule.status)">
-        {{ rule.status === 'Violation'
-          ? t('menu.compliance.status.badges.violation')
-          : t('menu.compliance.status.badges.compliant') }}
+        {{
+          rule.status === 'Violation'
+              ? t('menu.compliance.status.badges.violation')
+              : t('menu.compliance.status.badges.compliant')
+        }}
       </span>
     </div>
   </article>
@@ -69,6 +87,8 @@ const formatRange = (rule) => {
 .rule-row p {
   margin: 4px 0 0;
   font-size: 0.82rem;
+  color: var(--muted);
+  font-weight: 600;
 }
 
 .rule-meta {
@@ -115,7 +135,7 @@ const formatRange = (rule) => {
   .rule-meta {
     width: 100%;
     justify-content: space-between;
+    flex-wrap: wrap;
   }
 }
 </style>
-
