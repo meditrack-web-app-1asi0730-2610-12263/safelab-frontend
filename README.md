@@ -201,3 +201,15 @@ VITE_USE_REMOTE_API=true
 ```
 
 After deployment, add the final Vercel URL to the backend `CORS_ALLOWED_ORIGINS` variable in Render and redeploy the backend.
+
+## Vercel deployment note
+
+If Vercel fails with `npm error Exit handler never called!`, use pnpm instead of npm:
+
+```txt
+Install Command: corepack enable && pnpm install --no-frozen-lockfile
+Build Command: pnpm run build
+Output Directory: dist
+```
+
+This project declares `packageManager: pnpm@10.14.0` and Node 24 for Vercel builds.
