@@ -1,16 +1,113 @@
 # SafeLab Frontend
 
-Base frontend project for the SafeLab Web Application. It follows the course statement constraints for Vue Framework, HTML5, CSS3, JavaScript, Material Design principles, PrimeVue, responsive web design, internationalization and accessibility-ready UI.
+SafeLab Frontend Web Application built with Vue 3, Vite, Pinia, Vue Router, PrimeVue and Vue I18n. This version is configured to consume the deployed SafeLab backend in Render.
 
-## Main improvements in this template
+## Backend integration
 
-- Fixed topbar with pill-style EN/ES language switcher.
-- Profile button redirects to `/user-profiles/my-profile`.
-- Notification bell redirects to `/alerts-notifications/active-alerts`.
-- Sidebar shows only the main operational modules to avoid visual saturation.
-- IAM login/register and User Profiles routes still exist, but they are not displayed as sidebar modules.
-- SafeLab shield logo is used in the browser tab and inside the application sidebar.
-- Home page includes an operational summary with metrics, a circular compliance chart, notification highlights and feature cards.
+The frontend uses this API by default:
+
+```env
+VITE_API_BASE_URL=https://safelab-platform-api.onrender.com/api/v1
+```
+
+The app no longer depends on JSON Server as its primary source. It loads the shared backend state from:
+
+```text
+GET /api/v1/demo/state
+```
+
+Then all main operations call the backend endpoints:
+
+- Sensors: `GET /sensors`, `POST /sensor-monitoring/sensors`, `PATCH /sensor-monitoring/sensors/{id}/reading`, `DELETE /sensors/{id}`
+- Assets: `POST/PATCH/DELETE /asset-inventory/assets`
+- Alerts: `POST /alerts-notifications/alerts/{id}/acknowledge`, `resolve`, `escalate`
+- Remote Control: `POST /remote-control/actuators/{id}/commands`
+- Incidents: `POST /incident-management/incidents/{id}/start-investigation`, `mark-resolved`, `close`
+- Reports: `POST /reports-analytics/reports/generate`
+- Audit: loaded through `GET /audit-traceability/timeline` and backend shared state
+
+If the backend is temporarily unavailable, the frontend keeps a local fallback cache so the demo does not break visually.
+
+## Demo credentials
+
+```text
+admin@safelab.pe / 123456
+coordinator@labcentral.pe / 123456
+technician@labcentral.pe / 123456
+compliance@farmaciaregional.pe / 123456
+manager@labcentral.pe / 123456
+pharma@pharmandina.pe / 123456
+```
+
+## Local development
+
+```bash
+npm install
+npm run dev
+```
+
+Optional `.env.local`:
+
+```env
+VITE_API_BASE_URL=https://safelab-platform-api.onrender.com/api/v1
+VITE_APP_NAME=SafeLab
+VITE_DEFAULT_LOCALE=en
+VITE_USE_REMOTE_API=true
+```
+
+To force offline demo mode:
+
+```env
+VITE_USE_REMOTE_API=false
+```
+
+## Build
+
+```bash
+npm run build
+npm run preview
+```
+
+## Deploy on Render as Static Site
+
+Recommended Render configuration:
+
+```text
+Type: Static Site
+Name: safelab-frontend
+Branch: main
+Build Command: npm install && npm run build
+Publish Directory: dist
+```
+
+Environment variables:
+
+```text
+VITE_API_BASE_URL=https://safelab-platform-api.onrender.com/api/v1
+VITE_APP_NAME=SafeLab
+VITE_DEFAULT_LOCALE=en
+VITE_USE_REMOTE_API=true
+```
+
+For Vue Router history mode, configure a rewrite rule in Render:
+
+```text
+Source: /*
+Destination: /index.html
+Action: Rewrite
+```
+
+This repository also includes `render.yaml` with the same static site configuration.
+
+## Important CORS note
+
+After Render gives you the final frontend URL, update the backend environment variable:
+
+```text
+CORS_ALLOWED_ORIGINS=https://your-frontend-url.onrender.com,http://localhost:5173
+```
+
+Then redeploy the backend.
 
 ## Stack
 
@@ -20,52 +117,20 @@ Base frontend project for the SafeLab Web Application. It follows the course sta
 - PrimeVue + PrimeFlex + PrimeIcons
 - Vue I18n
 - Axios
-- JSON Server for mock data
-
-## Getting Started
-
-```bash
-npm install
-npm run dev
-```
-
-Run the mock REST API:
-
-```bash
-npm run server
-```
-
-## Environment
-
-Create `.env.local` if you need local overrides:
-
-```env
-VITE_API_BASE_URL=http://localhost:3000
-VITE_APP_NAME=SafeLab
-VITE_DEFAULT_LOCALE=en
-```
+- Render Static Site deployment
+- SafeLab Platform API backend deployed on Render
 
 ## Project Structure
 
 ```text
 safelab-frontend/
 ├── public/
-│   └── safelab-shield.png
-├── server/
-│   ├── db.json
-│   ├── routes.json
-│   └── start.sh
+├── server/                         # legacy mock seed, not required for deployed mode
 ├── src/
 │   ├── assets/
 │   ├── locales/
-│   │   ├── en.json
-│   │   └── es.json
 │   ├── router/
 │   ├── shared/
-│   │   ├── application/
-│   │   ├── domain/
-│   │   ├── infrastructure/
-│   │   └── presentation/
 │   ├── identity-access/
 │   ├── user-profiles/
 │   ├── subscription-billing/
@@ -79,17 +144,19 @@ safelab-frontend/
 │   ├── incident-management/
 │   └── audit-traceability/
 ├── .env.example
+├── .env.production.example
+├── render.yaml
 ├── package.json
 └── vite.config.js
 ```
 
 ## DDD Frontend Convention
 
-Each bounded context contains the same folder structure to reduce merge conflicts during GitFlow work:
+Each bounded context keeps the same structure:
 
 ```text
-application/      use cases, application services and stores
-domain/           entities, value objects, domain models and constants
+application/      use cases, services and stores
+domain/           entities, models and constants
 infrastructure/   API clients, repositories and mappers
 presentation/     routes, views and UI components
 ```
@@ -109,89 +176,28 @@ presentation/     routes, views and UI components
 11. `incident-management`
 12. `audit-traceability`
 
-## Sidebar Navigation Rule
 
-The sidebar intentionally shows only the main operational entry points:
+## Vercel deployment
 
-- Dashboard & Overview
-- Assets & Inventory
-- Sensor Monitoring
-- Environmental Compliance
-- Alerts & Notifications
-- Remote Control
-- Reports & Analytics
-- Incident Management
-- Audit & Traceability
-- Plans & Billing
-- Administration
+This frontend is prepared for Vercel as a Vite static application.
 
-IAM authentication views and profile views are still available by route, but they are accessed through login/register flows or the topbar profile button.
+Recommended settings:
 
-## Routing Convention
-
-Each module has its own `presentation/routes.js`. To add a real view later, replace `ComingSoonView` with the real view component.
-
-```js
-import AssetListView from './views/AssetListView.vue'
-
-export const routes = [
-  {
-    path: 'asset-inventory/asset-list',
-    name: 'asset-inventory-asset-list',
-    component: AssetListView,
-    meta: { title: 'Asset List', contextKey: 'assets', viewKey: 'assets.AssetList' }
-  }
-]
+```txt
+Framework Preset: Vite
+Root Directory: empty
+Install Command: npm install --legacy-peer-deps
+Build Command: npm run build
+Output Directory: dist
 ```
 
-## i18n Convention
+Required environment variables:
 
-All visible text must be declared in:
-
-- `src/locales/en.json`
-- `src/locales/es.json`
-
-Default language is English. Spanish is selected from the fixed pill switcher in the topbar.
-
-## Responsive Layout
-
-The base shell includes:
-
-- Fixed topbar
-- Responsive collapsible sidebar
-- Automatic sidebar hiding on tablet/mobile widths
-- Mobile overlay for the sidebar
-- Hidden sidebar scrollbar for a cleaner UI
-- Cards and grids that adapt to desktop, tablet and mobile
-
-## GitFlow Recommendation
-
-Suggested branches:
-
-```text
-main
-develop
-feature/dashboard-overview
-feature/asset-inventory
-feature/sensor-monitoring
-feature/environmental-compliance
-feature/alerts-notifications
-feature/remote-control
-feature/reports-analytics
-feature/incident-management
-feature/audit-traceability
-feature/subscription-billing
-feature/identity-access
-feature/user-profiles
-release/v1.0.0
-hotfix/<short-description>
+```env
+VITE_API_BASE_URL=https://safelab-platform-api.onrender.com/api/v1
+VITE_APP_NAME=SafeLab
+VITE_DEFAULT_LOCALE=es
+VITE_USE_REMOTE_API=true
 ```
 
-Use Conventional Commits:
-
-```text
-feat(sensor-monitoring): implement live readings view
-fix(shared): correct responsive sidebar behavior
-docs(readme): update routing convention
-style(shared): refine topbar language switcher
-```
+After deployment, add the final Vercel URL to the backend `CORS_ALLOWED_ORIGINS` variable in Render and redeploy the backend.
