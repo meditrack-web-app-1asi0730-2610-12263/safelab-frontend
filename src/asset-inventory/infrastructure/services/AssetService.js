@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { Asset } from '../../domain/models/Asset'
 
-const API_URL = 'http://localhost:3000/assets'
+const API_URL = `${import.meta.env.VITE_API_BASE_URL || 'https://safelab-platform-api.onrender.com/api/v1'}/assets`
 
 export const AssetService = {
     async getAll() {

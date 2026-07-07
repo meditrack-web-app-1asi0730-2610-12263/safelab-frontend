@@ -1,14 +1,20 @@
 <script setup>
-import { computed } from 'vue'
+import { computed, onMounted } from 'vue'
 import { useAppStore } from '@/shared/application/stores/app.store'
+import { useSafeLabDemoStore } from '@/shared/application/stores/demo.store'
 import AppSidebar from '@/shared/presentation/components/AppSidebar.vue'
 import AppTopbar from '@/shared/presentation/components/AppTopbar.vue'
 
 const appStore = useAppStore()
+const demoStore = useSafeLabDemoStore()
 
 const shellClasses = computed(() => ({
   'sidebar-hidden': !appStore.sidebarVisible
 }))
+
+onMounted(() => {
+  demoStore.initializeOperationalState()
+})
 </script>
 
 <template>

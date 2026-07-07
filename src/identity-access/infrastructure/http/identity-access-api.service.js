@@ -1,27 +1,35 @@
-import axios from 'axios'
-
-const http = axios.create({
-    baseURL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000'
-})
+import { apiClient } from '@/shared/infrastructure/http/api-client'
 
 export class IdentityAccessApiService {
-    getUsers() {
-        return http.get('/users')
-    }
+  signIn(payload) {
+    return apiClient.post('/auth/sign-in', payload)
+  }
 
-    createUser(payload) {
-        return http.post('/users', payload)
-    }
+  signOut() {
+    return apiClient.post('/auth/sign-out')
+  }
 
-    createUserProfile(payload) {
-        return http.post('/userProfiles', payload)
-    }
+  getCurrentUser() {
+    return apiClient.get('/auth/me')
+  }
 
-    createUserSubscription(payload) {
-        return http.post('/userSubscriptions', payload)
-    }
+  getUsers() {
+    return apiClient.get('/user-profiles/users')
+  }
 
-    getBillingPlans() {
-        return http.get('/billingPlans')
-    }
+  createUser(payload) {
+    return apiClient.post('/users', payload)
+  }
+
+  createUserProfile(payload) {
+    return Promise.resolve({ data: payload })
+  }
+
+  createUserSubscription(payload) {
+    return Promise.resolve({ data: payload })
+  }
+
+  getBillingPlans() {
+    return apiClient.get('/subscription-billing/billing')
+  }
 }

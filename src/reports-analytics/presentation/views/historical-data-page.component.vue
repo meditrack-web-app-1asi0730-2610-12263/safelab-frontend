@@ -1,183 +1,20 @@
 <script setup>
-import { onMounted } from 'vue'
-import { useHistoricalDataStore } from '../../application/stores/historical-data.store'
-import HistoricalDataTable from '../components/historical-data-table.component.vue'
-
-const historicalDataStore = useHistoricalDataStore()
-
-const updateFilter = (key, value) => {
-  historicalDataStore.fetchRecords({
-    [key]: value || null
-  })
-}
-
-const clearFilters = () => {
-  historicalDataStore.clearFilters()
-  historicalDataStore.fetchRecords()
-}
-
-onMounted(() => {
-  historicalDataStore.fetchRecords()
-})
+import { computed, ref } from 'vue'
+import { useAuthStore } from '@/identity-access/application/stores/auth.store'
+import { useSafeLabDemoStore } from '@/shared/application/stores/demo.store'
+const auth = useAuthStore(); const demo = useSafeLabDemoStore(); auth.restoreSession()
+const type = ref('Operational')
+const user = computed(() => auth.currentUser)
+const summary = computed(() => demo.dashboardSummary(user.value))
+const reports = computed(() => demo.reports.slice(0, 6))
+const alerts = computed(() => demo.scopedItems('alerts', user.value).slice(0, 5))
+function generate(){ demo.generateReport(type.value, `${type.value} analytics ${new Date().toLocaleDateString()}`) }
 </script>
-
 <template>
-  <main class="historical-data-page" aria-labelledby="historical-data-title">
-    <header class="page-header">
-      <p class="eyebrow">Reports & Analytics</p>
-      <h1 id="historical-data-title">Historical data</h1>
-      <p>Review temperature and humidity records over time.</p>
-    </header>
-
-    <section class="filters-panel">
-      <label>
-        Equipment ID
-        <input
-            :value="historicalDataStore.filters.equipmentId || ''"
-            type="text"
-            placeholder="Optional"
-            @input="updateFilter('equipmentId', $event.target.value)"
-        />
-      </label>
-
-      <label>
-        Start date
-        <input
-            :value="historicalDataStore.filters.startDate || ''"
-            type="date"
-            @change="updateFilter('startDate', $event.target.value)"
-        />
-      </label>
-
-      <label>
-        End date
-        <input
-            :value="historicalDataStore.filters.endDate || ''"
-            type="date"
-            @change="updateFilter('endDate', $event.target.value)"
-        />
-      </label>
-
-      <button
-          type="button"
-          class="secondary-button"
-          @click="clearFilters"
-      >
-        Clear filters
-      </button>
-    </section>
-
-    <p v-if="historicalDataStore.error" class="error-message" role="alert">
-      {{ historicalDataStore.error }}
-    </p>
-
-    <p
-        v-if="!historicalDataStore.loading && !historicalDataStore.error && historicalDataStore.records.length === 0"
-        class="empty-message"
-    >
-      No historical data found.
-    </p>
-
-    <HistoricalDataTable
-        :records="historicalDataStore.records"
-        :loading="historicalDataStore.loading"
-    />
-  </main>
+  <section class="page">
+    <div class="page-hero compact"><div><p class="eyebrow">Reports & analytics</p><h1>Analytics overview</h1><p>Generate reports from operational, compliance, incident and audit information.</p></div><div class="actions"><select v-model="type" class="select"><option>Operational</option><option>Compliance</option><option>Audit</option><option>Incident</option></select><button class="btn primary" @click="generate">Generate report</button></div></div>
+    <div class="kpi-grid"><article class="kpi-card"><span class="kpi-icon"><i class="pi pi-file"></i></span><div class="kpi-copy"><span>Reports</span><strong>{{ demo.reports.length }}</strong><small>Generated exports</small></div></article><article class="kpi-card warning"><span class="kpi-icon"><i class="pi pi-bell"></i></span><div class="kpi-copy"><span>Active alerts</span><strong>{{ summary.activeAlerts }}</strong><small>Operational review</small></div></article><article class="kpi-card"><span class="kpi-icon"><i class="pi pi-chart-line"></i></span><div class="kpi-copy"><span>Telemetry</span><strong>{{ summary.telemetryScore }}%</strong><small>Coverage score</small></div></article><article class="kpi-card danger"><span class="kpi-icon"><i class="pi pi-exclamation-triangle"></i></span><div class="kpi-copy"><span>Risk load</span><strong>{{ summary.openIncidents + summary.activeAlerts }}</strong><small>Needs attention</small></div></article></div>
+    <div class="grid-2"><article class="card"><div class="card-header"><div><p class="eyebrow">Monitoring trends</p><h2>Operational indicators</h2></div></div><div class="item-list"><div class="list-row"><span><strong>Health score</strong><small>Current dashboard health</small></span><strong>{{ summary.healthScore }}%</strong></div><div class="list-row"><span><strong>Compliance score</strong><small>Current rule readiness</small></span><strong>{{ summary.complianceScore }}%</strong></div><div class="list-row"><span><strong>Open alerts</strong><small>Alerts still requiring review</small></span><strong>{{ summary.activeAlerts }}</strong></div></div></article><article class="card"><div class="card-header"><div><p class="eyebrow">Operational risk</p><h2>Risk snapshot</h2></div><span :class="['status-pill', summary.healthScore > 70 ? 'success' : 'danger']">{{ summary.healthScore > 70 ? 'Controlled' : 'High risk' }}</span></div><div class="pair-grid"><div class="pair-box"><span>Critical alerts</span><strong>{{ summary.criticalAlerts }}</strong></div><div class="pair-box"><span>Out-of-range sensors</span><strong>{{ summary.abnormalSensors }}</strong></div><div class="pair-box"><span>Disconnected sensors</span><strong>{{ summary.disconnectedSensors }}</strong></div><div class="pair-box"><span>Compliance</span><strong>{{ summary.complianceScore }}%</strong></div></div></article></div>
+    <div class="grid-2"><article class="card"><div class="card-header"><div><p class="eyebrow">Recent reports</p><h2>Generated files</h2></div></div><div class="item-list"><article v-for="report in reports" :key="report.id" class="list-row compact"><span><strong>{{ report.title }}</strong><small>{{ report.type }} · {{ new Date(report.generatedAt).toLocaleString() }}</small></span><span class="status-pill success">{{ report.format }}</span><button class="btn small">Download</button></article></div></article><article class="card"><div class="card-header"><div><p class="eyebrow">Recent alerts</p><h2>Inputs for analytics</h2></div></div><div class="item-list"><article v-for="alert in alerts" :key="alert.id" class="list-row compact"><span><strong>{{ alert.title }}</strong><small>{{ alert.message }}</small></span><span :class="['status-pill', alert.severity]">{{ alert.severity }}</span></article></div></article></div>
+  </section>
 </template>
-
-<style scoped>
-.historical-data-page {
-  display: grid;
-  gap: 22px;
-}
-
-.page-header {
-  margin-bottom: 0.5rem;
-}
-
-.eyebrow {
-  color: #4f46e5;
-  font-size: 0.78rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  margin: 0 0 0.25rem;
-  text-transform: uppercase;
-}
-
-h1 {
-  color: #0f172a;
-  font-size: 2rem;
-  margin: 0;
-}
-
-p {
-  color: #475569;
-}
-
-.filters-panel {
-  align-items: end;
-  background: #ffffff;
-  border-radius: 18px;
-  display: grid;
-  gap: 1rem;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  padding: 1rem;
-  border: 1px solid var(--border);
-  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
-}
-
-label {
-  color: #334155;
-  display: grid;
-  font-weight: 700;
-  gap: 0.35rem;
-}
-
-input {
-  border: 1px solid #cbd5e1;
-  border-radius: 12px;
-  min-height: 42px;
-  padding: 0.65rem;
-}
-
-.secondary-button {
-  background: #eef2ff;
-  border: none;
-  border-radius: 12px;
-  color: #4338ca;
-  cursor: pointer;
-  font-weight: 800;
-  min-height: 42px;
-  padding: 0.7rem 1rem;
-}
-
-.secondary-button:hover {
-  background: #e0e7ff;
-}
-
-.empty-message,
-.error-message {
-  border-radius: 14px;
-  margin: 0;
-  padding: 1rem;
-  font-weight: 700;
-}
-
-.empty-message {
-  background: #eff6ff;
-  border-left: 4px solid #2563eb;
-  color: #1e40af;
-}
-
-.error-message {
-  background: #fee2e2;
-  border-left: 4px solid #dc2626;
-  color: #991b1b;
-}
-
-@media (max-width: 900px) {
-  .filters-panel {
-    grid-template-columns: 1fr;
-  }
-}
-</style>

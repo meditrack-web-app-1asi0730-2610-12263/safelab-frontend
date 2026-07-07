@@ -1,102 +1,101 @@
 <script setup>
-import { useI18n } from 'vue-i18n'
+import { computed } from 'vue'
+import { useRouter } from 'vue-router'
+import { useAuthStore } from '@/identity-access/application/stores/auth.store'
+import { useSafeLabDemoStore } from '@/shared/application/stores/demo.store'
 import { boundedContextNavigation } from '@/shared/domain/model/navigation-items'
 
-const { t } = useI18n()
+const router = useRouter()
+const auth = useAuthStore()
+const demo = useSafeLabDemoStore()
+auth.restoreSession()
 
-const metrics = [
-  { labelKey: 'home.metricActiveSensors', value: '156', icon: 'pi pi-wifi', trendKey: 'home.trendStable' },
-  { labelKey: 'home.metricCompliance', value: '98.7%', icon: 'pi pi-check-circle', trendKey: 'home.trendPositive' },
-  { labelKey: 'home.metricOpenAlerts', value: '3', icon: 'pi pi-bell', trendKey: 'home.trendAttention' },
-  { labelKey: 'home.metricRoutesReady', value: boundedContextNavigation.length, icon: 'pi pi-sitemap', trendKey: 'home.trendModules' }
-]
+const user = computed(() => auth.currentUser)
+const summary = computed(() => demo.dashboardSummary(user.value))
+const visibleModules = computed(() => boundedContextNavigation.filter((item) => auth.canAccessContext(item.context)))
+const recentAlerts = computed(() => demo.scopedItems('alerts', user.value).filter((alert) => alert.status !== 'resolved').slice(0, 4))
+const incidents = computed(() => demo.scopedItems('incidents', user.value).filter((incident) => !['closed', 'resolved'].includes(incident.status)).slice(0, 3))
 
-const highlights = [
-  { titleKey: 'home.highlightSensors', copyKey: 'home.highlightSensorsCopy', icon: 'pi pi-wifi', to: '/sensor-monitoring/live-readings' },
-  { titleKey: 'home.highlightCompliance', copyKey: 'home.highlightComplianceCopy', icon: 'pi pi-shield', to: '/environmental-compliance/compliance-status' },
-  { titleKey: 'home.highlightIncidents', copyKey: 'home.highlightIncidentsCopy', icon: 'pi pi-exclamation-triangle', to: '/incident-management/incident-list' },
-  { titleKey: 'home.highlightReports', copyKey: 'home.highlightReportsCopy', icon: 'pi pi-chart-line', to: '/reports-analytics/analytics-dashboard' }
-]
 </script>
 
 <template>
-  <section class="page-hero dashboard-hero">
-    <div>
-      <p class="eyebrow">{{ t('home.frontendLabel') }}</p>
-      <h1>{{ t('home.title') }}</h1>
-      <p>{{ t('home.subtitle') }}</p>
-    </div>
-    <RouterLink class="primary-action" to="/dashboard-overview/laboratory-dashboard">
-      {{ t('actions.viewDetails') }}
-      <i class="pi pi-arrow-right" aria-hidden="true"></i>
-    </RouterLink>
-  </section>
-
-  <section class="metric-grid" :aria-label="t('home.metricsLabel')">
-    <article v-for="metric in metrics" :key="metric.labelKey" class="metric-card">
-      <i :class="metric.icon" aria-hidden="true"></i>
-      <span>{{ t(metric.labelKey) }}</span>
-      <strong>{{ metric.value }}</strong>
-      <small>{{ t(metric.trendKey) }}</small>
-    </article>
-  </section>
-
-  <section class="overview-grid">
-    <article class="content-card chart-card">
-      <div class="card-header">
-        <div>
-          <p class="eyebrow">{{ t('home.operationalSummary') }}</p>
-          <h2>{{ t('home.monitoringCoverage') }}</h2>
-        </div>
-      </div>
-      <div class="donut-chart" aria-hidden="true">
-        <span>98.7%</span>
-      </div>
-      <div class="chart-legend">
-        <span><i></i>{{ t('home.compliantStorage') }}</span>
-        <span><i></i>{{ t('home.pendingReview') }}</span>
-      </div>
-    </article>
-
-    <article class="content-card notifications-card">
-      <div class="card-header">
-        <div>
-          <p class="eyebrow">{{ t('home.priorityAlerts') }}</p>
-          <h2>{{ t('home.recentNotifications') }}</h2>
-        </div>
-      </div>
-      <ul class="notification-list">
-        <li>
-          <span class="severity-dot critical"></span>
-          <div><strong>{{ t('home.alertColdRoom') }}</strong><small>{{ t('home.alertColdRoomCopy') }}</small></div>
-        </li>
-        <li>
-          <span class="severity-dot warning"></span>
-          <div><strong>{{ t('home.alertCalibration') }}</strong><small>{{ t('home.alertCalibrationCopy') }}</small></div>
-        </li>
-        <li>
-          <span class="severity-dot success"></span>
-          <div><strong>{{ t('home.alertReport') }}</strong><small>{{ t('home.alertReportCopy') }}</small></div>
-        </li>
-      </ul>
-    </article>
-  </section>
-
-  <section class="content-card">
-    <div class="card-header">
+  <section class="page">
+    <div class="page-hero">
       <div>
-        <p class="eyebrow">{{ t('home.moduleSummary') }}</p>
-        <h2>{{ t('home.description') }}</h2>
+        <p class="eyebrow">SafeLab home</p>
+        <h1>Operational workspace</h1>
+        <p>
+          Role-aware summary for {{ user?.position || 'SafeLab user' }}. This page connects the main bounded contexts and shows what requires attention today based on the current data state.
+        </p>
+        <div class="actions">
+          <RouterLink class="btn" to="/dashboard-overview/laboratory-dashboard">
+            Open dashboard
+          </RouterLink>
+        </div>
+      </div>
+      <div class="hero-score">
+        <span>Operational health</span>
+        <strong>{{ summary.healthScore }}%</strong>
+        <small>{{ summary.activeAlerts }} active alerts · {{ summary.openIncidents }} open incidents</small>
       </div>
     </div>
-    <div class="feature-grid">
-      <RouterLink v-for="item in highlights" :key="item.titleKey" :to="item.to">
-        <article>
-          <i :class="item.icon" aria-hidden="true"></i>
-          <h3>{{ t(item.titleKey) }}</h3>
-          <p>{{ t(item.copyKey) }}</p>
-        </article>
-      </RouterLink>
+
+    <div class="kpi-grid">
+      <article class="kpi-card success">
+        <span class="kpi-icon"><i class="pi pi-wifi"></i></span>
+        <div class="kpi-copy"><span>Online sensors</span><strong>{{ summary.activeSensors }}/{{ summary.totalSensors }}</strong><small>Telemetry coverage</small></div>
+      </article>
+      <article class="kpi-card">
+        <span class="kpi-icon"><i class="pi pi-box"></i></span>
+        <div class="kpi-copy"><span>Assets</span><strong>{{ summary.storageUnits }}</strong><small>Storage and equipment</small></div>
+      </article>
+      <article class="kpi-card warning">
+        <span class="kpi-icon"><i class="pi pi-bell"></i></span>
+        <div class="kpi-copy"><span>Open alerts</span><strong>{{ summary.activeAlerts }}</strong><small>Need review</small></div>
+      </article>
+      <article class="kpi-card danger">
+        <span class="kpi-icon"><i class="pi pi-exclamation-triangle"></i></span>
+        <div class="kpi-copy"><span>Open incidents</span><strong>{{ summary.openIncidents }}</strong><small>Operational cases</small></div>
+      </article>
+    </div>
+
+    <div class="grid-2">
+      <article class="card">
+        <div class="card-header">
+          <div class="card-title">
+            <p class="eyebrow">Module summary</p>
+            <h2>Available bounded contexts</h2>
+            <p>Only modules allowed by the active role are shown.</p>
+          </div>
+        </div>
+        <div class="module-card-grid">
+          <RouterLink v-for="item in visibleModules" :key="item.context" :to="item.path" class="module-card">
+            <i :class="`pi pi-${item.icon}`"></i>
+            <strong>{{ item.shortLabel || item.titleKey }}</strong>
+            <small class="text-muted">{{ item.roleScope }}</small>
+          </RouterLink>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-header">
+          <div class="card-title">
+            <p class="eyebrow">Action feed</p>
+            <h2>Alerts and incidents</h2>
+            <p>New events generated from sensors, remote commands and compliance actions appear here.</p>
+          </div>
+        </div>
+        <div class="item-list">
+          <button v-for="alert in recentAlerts" :key="alert.id" class="list-row" type="button" @click="router.push('/alerts-notifications/active-alerts')">
+            <span><strong>{{ alert.title }}</strong><small>{{ alert.message }}</small></span>
+            <span :class="['status-pill', alert.severity]">{{ alert.severity }}</span>
+          </button>
+          <button v-for="incident in incidents" :key="incident.id" class="list-row" type="button" @click="router.push(`/incident-management/incident-detail/${incident.id}`)">
+            <span><strong>{{ incident.code }} · {{ incident.title }}</strong><small>{{ incident.description }}</small></span>
+            <span :class="['status-pill', incident.status]">{{ incident.status }}</span>
+          </button>
+        </div>
+      </article>
     </div>
   </section>
 </template>

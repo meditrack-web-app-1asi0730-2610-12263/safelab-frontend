@@ -7,6 +7,7 @@ import {
   isAdministratorRole,
   roleSegmentMap
 } from '../../domain/models/role-access.config'
+import { demoUsers } from '@/shared/domain/data/safelab-demo-seed'
 
 const identityAccessApiService = new IdentityAccessApiService()
 const SESSION_KEY = 'safelab-auth-session'
@@ -128,6 +129,19 @@ export const useAuthStore = defineStore('identity-access-auth', {
     logout() {
       this.currentUser = null
       localStorage.removeItem(SESSION_KEY)
+
+      const appStore = useAppStore()
+      appStore.$patch({
+        sidebarVisible: true,
+        mobileSidebarVisible: false,
+        currentUser: {
+          fullName: 'Guest User',
+          role: 'guest',
+          roleLabel: 'Guest',
+          position: 'Guest',
+          initials: 'GU'
+        }
+      })
     },
 
 
@@ -166,17 +180,13 @@ export const useAuthStore = defineStore('identity-access-auth', {
       this.error = null
 
       try {
-        const response = await identityAccessApiService.getUsers()
-        const users = response.data
         const normalizedIdentifier = identifier.trim().toLowerCase()
-
-        const user = users.find((item) => {
-          const matchesIdentifier =
-            item.email.toLowerCase() === normalizedIdentifier ||
-            item.username.toLowerCase() === normalizedIdentifier
-
-          return matchesIdentifier && item.password === password
+        const response = await identityAccessApiService.signIn({
+          email: normalizedIdentifier,
+          username: normalizedIdentifier,
+          password
         })
+        const user = response.data?.user
 
         if (!user) {
           this.failedLoginAttempts += 1
@@ -184,7 +194,7 @@ export const useAuthStore = defineStore('identity-access-auth', {
           return false
         }
 
-        if (user.status !== 'active') {
+        if (user.status && user.status !== 'active') {
           this.failedLoginAttempts += 1
           this.error = 'This account is not active.'
           return false
@@ -193,9 +203,20 @@ export const useAuthStore = defineStore('identity-access-auth', {
         this.persistSession(user)
         return true
       } catch (error) {
+        const normalizedIdentifier = identifier.trim().toLowerCase()
+        const fallbackUser = demoUsers.find((item) => {
+          const matchesIdentifier = item.email.toLowerCase() === normalizedIdentifier || item.username.toLowerCase() === normalizedIdentifier
+          return matchesIdentifier && item.password === password
+        })
+
+        if (fallbackUser) {
+          this.persistSession(fallbackUser)
+          return true
+        }
+
         console.error(error)
         this.failedLoginAttempts += 1
-        this.error = 'Could not sign in.'
+        this.error = 'Could not sign in. Try admin@safelab.pe / 123456 for the demo.'
         return false
       } finally {
         this.loading = false

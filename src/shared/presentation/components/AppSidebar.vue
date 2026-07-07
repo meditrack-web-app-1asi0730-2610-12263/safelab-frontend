@@ -77,7 +77,7 @@ function logout() {
           @click="closeOnMobile"
       >
         <i :class="`pi pi-${item.icon}`" aria-hidden="true"></i>
-        <span>{{ t(item.titleKey) }}</span>
+        <span>{{ item.shortLabel || t(item.titleKey) }}</span>
       </RouterLink>
     </nav>
 

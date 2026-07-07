@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import AppShell from '@/shared/presentation/layouts/AppShell.vue'
+import HomeView from '@/shared/presentation/views/HomeView.vue'
 import { useAuthStore } from '@/identity-access/application/stores/auth.store'
 
 import { routes as IdentityAccessRoutes } from '@/identity-access/presentation/routes'
@@ -24,7 +25,9 @@ const routes = [
         children: [
             {
                 path: '',
-                redirect: '/dashboard-overview/laboratory-dashboard'
+                name: 'home',
+                component: HomeView,
+                meta: { title: 'Home', contextKey: 'home' }
             },
             ...UserProfilesRoutes,
             ...SubscriptionBillingRoutes,

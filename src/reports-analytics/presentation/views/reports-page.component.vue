@@ -1,128 +1,20 @@
 <script setup>
-import { onMounted } from 'vue'
-import { useReportStore } from '../../application/stores/report.store'
-import ReportForm from '../components/report-form.component.vue'
-import ReportTable from '../components/report-table.component.vue'
-
-const reportStore = useReportStore()
-
-const generateReport = async (payload) => {
-  await reportStore.generateReport(payload)
-}
-
-const downloadReport = async (id) => {
-  await reportStore.downloadReport(id)
-}
-
-onMounted(() => {
-  reportStore.fetchReports()
-})
+import { computed, ref } from 'vue'
+import { useAuthStore } from '@/identity-access/application/stores/auth.store'
+import { useSafeLabDemoStore } from '@/shared/application/stores/demo.store'
+const auth = useAuthStore(); const demo = useSafeLabDemoStore(); auth.restoreSession()
+const type = ref('Operational')
+const user = computed(() => auth.currentUser)
+const summary = computed(() => demo.dashboardSummary(user.value))
+const reports = computed(() => demo.reports.slice(0, 6))
+const alerts = computed(() => demo.scopedItems('alerts', user.value).slice(0, 5))
+function generate(){ demo.generateReport(type.value, `${type.value} analytics ${new Date().toLocaleDateString()}`) }
 </script>
-
 <template>
-  <main class="reports-page" aria-labelledby="reports-title">
-    <header class="page-header">
-      <p class="eyebrow">Reports & Analytics</p>
-      <h1 id="reports-title">Reports</h1>
-      <p>Generate and download reports by equipment and date range.</p>
-    </header>
-
-    <section class="layout-grid">
-      <article class="panel">
-        <h2>New report</h2>
-        <ReportForm @submit="generateReport" />
-      </article>
-
-      <article class="panel">
-        <h2>Generated reports</h2>
-
-        <p v-if="reportStore.error" class="error-message" role="alert">
-          {{ reportStore.error }}
-        </p>
-
-        <p v-if="!reportStore.loading && !reportStore.error && reportStore.reports.length === 0" class="empty-message">
-          No reports available.
-        </p>
-
-        <ReportTable
-            :reports="reportStore.reports"
-            :loading="reportStore.loading"
-            @download="downloadReport"
-        />
-      </article>
-    </section>
-  </main>
+  <section class="page">
+    <div class="page-hero compact"><div><p class="eyebrow">Reports & analytics</p><h1>Analytics overview</h1><p>Generate reports from operational, compliance, incident and audit information.</p></div><div class="actions"><select v-model="type" class="select"><option>Operational</option><option>Compliance</option><option>Audit</option><option>Incident</option></select><button class="btn primary" @click="generate">Generate report</button></div></div>
+    <div class="kpi-grid"><article class="kpi-card"><span class="kpi-icon"><i class="pi pi-file"></i></span><div class="kpi-copy"><span>Reports</span><strong>{{ demo.reports.length }}</strong><small>Generated exports</small></div></article><article class="kpi-card warning"><span class="kpi-icon"><i class="pi pi-bell"></i></span><div class="kpi-copy"><span>Active alerts</span><strong>{{ summary.activeAlerts }}</strong><small>Operational review</small></div></article><article class="kpi-card"><span class="kpi-icon"><i class="pi pi-chart-line"></i></span><div class="kpi-copy"><span>Telemetry</span><strong>{{ summary.telemetryScore }}%</strong><small>Coverage score</small></div></article><article class="kpi-card danger"><span class="kpi-icon"><i class="pi pi-exclamation-triangle"></i></span><div class="kpi-copy"><span>Risk load</span><strong>{{ summary.openIncidents + summary.activeAlerts }}</strong><small>Needs attention</small></div></article></div>
+    <div class="grid-2"><article class="card"><div class="card-header"><div><p class="eyebrow">Monitoring trends</p><h2>Operational indicators</h2></div></div><div class="item-list"><div class="list-row"><span><strong>Health score</strong><small>Current dashboard health</small></span><strong>{{ summary.healthScore }}%</strong></div><div class="list-row"><span><strong>Compliance score</strong><small>Current rule readiness</small></span><strong>{{ summary.complianceScore }}%</strong></div><div class="list-row"><span><strong>Open alerts</strong><small>Alerts still requiring review</small></span><strong>{{ summary.activeAlerts }}</strong></div></div></article><article class="card"><div class="card-header"><div><p class="eyebrow">Operational risk</p><h2>Risk snapshot</h2></div><span :class="['status-pill', summary.healthScore > 70 ? 'success' : 'danger']">{{ summary.healthScore > 70 ? 'Controlled' : 'High risk' }}</span></div><div class="pair-grid"><div class="pair-box"><span>Critical alerts</span><strong>{{ summary.criticalAlerts }}</strong></div><div class="pair-box"><span>Out-of-range sensors</span><strong>{{ summary.abnormalSensors }}</strong></div><div class="pair-box"><span>Disconnected sensors</span><strong>{{ summary.disconnectedSensors }}</strong></div><div class="pair-box"><span>Compliance</span><strong>{{ summary.complianceScore }}%</strong></div></div></article></div>
+    <div class="grid-2"><article class="card"><div class="card-header"><div><p class="eyebrow">Recent reports</p><h2>Generated files</h2></div></div><div class="item-list"><article v-for="report in reports" :key="report.id" class="list-row compact"><span><strong>{{ report.title }}</strong><small>{{ report.type }} · {{ new Date(report.generatedAt).toLocaleString() }}</small></span><span class="status-pill success">{{ report.format }}</span><button class="btn small">Download</button></article></div></article><article class="card"><div class="card-header"><div><p class="eyebrow">Recent alerts</p><h2>Inputs for analytics</h2></div></div><div class="item-list"><article v-for="alert in alerts" :key="alert.id" class="list-row compact"><span><strong>{{ alert.title }}</strong><small>{{ alert.message }}</small></span><span :class="['status-pill', alert.severity]">{{ alert.severity }}</span></article></div></article></div>
+  </section>
 </template>
-
-<style scoped>
-.reports-page {
-  min-height: 100vh;
-  padding: 2rem;
-  background: #f8fafc;
-}
-
-.page-header {
-  margin-bottom: 1.5rem;
-}
-
-.eyebrow {
-  color: #4f46e5;
-  font-size: 0.875rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  margin: 0 0 0.25rem;
-  text-transform: uppercase;
-}
-
-h1 {
-  color: #0f172a;
-  font-size: 2rem;
-  margin: 0;
-}
-
-p {
-  color: #475569;
-}
-
-.layout-grid {
-  display: grid;
-  gap: 1.5rem;
-  grid-template-columns: 360px 1fr;
-}
-
-.panel {
-  background: #ffffff;
-  border-radius: 0.75rem;
-  padding: 1rem;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-}
-
-.empty-message,
-.error-message {
-  border-radius: 0.5rem;
-  margin: 1rem 0;
-  padding: 1rem;
-}
-
-.empty-message {
-  background: #eff6ff;
-  border-left: 4px solid #2563eb;
-  color: #1e40af;
-}
-
-.error-message {
-  background: #fee2e2;
-  border-left: 4px solid #dc2626;
-  color: #991b1b;
-}
-
-@media (max-width: 900px) {
-  .reports-page {
-    padding: 1rem;
-  }
-
-  .layout-grid {
-    grid-template-columns: 1fr;
-  }
-}
-</style>

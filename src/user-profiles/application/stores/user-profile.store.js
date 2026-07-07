@@ -115,16 +115,6 @@ export const useUserProfileStore = defineStore('user-profile', {
                 }
 
                 const response = await userProfileApiService.updateProfile(this.profile.id, payload)
-                await userProfileApiService.updateUser(this.profile.accountId, {
-                    firstName: payload.firstName,
-                    lastName: payload.lastName,
-                    fullName: payload.fullName,
-                    initials: payload.initials,
-                    email: payload.email,
-                    phone: payload.phone,
-                    laboratory: payload.laboratory,
-                    updatedAt: payload.updatedAt
-                })
 
                 this.profile = response.data
                 this.form = buildFormFromProfile(response.data)
