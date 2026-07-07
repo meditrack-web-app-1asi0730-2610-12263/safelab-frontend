@@ -1,8 +1,9 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": "vite",
-  "installCommand": "corepack enable && corepack prepare pnpm@10.14.0 --activate && pnpm install --no-frozen-lockfile",
-  "buildCommand": "corepack enable && corepack prepare pnpm@10.14.0 --activate && pnpm run build",
+  "bunVersion": "1.x",
+  "installCommand": "bun install",
+  "buildCommand": "bun run build",
   "outputDirectory": "dist",
   "rewrites": [
     {

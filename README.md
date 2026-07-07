@@ -213,3 +213,25 @@ Output Directory: dist
 ```
 
 This project declares `packageManager: pnpm@10.14.0` and Node 24 for Vercel builds.
+
+
+## Deploy rápido en Vercel con Bun
+
+Usar Bun evita los errores de npm/pnpm vistos en el build cloud.
+
+```txt
+Framework Preset: Vite
+Install Command: bun install
+Build Command: bun run build
+Output Directory: dist
+```
+
+Variables requeridas:
+
+```env
+NODE_VERSION=24
+VITE_API_BASE_URL=https://safelab-platform-api.onrender.com/api/v1
+VITE_APP_NAME=SafeLab
+VITE_DEFAULT_LOCALE=es
+VITE_USE_REMOTE_API=true
+```
